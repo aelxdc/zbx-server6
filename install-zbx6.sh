@@ -37,7 +37,7 @@ mibs +ALL
 mibAllowUnderline 1
 " > /etc/snmp/snmp.conf
 
-cp mibs_conectcor/* /usr/share/snmp/mibs/
+cp mibs_ccor/* /usr/share/snmp/mibs/
 
 echo "Creating database zabbix"
 mysql -e "create database zabbix character set utf8 collate utf8_bin;"
