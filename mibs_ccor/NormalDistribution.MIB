@@ -1,0 +1,2015 @@
+--NormalDistribution-MIB { iso(1) org(3) dod(6) internet(1) private(4)
+--      enterprises(1) rcmib(939) }
+
+
+NormalDistribution-MIB DEFINITIONS ::= BEGIN
+-- Title: PPC TOP LEVEL MIB
+-- Date: January 07, 1994    Version 1.00
+--
+-- Date: January 17, 1994    Version 1.01
+--
+-- Date: July 14, 1994    Version 1.02
+
+
+IMPORTS
+	enterprises, IpAddress
+		FROM RFC1155-SMI
+	DisplayString
+		FROM RFC1213-MIB
+	OBJECT-TYPE
+		FROM RFC-1212
+	TRAP-TYPE
+		FROM RFC-1215;
+
+NormalDistribution                           OBJECT IDENTIFIER ::=  { enterprises 942 }
+
+FirstNormalDistribution OBJECT IDENTIFIER ::=  { NormalDistribution 1}
+FirstNormalDistributionAnalog                       OBJECT IDENTIFIER ::=  { FirstNormalDistribution 1 }
+FirstNormalDistributionStatus                       OBJECT IDENTIFIER ::=  { FirstNormalDistribution 2 }
+FirstNormalDistributionAlarm                       OBJECT IDENTIFIER ::=  { FirstNormalDistribution 3 }
+
+SecondNormalDistribution OBJECT IDENTIFIER ::=  { NormalDistribution 2}
+SecondNormalDistributionAnalog                       OBJECT IDENTIFIER ::=  { SecondNormalDistribution 1 }
+SecondNormalDistributionStatus                       OBJECT IDENTIFIER ::=  { SecondNormalDistribution 2 }
+SecondNormalDistributionAlarm                       OBJECT IDENTIFIER ::=  { SecondNormalDistribution 3 }
+
+ThirtNormalDistribution OBJECT IDENTIFIER ::=  { NormalDistribution 3}
+ThirtNormalDistributionAnalog                       OBJECT IDENTIFIER ::=  { ThirtNormalDistribution 1 }
+ThirtNormalDistributionStatus                       OBJECT IDENTIFIER ::=  { ThirtNormalDistribution 2 }
+ThirtNormalDistributionAlarm                       OBJECT IDENTIFIER ::=  { ThirtNormalDistribution 3 }
+
+FouthNormalDistribution OBJECT IDENTIFIER ::=  { NormalDistribution 4}
+FouthNormalDistributionAnalog                       OBJECT IDENTIFIER ::=  { FouthNormalDistribution 1 }
+FouthNormalDistributionStatus                       OBJECT IDENTIFIER ::=  { FouthNormalDistribution 2 }
+FouthNormalDistributionAlarm                       OBJECT IDENTIFIER ::=  { FouthNormalDistribution 3 }
+
+
+
+
+-- the NormalDistributionAnalog group
+--addNormalDistributionAnalog
+First_A_phase_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_A_phase_voltage"
+	::= { FirstNormalDistributionAnalog 1 }
+First_caline_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_caline_voltage"
+	::= { FirstNormalDistributionAnalog 2 }
+First_Aphase_current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Aphase_current"
+	::= { FirstNormalDistributionAnalog 3 }
+First_A_phaseactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_A_phaseactive_power"
+	::= { FirstNormalDistributionAnalog 4 }
+First_APhase_Power_Factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_APhase_Power_Factor"
+	::= { FirstNormalDistributionAnalog 5 }
+First_Aphase_reactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Aphase_reactive_power"
+	::= { FirstNormalDistributionAnalog 6 }
+First_A_phaseapparent_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_A_phaseapparent_power"
+	::= { FirstNormalDistributionAnalog 7 }
+First_B-phasevoltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_B-phasevoltage"
+	::= { FirstNormalDistributionAnalog 8 }
+First_abline_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_abline_voltage"
+	::= { FirstNormalDistributionAnalog 9 }
+First_Phase_B_current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Phase_B_current"
+	::= { FirstNormalDistributionAnalog 10 }
+First_B-phaseactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_B-phaseactive_power"
+	::= { FirstNormalDistributionAnalog 11 }
+First_B-phasepower_factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_B-phasepower_factor"
+	::= { FirstNormalDistributionAnalog 12 }
+First_B-phasereactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_B-phasereactive_power"
+	::= { FirstNormalDistributionAnalog 13 }
+First_B-phaseapparent_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_B-phaseapparent_power"
+	::= { FirstNormalDistributionAnalog 14 }
+First_C-phase_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_C-phase_voltage"
+	::= { FirstNormalDistributionAnalog 15 }
+First_bcline_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_bcline_voltage"
+	::= { FirstNormalDistributionAnalog 16 }
+First_C-phase_current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_C-phase_current"
+	::= { FirstNormalDistributionAnalog 17 }
+First_C-phaseactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_C-phaseactive_power"
+	::= { FirstNormalDistributionAnalog 18 }
+First_Phase_CPower_Factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Phase_CPower_Factor"
+	::= { FirstNormalDistributionAnalog 19 }
+First_Phase_CReactive_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Phase_CReactive_Power"
+	::= { FirstNormalDistributionAnalog 20 }
+First_Phase_CApparent_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Phase_CApparent_Power"
+	::= { FirstNormalDistributionAnalog 21 }
+First_Averagephase_voltagethree-phase OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Averagephase_voltagethree-phase"
+	::= { FirstNormalDistributionAnalog 22 }
+First_Averagethree-phaseline_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Averagethree-phaseline_voltage"
+	::= { FirstNormalDistributionAnalog 23 }
+First_Averagephase_currentphase OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Averagephase_currentphase"
+	::= { FirstNormalDistributionAnalog 24 }
+First_Frequency OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Frequency"
+	::= { FirstNormalDistributionAnalog 25 }
+First_Three-phaseactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Three-phaseactive_power"
+	::= { FirstNormalDistributionAnalog 26 }
+First_Total_three-phasepower_factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Total_three-phasepower_factor"
+	::= { FirstNormalDistributionAnalog 27 }
+First_Phase_reactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Phase_reactive_power"
+	::= { FirstNormalDistributionAnalog 28 }
+First_Three-phaseapparent_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Three-phaseapparent_power"
+	::= { FirstNormalDistributionAnalog 29 }
+First_Positiveactive_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Positiveactive_energy"
+	::= { FirstNormalDistributionAnalog 30 }
+First_Negativeactive_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Negativeactive_energy"
+	::= { FirstNormalDistributionAnalog 31 }
+First_Positive_reactive_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Positive_reactive_energy"
+	::= { FirstNormalDistributionAnalog 32 }
+First_Negativereactive_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Negativereactive_energy"
+	::= { FirstNormalDistributionAnalog 33 }
+First_The_local_address OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_The_local_address"
+	::= { FirstNormalDistributionAnalog 34 }
+First_Wiringthe_system_under_testload OBJECT-TYPE
+	SYNTAX OCTET STRING
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Wiringthe_system_under_testload"
+	::= { FirstNormalDistributionAnalog 35 }
+First_Baud_Rate OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Baud_Rate"
+	::= { FirstNormalDistributionAnalog 36 }
+First_Voltage_input_range OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Voltage_input_range"
+	::= { FirstNormalDistributionAnalog 37 }
+First_PT OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_PT"
+	::= { FirstNormalDistributionAnalog 38 }
+First_CT OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_CT"
+	::= { FirstNormalDistributionAnalog 39 }
+First_Lightintensity OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Lightintensity"
+	::= { FirstNormalDistributionAnalog 40 }
+First_A_phase_outputload OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_A_phase_outputload"
+	::= { FirstNormalDistributionAnalog 41 }
+First_B-phaseoutput_load OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_B-phaseoutput_load"
+	::= { FirstNormalDistributionAnalog 42 }
+First_C-phaseoutput_load OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_C-phaseoutput_load"
+	::= { FirstNormalDistributionAnalog 43 }
+First_A-phase_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_A-phase_energy"
+	::= { FirstNormalDistributionAnalog 44 }
+First_B-phase_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_B-phase_energy"
+	::= { FirstNormalDistributionAnalog 45 }
+First_C-phase_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_C-phase_energy"
+	::= { FirstNormalDistributionAnalog 46 }
+First_Three-phaseload_average OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Three-phaseload_average"
+	::= { FirstNormalDistributionAnalog 47 }
+First_NA1 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_NA1"
+	::= { FirstNormalDistributionAnalog 48 }
+First_NA2 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_NA2"
+	::= { FirstNormalDistributionAnalog 49 }
+First_NA3 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_NA3"
+	::= { FirstNormalDistributionAnalog 50 }
+First_NA4 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_NA4"
+	::= { FirstNormalDistributionAnalog 51 }
+Second_A_phase_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_A_phase_voltage"
+	::= { SecondNormalDistributionAnalog 1 }
+Second_caline_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_caline_voltage"
+	::= { SecondNormalDistributionAnalog 2 }
+Second_Aphase_current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Aphase_current"
+	::= { SecondNormalDistributionAnalog 3 }
+Second_A_phaseactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_A_phaseactive_power"
+	::= { SecondNormalDistributionAnalog 4 }
+Second_APhase_Power_Factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_APhase_Power_Factor"
+	::= { SecondNormalDistributionAnalog 5 }
+Second_Aphase_reactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Aphase_reactive_power"
+	::= { SecondNormalDistributionAnalog 6 }
+Second_A_phaseapparent_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_A_phaseapparent_power"
+	::= { SecondNormalDistributionAnalog 7 }
+Second_B-phasevoltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_B-phasevoltage"
+	::= { SecondNormalDistributionAnalog 8 }
+Second_abline_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_abline_voltage"
+	::= { SecondNormalDistributionAnalog 9 }
+Second_Phase_B_current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Phase_B_current"
+	::= { SecondNormalDistributionAnalog 10 }
+Second_B-phaseactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_B-phaseactive_power"
+	::= { SecondNormalDistributionAnalog 11 }
+Second_B-phasepower_factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_B-phasepower_factor"
+	::= { SecondNormalDistributionAnalog 12 }
+Second_B-phasereactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_B-phasereactive_power"
+	::= { SecondNormalDistributionAnalog 13 }
+Second_B-phaseapparent_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_B-phaseapparent_power"
+	::= { SecondNormalDistributionAnalog 14 }
+Second_C-phase_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_C-phase_voltage"
+	::= { SecondNormalDistributionAnalog 15 }
+Second_bcline_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_bcline_voltage"
+	::= { SecondNormalDistributionAnalog 16 }
+Second_C-phase_current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_C-phase_current"
+	::= { SecondNormalDistributionAnalog 17 }
+Second_C-phaseactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_C-phaseactive_power"
+	::= { SecondNormalDistributionAnalog 18 }
+Second_Phase_CPower_Factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Phase_CPower_Factor"
+	::= { SecondNormalDistributionAnalog 19 }
+Second_Phase_CReactive_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Phase_CReactive_Power"
+	::= { SecondNormalDistributionAnalog 20 }
+Second_Phase_CApparent_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Phase_CApparent_Power"
+	::= { SecondNormalDistributionAnalog 21 }
+Second_Averagephase_voltagethree-phase OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Averagephase_voltagethree-phase"
+	::= { SecondNormalDistributionAnalog 22 }
+Second_Averagethree-phaseline_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Averagethree-phaseline_voltage"
+	::= { SecondNormalDistributionAnalog 23 }
+Second_Averagephase_currentphase OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Averagephase_currentphase"
+	::= { SecondNormalDistributionAnalog 24 }
+Second_Frequency OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Frequency"
+	::= { SecondNormalDistributionAnalog 25 }
+Second_Three-phaseactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Three-phaseactive_power"
+	::= { SecondNormalDistributionAnalog 26 }
+Second_Total_three-phasepower_factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Total_three-phasepower_factor"
+	::= { SecondNormalDistributionAnalog 27 }
+Second_Phase_reactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Phase_reactive_power"
+	::= { SecondNormalDistributionAnalog 28 }
+Second_Three-phaseapparent_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Three-phaseapparent_power"
+	::= { SecondNormalDistributionAnalog 29 }
+Second_Positiveactive_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Positiveactive_energy"
+	::= { SecondNormalDistributionAnalog 30 }
+Second_Negativeactive_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Negativeactive_energy"
+	::= { SecondNormalDistributionAnalog 31 }
+Second_Positive_reactive_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Positive_reactive_energy"
+	::= { SecondNormalDistributionAnalog 32 }
+Second_Negativereactive_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Negativereactive_energy"
+	::= { SecondNormalDistributionAnalog 33 }
+Second_The_local_address OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_The_local_address"
+	::= { SecondNormalDistributionAnalog 34 }
+Second_Wiringthe_system_under_testload OBJECT-TYPE
+	SYNTAX OCTET STRING
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Wiringthe_system_under_testload"
+	::= { SecondNormalDistributionAnalog 35 }
+Second_Baud_Rate OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Baud_Rate"
+	::= { SecondNormalDistributionAnalog 36 }
+Second_Voltage_input_range OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Voltage_input_range"
+	::= { SecondNormalDistributionAnalog 37 }
+Second_PT OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_PT"
+	::= { SecondNormalDistributionAnalog 38 }
+Second_CT OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_CT"
+	::= { SecondNormalDistributionAnalog 39 }
+Second_Lightintensity OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Lightintensity"
+	::= { SecondNormalDistributionAnalog 40 }
+Second_A_phase_outputload OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_A_phase_outputload"
+	::= { SecondNormalDistributionAnalog 41 }
+Second_B-phaseoutput_load OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_B-phaseoutput_load"
+	::= { SecondNormalDistributionAnalog 42 }
+Second_C-phaseoutput_load OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_C-phaseoutput_load"
+	::= { SecondNormalDistributionAnalog 43 }
+Second_A-phase_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_A-phase_energy"
+	::= { SecondNormalDistributionAnalog 44 }
+Second_B-phase_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_B-phase_energy"
+	::= { SecondNormalDistributionAnalog 45 }
+Second_C-phase_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_C-phase_energy"
+	::= { SecondNormalDistributionAnalog 46 }
+Second_Three-phaseload_average OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Three-phaseload_average"
+	::= { SecondNormalDistributionAnalog 47 }
+Second_NA1 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_NA1"
+	::= { SecondNormalDistributionAnalog 48 }
+Second_NA2 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_NA2"
+	::= { SecondNormalDistributionAnalog 49 }
+Second_NA3 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_NA3"
+	::= { SecondNormalDistributionAnalog 50 }
+Second_NA4 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_NA4"
+	::= { SecondNormalDistributionAnalog 51 }
+Thirt_A_phase_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_A_phase_voltage"
+	::= { ThirtNormalDistributionAnalog 1 }
+Thirt_caline_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_caline_voltage"
+	::= { ThirtNormalDistributionAnalog 2 }
+Thirt_Aphase_current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Aphase_current"
+	::= { ThirtNormalDistributionAnalog 3 }
+Thirt_A_phaseactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_A_phaseactive_power"
+	::= { ThirtNormalDistributionAnalog 4 }
+Thirt_APhase_Power_Factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_APhase_Power_Factor"
+	::= { ThirtNormalDistributionAnalog 5 }
+Thirt_Aphase_reactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Aphase_reactive_power"
+	::= { ThirtNormalDistributionAnalog 6 }
+Thirt_A_phaseapparent_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_A_phaseapparent_power"
+	::= { ThirtNormalDistributionAnalog 7 }
+Thirt_B-phasevoltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_B-phasevoltage"
+	::= { ThirtNormalDistributionAnalog 8 }
+Thirt_abline_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_abline_voltage"
+	::= { ThirtNormalDistributionAnalog 9 }
+Thirt_Phase_B_current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Phase_B_current"
+	::= { ThirtNormalDistributionAnalog 10 }
+Thirt_B-phaseactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_B-phaseactive_power"
+	::= { ThirtNormalDistributionAnalog 11 }
+Thirt_B-phasepower_factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_B-phasepower_factor"
+	::= { ThirtNormalDistributionAnalog 12 }
+Thirt_B-phasereactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_B-phasereactive_power"
+	::= { ThirtNormalDistributionAnalog 13 }
+Thirt_B-phaseapparent_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_B-phaseapparent_power"
+	::= { ThirtNormalDistributionAnalog 14 }
+Thirt_C-phase_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_C-phase_voltage"
+	::= { ThirtNormalDistributionAnalog 15 }
+Thirt_bcline_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_bcline_voltage"
+	::= { ThirtNormalDistributionAnalog 16 }
+Thirt_C-phase_current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_C-phase_current"
+	::= { ThirtNormalDistributionAnalog 17 }
+Thirt_C-phaseactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_C-phaseactive_power"
+	::= { ThirtNormalDistributionAnalog 18 }
+Thirt_Phase_CPower_Factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Phase_CPower_Factor"
+	::= { ThirtNormalDistributionAnalog 19 }
+Thirt_Phase_CReactive_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Phase_CReactive_Power"
+	::= { ThirtNormalDistributionAnalog 20 }
+Thirt_Phase_CApparent_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Phase_CApparent_Power"
+	::= { ThirtNormalDistributionAnalog 21 }
+Thirt_Averagephase_voltagethree-phase OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Averagephase_voltagethree-phase"
+	::= { ThirtNormalDistributionAnalog 22 }
+Thirt_Averagethree-phaseline_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Averagethree-phaseline_voltage"
+	::= { ThirtNormalDistributionAnalog 23 }
+Thirt_Averagephase_currentphase OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Averagephase_currentphase"
+	::= { ThirtNormalDistributionAnalog 24 }
+Thirt_Frequency OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Frequency"
+	::= { ThirtNormalDistributionAnalog 25 }
+Thirt_Three-phaseactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Three-phaseactive_power"
+	::= { ThirtNormalDistributionAnalog 26 }
+Thirt_Total_three-phasepower_factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Total_three-phasepower_factor"
+	::= { ThirtNormalDistributionAnalog 27 }
+Thirt_Phase_reactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Phase_reactive_power"
+	::= { ThirtNormalDistributionAnalog 28 }
+Thirt_Three-phaseapparent_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Three-phaseapparent_power"
+	::= { ThirtNormalDistributionAnalog 29 }
+Thirt_Positiveactive_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Positiveactive_energy"
+	::= { ThirtNormalDistributionAnalog 30 }
+Thirt_Negativeactive_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Negativeactive_energy"
+	::= { ThirtNormalDistributionAnalog 31 }
+Thirt_Positive_reactive_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Positive_reactive_energy"
+	::= { ThirtNormalDistributionAnalog 32 }
+Thirt_Negativereactive_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Negativereactive_energy"
+	::= { ThirtNormalDistributionAnalog 33 }
+Thirt_The_local_address OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_The_local_address"
+	::= { ThirtNormalDistributionAnalog 34 }
+Thirt_Wiringthe_system_under_testload OBJECT-TYPE
+	SYNTAX OCTET STRING
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Wiringthe_system_under_testload"
+	::= { ThirtNormalDistributionAnalog 35 }
+Thirt_Baud_Rate OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Baud_Rate"
+	::= { ThirtNormalDistributionAnalog 36 }
+Thirt_Voltage_input_range OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Voltage_input_range"
+	::= { ThirtNormalDistributionAnalog 37 }
+Thirt_PT OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_PT"
+	::= { ThirtNormalDistributionAnalog 38 }
+Thirt_CT OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_CT"
+	::= { ThirtNormalDistributionAnalog 39 }
+Thirt_Lightintensity OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Lightintensity"
+	::= { ThirtNormalDistributionAnalog 40 }
+Thirt_A_phase_outputload OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_A_phase_outputload"
+	::= { ThirtNormalDistributionAnalog 41 }
+Thirt_B-phaseoutput_load OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_B-phaseoutput_load"
+	::= { ThirtNormalDistributionAnalog 42 }
+Thirt_C-phaseoutput_load OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_C-phaseoutput_load"
+	::= { ThirtNormalDistributionAnalog 43 }
+Thirt_A-phase_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_A-phase_energy"
+	::= { ThirtNormalDistributionAnalog 44 }
+Thirt_B-phase_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_B-phase_energy"
+	::= { ThirtNormalDistributionAnalog 45 }
+Thirt_C-phase_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_C-phase_energy"
+	::= { ThirtNormalDistributionAnalog 46 }
+Thirt_Three-phaseload_average OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Three-phaseload_average"
+	::= { ThirtNormalDistributionAnalog 47 }
+Thirt_NA1 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_NA1"
+	::= { ThirtNormalDistributionAnalog 48 }
+Thirt_NA2 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_NA2"
+	::= { ThirtNormalDistributionAnalog 49 }
+Thirt_NA3 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_NA3"
+	::= { ThirtNormalDistributionAnalog 50 }
+Thirt_NA4 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_NA4"
+	::= { ThirtNormalDistributionAnalog 51 }
+Fouth_A_phase_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_A_phase_voltage"
+	::= { FouthNormalDistributionAnalog 1 }
+Fouth_caline_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_caline_voltage"
+	::= { FouthNormalDistributionAnalog 2 }
+Fouth_Aphase_current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Aphase_current"
+	::= { FouthNormalDistributionAnalog 3 }
+Fouth_A_phaseactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_A_phaseactive_power"
+	::= { FouthNormalDistributionAnalog 4 }
+Fouth_APhase_Power_Factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_APhase_Power_Factor"
+	::= { FouthNormalDistributionAnalog 5 }
+Fouth_Aphase_reactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Aphase_reactive_power"
+	::= { FouthNormalDistributionAnalog 6 }
+Fouth_A_phaseapparent_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_A_phaseapparent_power"
+	::= { FouthNormalDistributionAnalog 7 }
+Fouth_B-phasevoltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_B-phasevoltage"
+	::= { FouthNormalDistributionAnalog 8 }
+Fouth_abline_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_abline_voltage"
+	::= { FouthNormalDistributionAnalog 9 }
+Fouth_Phase_B_current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Phase_B_current"
+	::= { FouthNormalDistributionAnalog 10 }
+Fouth_B-phaseactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_B-phaseactive_power"
+	::= { FouthNormalDistributionAnalog 11 }
+Fouth_B-phasepower_factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_B-phasepower_factor"
+	::= { FouthNormalDistributionAnalog 12 }
+Fouth_B-phasereactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_B-phasereactive_power"
+	::= { FouthNormalDistributionAnalog 13 }
+Fouth_B-phaseapparent_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_B-phaseapparent_power"
+	::= { FouthNormalDistributionAnalog 14 }
+Fouth_C-phase_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_C-phase_voltage"
+	::= { FouthNormalDistributionAnalog 15 }
+Fouth_bcline_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_bcline_voltage"
+	::= { FouthNormalDistributionAnalog 16 }
+Fouth_C-phase_current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_C-phase_current"
+	::= { FouthNormalDistributionAnalog 17 }
+Fouth_C-phaseactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_C-phaseactive_power"
+	::= { FouthNormalDistributionAnalog 18 }
+Fouth_Phase_CPower_Factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Phase_CPower_Factor"
+	::= { FouthNormalDistributionAnalog 19 }
+Fouth_Phase_CReactive_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Phase_CReactive_Power"
+	::= { FouthNormalDistributionAnalog 20 }
+Fouth_Phase_CApparent_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Phase_CApparent_Power"
+	::= { FouthNormalDistributionAnalog 21 }
+Fouth_Averagephase_voltagethree-phase OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Averagephase_voltagethree-phase"
+	::= { FouthNormalDistributionAnalog 22 }
+Fouth_Averagethree-phaseline_voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Averagethree-phaseline_voltage"
+	::= { FouthNormalDistributionAnalog 23 }
+Fouth_Averagephase_currentphase OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Averagephase_currentphase"
+	::= { FouthNormalDistributionAnalog 24 }
+Fouth_Frequency OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Frequency"
+	::= { FouthNormalDistributionAnalog 25 }
+Fouth_Three-phaseactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Three-phaseactive_power"
+	::= { FouthNormalDistributionAnalog 26 }
+Fouth_Total_three-phasepower_factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Total_three-phasepower_factor"
+	::= { FouthNormalDistributionAnalog 27 }
+Fouth_Phase_reactive_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Phase_reactive_power"
+	::= { FouthNormalDistributionAnalog 28 }
+Fouth_Three-phaseapparent_power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Three-phaseapparent_power"
+	::= { FouthNormalDistributionAnalog 29 }
+Fouth_Positiveactive_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Positiveactive_energy"
+	::= { FouthNormalDistributionAnalog 30 }
+Fouth_Negativeactive_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Negativeactive_energy"
+	::= { FouthNormalDistributionAnalog 31 }
+Fouth_Positive_reactive_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Positive_reactive_energy"
+	::= { FouthNormalDistributionAnalog 32 }
+Fouth_Negativereactive_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Negativereactive_energy"
+	::= { FouthNormalDistributionAnalog 33 }
+Fouth_The_local_address OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_The_local_address"
+	::= { FouthNormalDistributionAnalog 34 }
+Fouth_Wiringthe_system_under_testload OBJECT-TYPE
+	SYNTAX OCTET STRING
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Wiringthe_system_under_testload"
+	::= { FouthNormalDistributionAnalog 35 }
+Fouth_Baud_Rate OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Baud_Rate"
+	::= { FouthNormalDistributionAnalog 36 }
+Fouth_Voltage_input_range OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Voltage_input_range"
+	::= { FouthNormalDistributionAnalog 37 }
+Fouth_PT OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_PT"
+	::= { FouthNormalDistributionAnalog 38 }
+Fouth_CT OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_CT"
+	::= { FouthNormalDistributionAnalog 39 }
+Fouth_Lightintensity OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Lightintensity"
+	::= { FouthNormalDistributionAnalog 40 }
+Fouth_A_phase_outputload OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_A_phase_outputload"
+	::= { FouthNormalDistributionAnalog 41 }
+Fouth_B-phaseoutput_load OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_B-phaseoutput_load"
+	::= { FouthNormalDistributionAnalog 42 }
+Fouth_C-phaseoutput_load OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_C-phaseoutput_load"
+	::= { FouthNormalDistributionAnalog 43 }
+Fouth_A-phase_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_A-phase_energy"
+	::= { FouthNormalDistributionAnalog 44 }
+Fouth_B-phase_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_B-phase_energy"
+	::= { FouthNormalDistributionAnalog 45 }
+Fouth_C-phase_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_C-phase_energy"
+	::= { FouthNormalDistributionAnalog 46 }
+Fouth_Three-phaseload_average OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Three-phaseload_average"
+	::= { FouthNormalDistributionAnalog 47 }
+Fouth_NA1 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_NA1"
+	::= { FouthNormalDistributionAnalog 48 }
+Fouth_NA2 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_NA2"
+	::= { FouthNormalDistributionAnalog 49 }
+Fouth_NA3 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_NA3"
+	::= { FouthNormalDistributionAnalog 50 }
+Fouth_NA4 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_NA4"
+	::= { FouthNormalDistributionAnalog 51 }
+
+-- the NormalDistributionStatus group
+--addNormalDistributionStatus
+First_Communication_status OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Running(0),
+		Stoped(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Communication_status"
+	::= { FirstNormalDistributionStatus 1 }
+Second_Communication_status OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Running(0),
+		Stoped(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Communication_status"
+	::= { SecondNormalDistributionStatus 1 }
+Thirt_Communication_status OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Running(0),
+		Stoped(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Communication_status"
+	::= { ThirtNormalDistributionStatus 1 }
+Fouth_Communication_status OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Running(0),
+		Stoped(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Communication_status"
+	::= { FouthNormalDistributionStatus 1 }
+
+-- the NormalDistributionAlarm group
+--addNormalDistributionAlarm
+First_Current_Abnormal OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Current_Abnormal"
+	::= { FirstNormalDistributionAlarm 1 }
+First_Voltage_Abnormal OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Voltage_Abnormal"
+	::= { FirstNormalDistributionAlarm 2 }
+First_Frequency_Abnormal OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Frequency_Abnormal"
+	::= { FirstNormalDistributionAlarm 3 }
+Second_Current_Abnormal OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Current_Abnormal"
+	::= { SecondNormalDistributionAlarm 1 }
+Second_Voltage_Abnormal OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Voltage_Abnormal"
+	::= { SecondNormalDistributionAlarm 2 }
+Second_Frequency_Abnormal OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Frequency_Abnormal"
+	::= { SecondNormalDistributionAlarm 3 }
+Thirt_Current_Abnormal OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Current_Abnormal"
+	::= { ThirtNormalDistributionAlarm 1 }
+Thirt_Voltage_Abnormal OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Voltage_Abnormal"
+	::= { ThirtNormalDistributionAlarm 2 }
+Thirt_Frequency_Abnormal OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Frequency_Abnormal"
+	::= { ThirtNormalDistributionAlarm 3 }
+Fouth_Current_Abnormal OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Current_Abnormal"
+	::= { FouthNormalDistributionAlarm 1 }
+Fouth_Voltage_Abnormal OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Voltage_Abnormal"
+	::= { FouthNormalDistributionAlarm 2 }
+Fouth_Frequency_Abnormal OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Frequency_Abnormal"
+	::= { FouthNormalDistributionAlarm 3 }
+
+-- Traps
+--NormalDistributionTrap
+--addNormalDistributionTrap
+First_Current_Abnormal_Occur TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"First_Current_Abnormal: Occur!"
+	::= 1001 
+First_Current_Abnormal_Cancel TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"First_Current_Abnormal: Cancel!"
+	::= 1002 
+First_Voltage_Abnormal_Occur TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"First_Voltage_Abnormal: Occur!"
+	::= 1003 
+First_Voltage_Abnormal_Cancel TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"First_Voltage_Abnormal: Cancel!"
+	::= 1004 
+First_Frequency_Abnormal_Occur TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"First_Frequency_Abnormal: Occur!"
+	::= 1005 
+First_Frequency_Abnormal_Cancel TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"First_Frequency_Abnormal: Cancel!"
+	::= 1006 
+Second_Current_Abnormal_Occur TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"Second_Current_Abnormal: Occur!"
+	::= 1007 
+Second_Current_Abnormal_Cancel TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"Second_Current_Abnormal: Cancel!"
+	::= 1008 
+Second_Voltage_Abnormal_Occur TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"Second_Voltage_Abnormal: Occur!"
+	::= 1009 
+Second_Voltage_Abnormal_Cancel TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"Second_Voltage_Abnormal: Cancel!"
+	::= 1010 
+Second_Frequency_Abnormal_Occur TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"Second_Frequency_Abnormal: Occur!"
+	::= 1011 
+Second_Frequency_Abnormal_Cancel TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"Second_Frequency_Abnormal: Cancel!"
+	::= 1012 
+Thirt_Current_Abnormal_Occur TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"Thirt_Current_Abnormal: Occur!"
+	::= 1013 
+Thirt_Current_Abnormal_Cancel TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"Thirt_Current_Abnormal: Cancel!"
+	::= 1014 
+Thirt_Voltage_Abnormal_Occur TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"Thirt_Voltage_Abnormal: Occur!"
+	::= 1015 
+Thirt_Voltage_Abnormal_Cancel TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"Thirt_Voltage_Abnormal: Cancel!"
+	::= 1016 
+Thirt_Frequency_Abnormal_Occur TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"Thirt_Frequency_Abnormal: Occur!"
+	::= 1017 
+Thirt_Frequency_Abnormal_Cancel TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"Thirt_Frequency_Abnormal: Cancel!"
+	::= 1018 
+Fouth_Current_Abnormal_Occur TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"Fouth_Current_Abnormal: Occur!"
+	::= 1019 
+Fouth_Current_Abnormal_Cancel TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"Fouth_Current_Abnormal: Cancel!"
+	::= 1020 
+Fouth_Voltage_Abnormal_Occur TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"Fouth_Voltage_Abnormal: Occur!"
+	::= 1021 
+Fouth_Voltage_Abnormal_Cancel TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"Fouth_Voltage_Abnormal: Cancel!"
+	::= 1022 
+Fouth_Frequency_Abnormal_Occur TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"Fouth_Frequency_Abnormal: Occur!"
+	::= 1023 
+Fouth_Frequency_Abnormal_Cancel TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"Fouth_Frequency_Abnormal: Cancel!"
+	::= 1024 
+First_Communication_Status_Stoped TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"First_Communication_Status: Stoped!"
+	::= 1025 
+First_Communication_Status_Running TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"First_Communication_Status: Running!"
+	::= 1026 
+Second_Communication_Status_Stoped TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"First_Communication_Status: Stoped!"
+	::= 1027 
+Second_Communication_Status_Running TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"First_Communication_Status: Running!"
+	::= 1028 
+Thirt_Communication_Status_Stoped TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"First_Communication_Status: Stoped!"
+	::= 1029 
+Thirt_Communication_Status_Running TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"First_Communication_Status: Running!"
+	::= 1030 
+Fouth_Communication_Status_Stoped TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"First_Communication_Status: Stoped!"
+	::= 1031 
+Fouth_Communication_Status_Running TRAP-TYPE
+	ENTERPRISE  NormalDistribution
+	DESCRIPTION
+		"First_Communication_Status: Running!"
+	::= 1032 
+
+
+END
+
+
+
+

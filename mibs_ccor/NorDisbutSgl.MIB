@@ -1,0 +1,802 @@
+--NorDisbutSgl-MIB { iso(1) org(3) dod(6) internet(1) private(4)
+--      enterprises(1) rcmib(943) }
+
+
+NorDisbutSgl-MIB DEFINITIONS ::= BEGIN
+-- Title: PPC TOP LEVEL MIB
+-- Date: January 07, 1994    Version 1.00
+--
+-- Date: January 17, 1994    Version 1.01
+--
+-- Date: July 14, 1994    Version 1.02
+
+
+IMPORTS
+	enterprises, IpAddress
+		FROM RFC1155-SMI
+	DisplayString
+		FROM RFC1213-MIB
+	OBJECT-TYPE
+		FROM RFC-1212
+	TRAP-TYPE
+		FROM RFC-1215;
+
+NorDisbutSgl                           OBJECT IDENTIFIER ::=  { enterprises 943 }
+
+FirstNorDisbutSgl OBJECT IDENTIFIER ::=  { NorDisbutSgl 1}
+FirstNorDisbutSglAnalog                       OBJECT IDENTIFIER ::=  { FirstNorDisbutSgl 1 }
+FirstNorDisbutSglStatus                       OBJECT IDENTIFIER ::=  { FirstNorDisbutSgl 2 }
+FirstNorDisbutSglAlarm                       OBJECT IDENTIFIER ::=  { FirstNorDisbutSgl 3 }
+
+SecondNorDisbutSgl OBJECT IDENTIFIER ::=  { NorDisbutSgl 2}
+SecondNorDisbutSglAnalog                       OBJECT IDENTIFIER ::=  { SecondNorDisbutSgl 1 }
+SecondNorDisbutSglStatus                       OBJECT IDENTIFIER ::=  { SecondNorDisbutSgl 2 }
+SecondNorDisbutSglAlarm                       OBJECT IDENTIFIER ::=  { SecondNorDisbutSgl 3 }
+
+ThirtNorDisbutSgl OBJECT IDENTIFIER ::=  { NorDisbutSgl 3}
+ThirtNorDisbutSglAnalog                       OBJECT IDENTIFIER ::=  { ThirtNorDisbutSgl 1 }
+ThirtNorDisbutSglStatus                       OBJECT IDENTIFIER ::=  { ThirtNorDisbutSgl 2 }
+ThirtNorDisbutSglAlarm                       OBJECT IDENTIFIER ::=  { ThirtNorDisbutSgl 3 }
+
+FouthNorDisbutSgl OBJECT IDENTIFIER ::=  { NorDisbutSgl 4}
+FouthNorDisbutSglAnalog                       OBJECT IDENTIFIER ::=  { FouthNorDisbutSgl 1 }
+FouthNorDisbutSglStatus                       OBJECT IDENTIFIER ::=  { FouthNorDisbutSgl 2 }
+FouthNorDisbutSglAlarm                       OBJECT IDENTIFIER ::=  { FouthNorDisbutSgl 3 }
+
+
+
+
+-- the NorDisbutSglAnalog group
+--addNorDisbutSglAnalog
+First_CT OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_CT in 0.01"
+	::= { FirstNorDisbutSglAnalog 1 }
+First_Mailing_Address OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Mailing_Address in 0.01"
+	::= { FirstNorDisbutSglAnalog 2 }
+First_Baud_Rate OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Baud_Rate in 0.01"
+	::= { FirstNorDisbutSglAnalog 3 }
+First_Current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01A"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Current in 0.01 A"
+	::= { FirstNorDisbutSglAnalog 4 }
+First_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Voltage in 0.01 V"
+	::= { FirstNorDisbutSglAnalog 5 }
+First_Active_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01W"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Active_Power in 0.01 W"
+	::= { FirstNorDisbutSglAnalog 6 }
+First_Reactive_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01Var"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Reactive_Power in 0.01 Var"
+	::= { FirstNorDisbutSglAnalog 7 }
+First_Power_Factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Power_Factor in 0.01"
+	::= { FirstNorDisbutSglAnalog 8 }
+First_Frequency OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01Hz"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Frequency in 0.01 Hz"
+	::= { FirstNorDisbutSglAnalog 9 }
+First_Total_active_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01kWh"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Total_active_energy in 0.01 kWh"
+	::= { FirstNorDisbutSglAnalog 10 }
+First_Input_active_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01kWh"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Input_active_energy in 0.01 kWh"
+	::= { FirstNorDisbutSglAnalog 11 }
+First_Output_active_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01kWh"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Output_active_energy in 0.01 kWh"
+	::= { FirstNorDisbutSglAnalog 12 }
+First_Apparent_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01VA"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Apparent_Power in 0.01 VA"
+	::= { FirstNorDisbutSglAnalog 13 }
+Second_CT OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_CT in 0.01"
+	::= { SecondNorDisbutSglAnalog 1 }
+Second_Mailing_Address OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Mailing_Address in 0.01"
+	::= { SecondNorDisbutSglAnalog 2 }
+Second_Baud_Rate OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Baud_Rate in 0.01"
+	::= { SecondNorDisbutSglAnalog 3 }
+Second_Current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01A"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Current in 0.01 A"
+	::= { SecondNorDisbutSglAnalog 4 }
+Second_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Voltage in 0.01 V"
+	::= { SecondNorDisbutSglAnalog 5 }
+Second_Active_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01W"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Active_Power in 0.01 W"
+	::= { SecondNorDisbutSglAnalog 6 }
+Second_Reactive_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01Var"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Reactive_Power in 0.01 Var"
+	::= { SecondNorDisbutSglAnalog 7 }
+Second_Power_Factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Power_Factor in 0.01"
+	::= { SecondNorDisbutSglAnalog 8 }
+Second_Frequency OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01Hz"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Frequency in 0.01 Hz"
+	::= { SecondNorDisbutSglAnalog 9 }
+Second_Total_active_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01kWh"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Total_active_energy in 0.01 kWh"
+	::= { SecondNorDisbutSglAnalog 10 }
+Second_Input_active_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01kWh"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Input_active_energy in 0.01 kWh"
+	::= { SecondNorDisbutSglAnalog 11 }
+Second_Output_active_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01kWh"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Output_active_energy in 0.01 kWh"
+	::= { SecondNorDisbutSglAnalog 12 }
+Second_Apparent_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01VA"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Apparent_Power in 0.01 VA"
+	::= { SecondNorDisbutSglAnalog 13 }
+Thirt_CT OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_CT in 0.01"
+	::= { ThirtNorDisbutSglAnalog 1 }
+Thirt_Mailing_Address OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Mailing_Address in 0.01"
+	::= { ThirtNorDisbutSglAnalog 2 }
+Thirt_Baud_Rate OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Baud_Rate in 0.01"
+	::= { ThirtNorDisbutSglAnalog 3 }
+Thirt_Current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01A"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Current in 0.01 A"
+	::= { ThirtNorDisbutSglAnalog 4 }
+Thirt_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Voltage in 0.01 A"
+	::= { ThirtNorDisbutSglAnalog 5 }
+Thirt_Active_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01W"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Active_Power in 0.01 W"
+	::= { ThirtNorDisbutSglAnalog 6 }
+Thirt_Reactive_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01Var"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Reactive_Power in 0.01 Var"
+	::= { ThirtNorDisbutSglAnalog 7 }
+Thirt_Power_Factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Power_Factor in 0.01"
+	::= { ThirtNorDisbutSglAnalog 8 }
+Thirt_Frequency OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01Hz"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Frequency in 0.01 Hz"
+	::= { ThirtNorDisbutSglAnalog 9 }
+Thirt_Total_active_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01kWh"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Total_active_energy in 0.01 kWh"
+	::= { ThirtNorDisbutSglAnalog 10 }
+Thirt_Input_active_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01kWh"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Input_active_energy in 0.01 kWh"
+	::= { ThirtNorDisbutSglAnalog 11 }
+Thirt_Output_active_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01kWh"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Output_active_energy in 0.01 kWh"
+	::= { ThirtNorDisbutSglAnalog 12 }
+Thirt_Apparent_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01kWh"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Apparent_Power in 0.01 kWh"
+	::= { ThirtNorDisbutSglAnalog 13 }
+Fouth_CT OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_CT in 0.01"
+	::= { FouthNorDisbutSglAnalog 1 }
+Fouth_Mailing_Address OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Mailing_Address in 0.01"
+	::= { FouthNorDisbutSglAnalog 2 }
+Fouth_Baud_Rate OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Baud_Rate in 0.01"
+	::= { FouthNorDisbutSglAnalog 3 }
+Fouth_Current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01A"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Current in 0.01 A"
+	::= { FouthNorDisbutSglAnalog 4 }
+Fouth_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Voltage in 0.01 V"
+	::= { FouthNorDisbutSglAnalog 5 }
+Fouth_Active_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01W"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Active_Power in 0.01 W"
+	::= { FouthNorDisbutSglAnalog 6 }
+Fouth_Reactive_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01Var"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Reactive_Power in 0.01 Var"
+	::= { FouthNorDisbutSglAnalog 7 }
+Fouth_Power_Factor OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Power_Factor in 0.01"
+	::= { FouthNorDisbutSglAnalog 8 }
+Fouth_Frequency OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01Hz"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Frequency in 0.01 Hz"
+	::= { FouthNorDisbutSglAnalog 9 }
+Fouth_Total_active_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01kWh"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Total_active_energy in 0.01 kWh"
+	::= { FouthNorDisbutSglAnalog 10 }
+Fouth_Input_active_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01kWh"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Input_active_energy in 0.01 kWh"
+	::= { FouthNorDisbutSglAnalog 11 }
+Fouth_Output_active_energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01kWh"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Output_active_energy in 0.01 kWh"
+	::= { FouthNorDisbutSglAnalog 12 }
+Fouth_Apparent_Power OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01VA"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Apparent_Power in 0.01 VA"
+	::= { FouthNorDisbutSglAnalog 13 }
+
+-- the NorDisbutSglStatus group
+--addNorDisbutSglStatus
+First_Communication_status OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Running(0),
+		Stoped(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Communication_status"
+	::= { FirstNorDisbutSglStatus 1 }
+Second_Communication_status OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Running(0),
+		Stoped(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Communication_status"
+	::= { SecondNorDisbutSglStatus 1 }
+Thirt_Communication_status OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Running(0),
+		Stoped(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Communication_status"
+	::= { ThirtNorDisbutSglStatus 1 }
+Fouth_Communication_status OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Running(0),
+		Stoped(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Communication_status"
+	::= { FouthNorDisbutSglStatus 1 }
+
+-- the NorDisbutSglAlarm group
+--addNorDisbutSglAlarm
+First_Current_Status OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Current_Status"
+	::= { FirstNorDisbutSglAlarm 1 }
+First_Voltage_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Voltage_state"
+	::= { FirstNorDisbutSglAlarm 2 }
+First_Frequency_Status OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Frequency_Status"
+	::= { FirstNorDisbutSglAlarm 3 }
+Second_Current_Status OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Current_Status"
+	::= { SecondNorDisbutSglAlarm 1 }
+Second_Voltage_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Voltage_state"
+	::= { SecondNorDisbutSglAlarm 2 }
+Second_Frequency_Status OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Frequency_Status"
+	::= { SecondNorDisbutSglAlarm 3 }
+Thirt_Current_Status OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Current_Status"
+	::= { ThirtNorDisbutSglAlarm 1 }
+Thirt_Voltage_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Voltage_state"
+	::= { ThirtNorDisbutSglAlarm 2 }
+Thirt_Frequency_Status OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Frequency_Status"
+	::= { ThirtNorDisbutSglAlarm 3 }
+Fouth_Current_Status OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Current_Status"
+	::= { FouthNorDisbutSglAlarm 1 }
+Fouth_Voltage_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Voltage_state"
+	::= { FouthNorDisbutSglAlarm 2 }
+Fouth_Frequency_Status OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Frequency_Status"
+	::= { FouthNorDisbutSglAlarm 3 }
+
+-- Traps
+--NorDisbutSglTrap
+--addNorDisbutSglTrap
+First_Current_Status_Occur TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"First_Current_Status: Occur!"
+	::= 1001 
+First_Current_Status_Cancel TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"First_Current_Status: Cancel!"
+	::= 1002 
+First_Voltage_state_Occur TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"First_Voltage_state: Occur!"
+	::= 1003 
+First_Voltage_state_Cancel TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"First_Voltage_state: Cancel!"
+	::= 1004 
+First_Frequency_Status_Occur TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"First_Frequency_Status: Occur!"
+	::= 1005 
+First_Frequency_Status_Cancel TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"First_Frequency_Status: Cancel!"
+	::= 1006 
+Second_Current_Status_Occur TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Second_Current_Status: Occur!"
+	::= 1007 
+Second_Current_Status_Cancel TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Second_Current_Status: Cancel!"
+	::= 1008 
+Second_Voltage_state_Occur TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Second_Voltage_state: Occur!"
+	::= 1009 
+Second_Voltage_state_Cancel TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Second_Voltage_state: Cancel!"
+	::= 1010 
+Second_Frequency_Status_Occur TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Second_Frequency_Status: Occur!"
+	::= 1011 
+Second_Frequency_Status_Cancel TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Second_Frequency_Status: Cancel!"
+	::= 1012 
+Thirt_Current_Status_Occur TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Thirt_Current_Status: Occur!"
+	::= 1013 
+Thirt_Current_Status_Cancel TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Thirt_Current_Status: Cancel!"
+	::= 1014 
+Thirt_Voltage_state_Occur TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Thirt_Voltage_state: Occur!"
+	::= 1015 
+Thirt_Voltage_state_Cancel TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Thirt_Voltage_state: Cancel!"
+	::= 1016 
+Thirt_Frequency_Status_Occur TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Thirt_Frequency_Status: Occur!"
+	::= 1017 
+Thirt_Frequency_Status_Cancel TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Thirt_Frequency_Status: Cancel!"
+	::= 1018 
+Fouth_Current_Status_Occur TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Fouth_Current_Status: Occur!"
+	::= 1019 
+Fouth_Current_Status_Cancel TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Fouth_Current_Status: Cancel!"
+	::= 1020 
+Fouth_Voltage_state_Occur TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Fouth_Voltage_state: Occur!"
+	::= 1021 
+Fouth_Voltage_state_Cancel TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Fouth_Voltage_state: Cancel!"
+	::= 1022 
+Fouth_Frequency_Status_Occur TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Fouth_Frequency_Status: Occur!"
+	::= 1023 
+Fouth_Frequency_Status_Cancel TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Fouth_Frequency_Status: Cancel!"
+	::= 1024 
+First_Communication_Status_Stoped TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"First_Communication_Status: Stoped!"
+	::= 1025 
+First_Communication_Status_Running TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"First_Communication_Status: Running!"
+	::= 1026
+Second_Communication_Status_Stoped TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Second_Communication_Status: Stoped!"
+	::= 1027 
+Second_Communication_Status_Running TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Second_Communication_Status: Running!"
+	::= 1028	
+Thirt_Communication_Status_Stoped TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Thirt_Communication_Status: Stoped!"
+	::= 1029 
+Thirt_Communication_Status_Running TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Thirt_Communication_Status: Running!"
+	::= 1030
+Fouth_Communication_Status_Stoped TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Fouth_Communication_Status: Stoped!"
+	::= 1031 
+Fouth_Communication_Status_Running TRAP-TYPE
+	ENTERPRISE  NorDisbutSgl
+	DESCRIPTION
+		"Fouth_Communication_Status: Running!"
+	::= 1032
+
+END
+
+
+
+

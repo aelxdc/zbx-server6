@@ -1,0 +1,8446 @@
+--PPC-MIB { iso(1) org(3) dod(6) internet(1) private(4)
+
+--      enterprises(1) ppc(936) }
+
+
+
+
+
+RS485-MIB DEFINITIONS ::= BEGIN
+
+-- Title: PPC TOP LEVEL MIB
+
+-- Date: January 07, 1994    Version 1.00
+
+--
+
+-- Date: January 17, 1994    Version 1.01
+
+--
+
+-- Date: July 14, 1994    Version 1.02
+
+
+
+
+
+IMPORTS
+
+	enterprises, IpAddress
+
+		FROM RFC1155-SMI
+
+	DisplayString
+
+		FROM RFC1213-MIB
+
+	OBJECT-TYPE
+
+		FROM RFC-1212
+
+	TRAP-TYPE
+
+		FROM RFC-1215;
+
+
+
+
+
+p485mib                             OBJECT IDENTIFIER ::=  { enterprises 936 }
+
+
+
+products                        OBJECT IDENTIFIER ::=  { p485mib 1 }
+
+
+
+hardware                        OBJECT IDENTIFIER ::=  { products 1 }
+
+
+
+rs485bus                        OBJECT IDENTIFIER ::=  { hardware 2 }
+
+
+
+Environment                     OBJECT IDENTIFIER ::=  { rs485bus 1 }	--add Environment by lzf 2011.6.8
+
+IRModule              			OBJECT IDENTIFIER ::=  { rs485bus 2 }	--add IRCtrl by lzf 2011.6.15
+
+RemDischargeModule               		OBJECT IDENTIFIER ::=  { rs485bus 3 }	--add RemDischargeCtrl by lzf 2011.6.15
+
+BatteryEnergy                   OBJECT IDENTIFIER ::=  { rs485bus 4 }	--add BatteryEnergy by lzf 2011.6.16
+
+SignalSample                    OBJECT IDENTIFIER ::=  { rs485bus 5 }	--add SignalSample by lzf 2011.6.16
+
+--rs485trap						OBJECT IDENTIFIER ::=  { rs485bus 6 }	--add rs485trap by huangguowei 2014.12.24
+
+
+
+--add by lzf 2011.6.8
+
+EnvironmentStatus          		OBJECT IDENTIFIER ::=  { Environment 1 }
+EnvironmentSwitch         		OBJECT IDENTIFIER ::=  { Environment 2 }
+
+IRQueryStatus                	OBJECT IDENTIFIER ::=  { IRModule 1 }
+
+IRCtrlStatus                	OBJECT IDENTIFIER ::=  { IRModule 2 }
+
+RemDischargeModuleStatus          	OBJECT IDENTIFIER ::=  { RemDischargeModule 1 }
+
+RemDischargeCtrlStatus   	     	    OBJECT IDENTIFIER ::=  { RemDischargeModule 2 }
+
+BatteryEnergyStatus             OBJECT IDENTIFIER ::=  { BatteryEnergy 1 }
+
+SignalSampleStatus              OBJECT IDENTIFIER ::=  { SignalSample 1 }
+
+SignalSampleCtrlStatus          OBJECT IDENTIFIER ::=  { SignalSample 2 }
+
+-- object types
+
+
+
+
+
+-- the ppcmgmt group
+
+
+
+
+
+-- 增加环境状态的查询     add lzf 2011.6.10
+
+-- the EnvironmentStatus group
+
+
+
+--第1路温湿度
+
+EnvironTemperature1  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 1 }
+
+
+
+EnvironHumidity1 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 2 }
+
+
+
+--第2路温湿度
+
+EnvironTemperature2  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 3 }
+
+
+
+EnvironHumidity2 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 4 }
+
+
+
+--第3路温湿度
+
+EnvironTemperature3  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 5 }
+
+
+
+EnvironHumidity3 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 6 }
+
+
+
+--第4路温湿度
+
+EnvironTemperature4  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 7 }
+
+
+
+EnvironHumidity4 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 8 }
+
+
+
+--第5路温湿度
+
+EnvironTemperature5  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 9 }
+
+
+
+EnvironHumidity5 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 10 }
+
+
+
+--第6路温湿度
+
+EnvironTemperature6  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 11 }
+
+
+
+EnvironHumidity6 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 12 }
+
+
+
+
+
+--第7路温湿度
+
+EnvironTemperature7  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 13 }
+
+
+
+EnvironHumidity7 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 14 }
+
+
+
+--第8路温湿度
+
+EnvironTemperature8  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 15 }
+
+
+
+EnvironHumidity8 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 16 }
+
+
+
+--第9路温湿度
+
+EnvironTemperature9  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 17 }
+
+
+
+EnvironHumidity9 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 18 }
+
+
+
+--第10路温湿度
+
+EnvironTemperature10  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 19 }
+
+
+
+EnvironHumidity10 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 20 }
+
+
+
+--第11路温湿度
+
+EnvironTemperature11  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 21 }
+
+
+
+EnvironHumidity11 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 22 }
+
+
+
+--第12路温湿度
+
+EnvironTemperature12  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 23 }
+
+
+
+EnvironHumidity12 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 24 }
+
+
+
+--第13路温湿度
+
+EnvironTemperature13  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 25 }
+
+
+
+EnvironHumidity13 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 26 }
+
+
+
+--第14路温湿度
+
+EnvironTemperature14  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 27 }
+
+
+
+EnvironHumidity14 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 28 }
+
+
+
+
+
+--第15路温湿度
+
+EnvironTemperature15  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 29 }
+
+
+
+EnvironHumidity15 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 30 }
+
+
+
+--第16路温湿度
+
+EnvironTemperature16  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 31 }
+
+
+
+EnvironHumidity16 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 32}
+
+
+--第17路温湿度
+
+EnvironTemperature17  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 33 }
+
+
+
+EnvironHumidity17 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 34 }
+
+
+
+--第18路温湿度
+
+EnvironTemperature18  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 35 }
+
+
+
+EnvironHumidity18 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 36 }
+
+
+
+--第19路温湿度
+
+EnvironTemperature19  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 37 }
+
+
+
+EnvironHumidity19 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 38 }
+
+
+
+--第20路温湿度
+
+EnvironTemperature20  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 39 }
+
+
+
+EnvironHumidity20 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 40 }
+
+
+
+--第21路温湿度
+
+EnvironTemperature21  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 41 }
+
+
+
+EnvironHumidity21 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 42 }
+
+
+
+--第22路温湿度
+
+EnvironTemperature22  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 43 }
+
+
+
+EnvironHumidity22 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 44 }
+
+
+
+
+
+--第23路温湿度
+
+EnvironTemperature23  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 45 }
+
+
+
+EnvironHumidity23 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 46 }
+
+
+
+--第24路温湿度
+
+EnvironTemperature24  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 47 }
+
+
+
+EnvironHumidity24 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 48}
+	
+------------------温湿度开关量24路
+
+-------TH1 Switch 1
+
+TH1Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 1 }
+
+--TH1 Switch 2
+
+TH1Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 2 }
+
+
+--TH2 Switch 1
+
+TH2Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 3 }
+
+
+--TH2 Switch 2
+
+TH2Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 4 }
+
+--TH3 Switch 1
+
+TH3Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 5 }
+
+
+--TH3 Switch 2
+
+TH3Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 6 }
+
+--TH4 Switch 1
+
+TH4Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 7 }
+
+
+--TH4 Switch 2
+
+TH4Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+    
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 8 }
+
+
+--TH5 Switch 1
+
+TH5Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 9 }
+
+--TH5 Switch 2
+
+TH5Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 10 }
+
+--TH6 Switch 1
+
+TH6Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 11 }
+	
+	--TH6 Switch 2
+
+TH6Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 12 }
+
+
+--TH7 Switch 1
+
+TH7Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 13 }
+
+--TH7 Switch 2
+
+TH7Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 14 }
+
+--TH8 Switch 1
+
+TH8Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 15 }
+
+
+--TH8 Switch 2
+
+TH8Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 16 }
+
+--TH9 Switch 1
+
+TH9Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 17 }
+
+--TH9 Switch 2
+
+TH9Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 18 }
+
+
+--TH10 Switch 1
+
+TH10Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 19 }
+
+--TH10 Switch 2
+
+TH10Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 20 }
+
+--TH11 Switch 1
+
+TH11Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 21 }
+
+--TH11 Switch 2
+
+TH11Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 22 }
+
+
+--TH12 Switch 1
+
+TH12Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 23 }
+
+
+--TH12 Switch 2
+
+TH12Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 24 }
+
+-----------------TH13 Switch 1
+
+TH13Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 25 }
+
+
+--TH13 Switch 2
+
+TH13Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 26 }
+
+
+--TH14 Switch 1
+
+TH14Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 27 }
+
+
+--TH14 Switch 2
+
+TH14Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 28 }
+
+
+--TH15 Switch 1
+
+TH15Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 29 }
+
+
+
+--TH15 Switch 2
+
+TH15Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 30 }
+
+
+--TH16 Switch 1
+
+TH16Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 31 }
+
+
+--TH16 Switch 2
+
+TH16Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 32 }
+
+--TH17 Switch 1
+
+TH17Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 33 }
+
+
+--TH17 Switch 2
+
+TH17Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 34 }
+
+
+--TH18 Switch 1
+
+TH18Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 35 }
+
+
+--TH18 Switch 2
+
+TH18Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 36 }
+
+
+--TH19 Switch 1
+
+TH19Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 37 }
+
+
+--TH19 Switch 2
+
+TH19Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 38 }
+
+
+--TH20 Switch 1
+
+TH20Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 39 }
+
+
+--TH20 Switch 2
+
+TH20Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 40 }
+
+
+--TH21 Switch 1
+
+TH21Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 41 }
+
+
+--TH21 Switch 2
+
+TH21Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 42 }
+
+
+
+--TH22 Switch 1
+
+TH22Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 43 }
+
+
+--TH22 Switch 2
+
+TH22Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 44 }
+
+
+--TH23 Switch 1
+
+TH23Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 45 }
+
+
+--TH23 Switch 2
+
+TH23Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 46 }
+
+
+--TH24 Switch 1
+
+TH24Switch1 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 47 }
+
+
+--TH24 Switch 2
+
+TH24Switch2 OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		normal(0),
+
+		abnormal(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"normal(0) the TH Switch normal;
+
+		 abnormal(1) the TH Switch abnormal."
+
+	::= { EnvironmentSwitch 48 }
+
+
+
+--红外所对应的空调的状态
+
+Air1RunningStatus  OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		AirConditionOpen(0),
+
+		AirConditionClose(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Air conditioning 1 Running Status."
+
+	::= { IRQueryStatus 1 }
+
+Air2RunningStatus  OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		AirConditionOpen(0),
+
+		AirConditionClose(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Air conditioning 2 RunningStatus."
+
+	::= { IRQueryStatus 2 }
+
+Air3RunningStatus  OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		AirConditionOpen(0),
+
+		AirConditionClose(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Air conditioning 3 RunningStatus."
+
+	::= { IRQueryStatus 3 }
+
+Air4RunningStatus  OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		AirConditionOpen(0),
+
+		AirConditionClose(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Air conditioning 4 RunningStatus."
+
+	::= { IRQueryStatus 4 }
+
+Air5RunningStatus  OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		AirConditionOpen(0),
+
+		AirConditionClose(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Air conditioning 5 RunningStatus."
+
+	::= { IRQueryStatus 5 }
+
+Air6RunningStatus  OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		AirConditionOpen(0),
+
+		AirConditionClose(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Air conditioning 6 RunningStatus."
+
+	::= { IRQueryStatus 6 }
+
+Air7RunningStatus  OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		AirConditionOpen(0),
+
+		AirConditionClose(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Air conditioning 7 RunningStatus."
+
+	::= { IRQueryStatus 7 }
+
+Air8RunningStatus  OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		AirConditionOpen(0),
+
+		AirConditionClose(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Air conditioning 8 RunningStatus."
+
+	::= { IRQueryStatus 8 }
+
+
+
+--红外控制
+
+--IR MODULE 1
+
+IR1Ctrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		IR1CtrlOpen(1),
+
+		IR1CtrlClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"IR1CtrlOpen(1) open the Air conditioning;
+
+		 IR1CtrlClose(2) close the Air conditioning."
+
+	::= { IRCtrlStatus 1 }
+
+--IR MODULE 2
+
+IR2Ctrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		IR2CtrlOpen(1),
+
+		IR2CtrlClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"IR2CtrlOpen(1) open the Air conditioning;
+
+		 IR2CtrlClose(2) close the Air conditioning."
+
+	::= { IRCtrlStatus 2 }
+
+--IR MODULE 3
+
+IR3Ctrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		IR3CtrlOpen(1),
+
+		IR3CtrlClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"IR3CtrlOpen(1) open the Air conditioning;
+
+		 IR3CtrlClose(2) close the Air conditioning."
+
+	::= { IRCtrlStatus 3 }
+
+--IR MODULE 4
+
+IR4Ctrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		IR4CtrlOpen(1),
+
+		IR4CtrlClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"IR4CtrlOpen(1) open the Air conditioning;
+
+		 IR4CtrlClose(2) close the Air conditioning."
+
+	::= { IRCtrlStatus 4 }
+
+--IR MODULE 5
+
+IR5Ctrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		IR5CtrlOpen(1),
+
+		IR5CtrlClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"IR5CtrlOpen(1) open the Air conditioning;
+
+		 IR5CtrlClose(2) close the Air conditioning."
+
+	::= { IRCtrlStatus 5 }
+
+--IR MODULE 6
+
+IR6Ctrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		IR6CtrlOpen(1),
+
+		IR6CtrlClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"IR6CtrlOpen(1) open the Air conditioning;
+
+		 IR6CtrlClose(2) close the Air conditioning."
+
+	::= { IRCtrlStatus 6 }
+
+--IR MODULE 7
+
+IR7Ctrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		IR7CtrlOpen(1),
+
+		IR7CtrlClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"IR7CtrlOpen(1) open the Air conditioning;
+
+		 IR7CtrlClose(2) close the Air conditioning."
+
+	::= { IRCtrlStatus 7 }
+
+--IR MODULE 8
+
+IR8Ctrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		IR8CtrlOpen(1),
+
+		IR8CtrlClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"IR8CtrlOpen(1) open the Air conditioning;
+
+		 IR8CtrlClose(2) close the Air conditioning."
+
+	::= { IRCtrlStatus 8 }
+
+--远程电源控制
+
+--剩余断开电源时间
+
+LineTemperature  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 degrees Centigrade"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Line temperature."
+
+	::= { RemDischargeModuleStatus 1 }
+
+SinglePhaseInputVoltage  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 V"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The single-phase input voltage."
+
+	::= { RemDischargeModuleStatus 2 }
+
+SinglePhaseInputCurrent  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 A"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The single-phase input current."
+
+	::= { RemDischargeModuleStatus 3 }
+
+SinglePhaseInputFrequency  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 Hz"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The single-phase input frequency."
+
+	::= { RemDischargeModuleStatus 4 }
+
+ThreePhaseInputVoltageA  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 V"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Three phase input voltage A."
+
+	::= { RemDischargeModuleStatus 5 }
+
+ThreePhaseInputVoltageB  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 V"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Three phase input voltage B."
+
+	::= { RemDischargeModuleStatus 6 }
+
+
+ThreePhaseInputVoltageC  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 V"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Three phase input voltage C."
+
+	::= { RemDischargeModuleStatus 7 }
+
+ThreePhaseInputCurrentA  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 A"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The three-phase input current A."
+
+	::= { RemDischargeModuleStatus 8 }
+
+ThreePhaseInputCurrentB  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 A"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The three-phase input current B."
+
+	::= { RemDischargeModuleStatus 9 }
+
+ThreePhaseInputCurrentC  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 A"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The three-phase input current C."
+
+	::= { RemDischargeModuleStatus 10 }
+
+ThreePhaseInputFrequency  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 Hz"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The three-phase input frequency."
+
+	::= { RemDischargeModuleStatus 11 }
+
+ResidualDischargeTime  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 Minute"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Residual discharge time in 0.01 minute."
+
+	::= { RemDischargeModuleStatus 12 }
+
+PreDischargeState  OBJECT-TYPE
+
+       SYNTAX     INTEGER {
+           Normal(0),
+           InstructionsToStop(1),
+           HostIsDisconnected(2),
+           UPSDisconnected(3),
+           InputPowerOff(4),
+           UPSFault(5),
+           ReachedTheDischargeVoltageLowerLimit(6),
+           ReachedTheDischargeDapacityLimit(7),
+           DischargeTimeOver(8)
+       }
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+               "Pre discharge state:
+               	0- normal, 
+                1- instructions to stop, 
+                2- host is disconnected, 
+                3- UPS disconnected, 
+                4- input power off, 
+                5- UPS fault, 
+                6- reached the discharge voltage lower limit,
+                7- reached the discharge capacity limit, 
+                8- discharge time over."
+	::= { RemDischargeModuleStatus 13 }
+
+FinallyStopTheDischargeState  OBJECT-TYPE
+
+       SYNTAX     INTEGER {
+           Normal(0),
+           InstructionsToStop(1),
+           HostIsDisconnected(2),
+           UPSDisconnected(3),
+           InputPowerOff(4),
+           UPSFault(5),
+           ReachedTheDischargeVoltageLowerLimit(6),
+           ReachedTheDischargeDapacityLimit(7),
+           DischargeTimeOver(8)
+       }
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+               "Finally stop the discharge state:
+                0- normal, 
+                1- instructions to stop, 
+                2- host is disconnected, 
+                3- UPS disconnected, 
+                4- input power off, 
+                5- UPS fault, 
+                6- reached the discharge voltage lower limit,
+                7- reached the discharge capacity limit, 
+                8- discharge time over."
+	::= { RemDischargeModuleStatus 14 }
+
+OneOrThreePhaseConnected  OBJECT-TYPE
+
+       SYNTAX     INTEGER {
+           OnePhaseConnected(1),
+           ThreePhaseConnected(3)
+       }
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+               "OneOrThreePhaseConnected:
+                1- One Phase Connected, 
+                3- Three Phase Connected."
+	::= { RemDischargeModuleStatus 15 }
+
+
+
+--控制远程电源控制模块
+
+--module 1
+
+RemDischargeCtrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		StartDischarge(1),
+
+		StopDischarge(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"StartDischarge(1): start discharge.;
+
+		 StopDischarge(2): stop discharge."
+
+	::= { RemDischargeCtrlStatus 1 }
+
+
+--电池电量
+
+BatteryVoltage OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Battery Voltage in 1/10 V."
+
+	::= { BatteryEnergyStatus 1 }
+
+BatteryCurrent OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Battery Current in 1/10 A."
+
+	::= { BatteryEnergyStatus 2 }
+
+BatteryTemperature OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Battery Temperature in 1/10 degrees Centigrade."
+
+	::= { BatteryEnergyStatus 3 }
+
+BatteryCapacity OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Battery Capacity in 1/10 %."
+
+	::= { BatteryEnergyStatus 4 }
+
+BatteryBackupTime OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Battery Backup Time in 1/10 min."
+
+	::= { BatteryEnergyStatus 5 }
+
+BatteryStatus OBJECT-TYPE
+
+	SYNTAX DisplayString
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Battery Status."
+
+	::= { BatteryEnergyStatus 6 }
+
+--信号采集卡模拟量
+
+SSCAnalog1 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Signal Sample Card Analog 1 in 1/10 ."
+
+	::= { SignalSampleStatus 1 }
+
+SSCAnalog2 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Signal Sample Card Analog 2 in 1/10 ."
+
+	::= { SignalSampleStatus 2 }
+
+SSCAnalog3 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Signal Sample Card Analog 3 in 1/10 ."
+
+	::= { SignalSampleStatus 3 }
+
+SSCAnalog4 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Signal Sample Card Analog 4 in 1/10 ."
+
+	::= { SignalSampleStatus 4 }
+
+SSCAnalog5 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Signal Sample Card Analog 5 in 1/10 ."
+
+	::= { SignalSampleStatus 5 }
+
+SSCAnalog6 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Signal Sample Card Analog 6 in 1/10 ."
+
+	::= { SignalSampleStatus 6 }
+
+SSCAnalog7 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Signal Sample Card Analog 7 in 1/10 ."
+
+	::= { SignalSampleStatus 7 }
+
+SSCAnalog8 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Signal Sample Card Analog 8 in 1/10 ."
+
+	::= { SignalSampleStatus 8 }
+
+--信号采集卡控制
+
+--module 1
+
+Road1OutputCtrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		Road1OutputOpen(1),
+
+		Road1OutputClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Road1OutputOpen(1): The first output open;
+
+		 Road1OutputClose(2): The first output close."
+
+	::= { SignalSampleCtrlStatus 1 }
+
+--module 2
+
+Road2OutputCtrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		Road2OutputOpen(1),
+
+		Road2OutputClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Road2OutputOpen(1): The second output open;
+
+		 Road2OutputClose(2): The second output close."
+
+	::= { SignalSampleCtrlStatus 2 }
+
+--module 3
+
+Road3OutputCtrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		Road3OutputOpen(1),
+
+		Road3OutputClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Road3OutputOpen(1): The third output open;
+
+		 Road3OutputClose(2): The third output close."
+
+	::= { SignalSampleCtrlStatus 3 }
+
+--module 4
+
+Road4OutputCtrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		Road4OutputOpen(1),
+
+		Road4OutputClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Road4OutputOpen(1): The fourth output open;
+
+		 Road4OutputClose(2): The fourth output close."
+
+	::= { SignalSampleCtrlStatus 4 }
+
+--module 5
+
+Road5OutputCtrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		Road5OutputOpen(1),
+
+		Road5OutputClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Road5OutputOpen(1): The fifth output open;
+
+		 Road5OutputClose(2): The fifth output close."
+
+	::= { SignalSampleCtrlStatus 5 }
+
+
+
+-- Traps
+
+--开关量告警
+
+
+TH1Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity1 alarm."
+
+	::=    30207
+     
+	
+TH1Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity1 alarm cancel."
+
+	::=    30208
+     
+
+TH1Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity1 alarm."
+
+	::=    30209
+     
+
+TH1Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity1 alarm cancel."
+
+	::=    30210
+     
+
+TH2Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity2 alarm."
+
+	::=    30211
+     
+
+TH2Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity2 alarm cancel."
+
+	::=    30212
+     
+
+TH2Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity2 alarm."
+
+	::=    30213
+     
+
+TH2Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity2 alarm cancel."
+
+	::=    30214
+     
+
+TH3Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity3 alarm."
+
+	::=    30215
+     
+
+TH3Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity3 alarm cancel."
+
+	::=    30216
+     
+
+TH3Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity3 alarm."
+
+	::=    30217
+     
+
+TH3Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity3 alarm cancel."
+
+	::=    30218
+     
+
+TH4Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity4 alarm."
+
+	::=    30219
+     
+
+TH4Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity4 alarm cancel."
+
+	::=    30220
+     
+
+TH4Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity4 alarm."
+
+	::=    30221
+     
+
+TH4Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity4 alarm cancel."
+
+	::=    30222
+     
+
+TH5Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity5 alarm."
+
+	::=    30223
+     
+
+TH5Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity5 alarm cancel."
+
+	::=    30224
+     
+
+TH5Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity5 alarm."
+
+	::=    30225
+     
+
+TH5Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity5 alarm cancel."
+
+	::=    30226
+     
+
+TH6Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity6 alarm."
+
+	::=    30227
+     
+
+TH6Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity6 alarm cancel."
+
+	::=    30228
+     
+
+TH6Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity6 alarm."
+
+	::=    30229
+     
+
+TH6Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity6 alarm cancel."
+
+	::=    30230
+     
+
+TH7Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity7 alarm."
+
+	::=    30231
+     
+
+TH7Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity7 alarm cancel."
+
+	::=    30232
+     
+
+TH7Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity7 alarm."
+
+	::=    30233
+     
+
+TH7Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity7 alarm cancel."
+
+	::=    30234
+     
+
+TH8Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity8 alarm."
+
+	::=    30235
+     
+
+TH8Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity8 alarm cancel."
+
+	::=    30236
+     
+
+TH8Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity8 alarm."
+
+	::=    30237
+     
+
+TH8Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity8 alarm cancel."
+
+	::=    30238
+     
+
+TH9Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity9 alarm."
+
+	::=    30239
+     
+
+TH9Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity9 alarm cancel."
+
+	::=    30240
+     
+
+TH9Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity9 alarm."
+
+	::=    30241
+     
+
+TH9Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity9 alarm cancel."
+
+	::=    30242
+     
+
+TH10Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity10 alarm."
+
+	::=    30243
+     
+
+TH10Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity10 alarm cancel."
+
+	::=    30244
+     
+
+TH10Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity10 alarm."
+
+	::=    30245
+     
+
+TH10Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity10 alarm cancel."
+
+	::=    30246
+     
+
+TH11Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity11 alarm."
+
+	::=    30247
+     
+
+TH11Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity11 alarm cancel."
+
+	::=    30248
+     
+
+TH11Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity11 alarm."
+
+	::=    30249
+     
+
+TH11Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity11 alarm cancel."
+
+	::=    30250
+     
+
+TH12Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity12 alarm."
+
+	::=    30251
+     
+
+TH12Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity12 alarm cancel."
+
+	::=    30252
+     
+
+TH12Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity12 alarm."
+
+	::=    30253
+     
+
+TH12Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity12 alarm cancel."
+
+	::=    30254
+     
+
+TH13Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity13 alarm."
+
+	::=    30255
+     
+
+TH13Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity13 alarm cancel."
+
+	::=    30256
+     
+
+TH13Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity13 alarm."
+
+	::=    30257
+     
+
+TH13Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity13 alarm cancel."
+
+	::=    30258
+     
+
+TH14Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity14 alarm."
+
+	::=    30259
+     
+
+TH14Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity14 alarm cancel."
+
+	::=    30260
+     
+
+TH14Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity14 alarm."
+
+	::=    30261
+     
+
+TH14Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity14 alarm cancel."
+
+	::=    30262
+     
+
+TH15Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity15 alarm."
+
+	::=    30263
+     
+
+TH15Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity15 alarm cancel."
+
+	::=    30264
+     
+
+TH15Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity15 alarm."
+
+	::=    30265
+     
+
+TH15Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity15 alarm cancel."
+
+	::=    30266
+     
+
+TH16Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity16 alarm."
+
+	::=    30267
+     
+
+TH16Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity16 alarm cancel."
+
+	::=    30268
+     
+
+TH16Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity16 alarm."
+
+	::=    30269
+     
+
+TH16Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity16 alarm cancel."
+
+	::=    30270
+     
+
+TH17Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity17 alarm."
+
+	::=    30271
+     
+
+TH17Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity17 alarm cancel."
+
+	::=    30272
+     
+
+TH17Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity17 alarm."
+
+	::=    30273
+     
+
+TH17Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity17 alarm cancel."
+
+	::=    30274
+     
+
+TH18Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity18 alarm."
+
+	::=    30275
+     
+
+TH18Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity18 alarm cancel."
+
+	::=    30276
+     
+
+TH18Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity18 alarm."
+
+	::=    30277
+     
+
+TH18Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity18 alarm cancel."
+
+	::=    30278
+     
+
+TH19Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity19 alarm."
+
+	::=    30279
+     
+
+TH19Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity19 alarm cancel."
+
+	::=    30280
+     
+
+TH19Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity19 alarm."
+
+	::=    30281
+     
+
+TH19Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity19 alarm cancel."
+
+	::=    30282
+     
+
+TH20Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity20 alarm."
+
+	::=    30283
+     
+
+TH20Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity20 alarm cancel."
+
+	::=    30284
+     
+
+TH20Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity20 alarm."
+
+	::=    30285
+     
+
+TH20Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity20 alarm cancel."
+
+	::=    30286
+     
+
+TH21Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity21 alarm."
+
+	::=    30287
+     
+
+TH21Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity21 alarm cancel."
+
+	::=    30288
+     
+
+TH21Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity21 alarm."
+
+	::=    30289
+     
+
+TH21Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity21 alarm cancel."
+
+	::=    30290
+     
+
+TH22Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity22 alarm."
+
+	::=    30291
+     
+
+TH22Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity22 alarm cancel."
+
+	::=    30292
+     
+
+TH22Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity22 alarm."
+
+	::=    30293
+     
+
+TH22Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity22 alarm cancel."
+
+	::=    30294
+     
+
+TH23Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity23 alarm."
+
+	::=    30295
+     
+
+TH23Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity23 alarm cancel."
+
+	::=    30296
+     
+
+TH23Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity23 alarm."
+
+	::=    30297
+     
+
+TH23Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity23 alarm cancel."
+
+	::=    30298
+     
+
+TH24Switch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity24 alarm."
+
+	::=    30299
+     
+
+TH24Switch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity24 alarm cancel."
+
+	::=    30300
+     
+
+TH24Switch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity24 alarm."
+
+	::=    30301
+     
+
+TH24Switch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity24 alarm cancel."
+
+	::=    30302
+     
+
+--温度上限告警--
+
+Tem1UpperLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 1 upper limit alarm."
+
+   	::=    95
+     
+
+Tem1UpperLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 1 upper limit alarm cancel."
+
+   	::=    96
+     
+
+Tem2UpperLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 2 upper limit alarm."
+
+   	::=    97
+     
+
+Tem2UpperLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 2 upper limit alarm cancel."
+
+   	::=    98
+     
+
+Tem3UpperLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 3 upper limit alarm."
+
+   	::=    99
+     
+
+Tem3UpperLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 3 upper limit alarm cancel."
+
+   	::=    100
+     
+
+Tem4UpperLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 4 upper limit alarm."
+
+   	::=    101
+     
+
+Tem4UpperLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 4 upper limit alarm cancel."
+
+   	::=    102
+     
+
+Tem5UpperLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 5 upper limit alarm."
+
+   	::=    103
+     
+
+Tem5UpperLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 5 upper limit alarm cancel."
+
+   	::=    104
+     
+
+Tem6UpperLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 6 upper limit alarm."
+
+   	::=    105
+     
+
+Tem6UpperLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 6 upper limit alarm cancel."
+
+   	::=    106
+     
+
+Tem7UpperLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 7 upper limit alarm."
+
+   	::=    107
+     
+
+Tem7UpperLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 7 upper limit alarm cancel."
+
+   	::=    108
+     
+
+Tem8UpperLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 8 upper limit alarm."
+
+   	::=    109
+     
+
+Tem8UpperLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 8 upper limit alarm cancel."
+
+   	::=    110
+     
+ 
+Tem9UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 9 upper limit alarm."
+
+	::=    30303
+     
+
+Tem9UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 9 upper limit alarm cancel."
+
+	::=    30304
+     
+
+Tem10UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 10 upper limit alarm."
+
+	::=    30305
+     
+
+Tem10UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 10 upper limit alarm cancel."
+
+	::=    30306
+     
+
+Tem11UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 11 upper limit alarm."
+
+	::=    30307
+     
+
+Tem11UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 11 upper limit alarm cancel."
+
+	::=    30308
+     
+
+Tem12UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 12 upper limit alarm."
+
+	::=    30309
+     
+
+Tem12UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 12 upper limit alarm cancel."
+
+	::=    30310
+     
+
+Tem13UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 13 upper limit alarm."
+
+	::=    30311
+     
+
+Tem13UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 13 upper limit alarm cancel."
+
+	::=    30312
+     
+
+Tem14UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 14 upper limit alarm."
+
+	::=    30313
+     
+
+Tem14UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 14 upper limit alarm cancel."
+
+	::=    30314
+     
+
+Tem15UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 15 upper limit alarm."
+
+	::=    30315
+     
+
+Tem15UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 15 upper limit alarm cancel."
+
+	::=    30316
+     
+
+Tem16UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 16 upper limit alarm."
+
+	::=    30317
+     
+
+Tem16UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 16 upper limit alarm cancel."
+
+	::=    30318
+     
+
+Tem17UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 17 upper limit alarm."
+
+	::=    30319
+     
+
+Tem17UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 17 upper limit alarm cancel."
+
+	::=    30320
+     
+
+Tem18UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 18 upper limit alarm."
+
+	::=    30321
+     
+
+Tem18UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 18 upper limit alarm cancel."
+
+	::=    30322
+     
+
+Tem19UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 19 upper limit alarm."
+
+	::=    30323
+     
+
+Tem19UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 19 upper limit alarm cancel."
+
+	::=    30324
+     
+
+Tem20UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 20 upper limit alarm."
+
+	::=    30325
+     
+
+Tem20UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 20 upper limit alarm cancel."
+
+	::=    30326
+     
+
+Tem21UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 21 upper limit alarm."
+
+	::=    30327
+     
+
+Tem21UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 21 upper limit alarm cancel."
+
+	::=    30328
+     
+
+Tem22UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 22 upper limit alarm."
+
+	::=    30329
+     
+
+Tem22UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 22 upper limit alarm cancel."
+
+	::=    30330
+     
+
+Tem23UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 23 upper limit alarm."
+
+	::=    30331
+     
+
+Tem23UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 23 upper limit alarm cancel."
+
+	::=    30332
+     
+
+Tem24UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 24 upper limit alarm."
+
+	::=    30333
+     
+
+Tem24UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 24 upper limit alarm cancel."
+
+	::=    30334
+     
+
+--温度下限告警--
+
+Tem1LowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 1 lower limit alarm."
+
+   	::=    111
+     
+
+Tem1LowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 1 lower limit alarm cancel."
+
+   	::=    112
+     
+
+Tem2LowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 2 lower limit alarm."
+
+   	::=    113
+     
+
+Tem2LowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 2 lower limit alarm cancel."
+
+   	::=    114
+     
+
+Tem3LowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 3 lower limit alarm."
+
+   	::=    115
+     
+
+Tem3LowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 3 lower limit alarm cancel."
+
+   	::=    116
+     
+
+Tem4LowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 4 lower limit alarm."
+
+   	::=    117
+     
+
+Tem4LowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 4 lower limit alarm cancel."
+
+   	::=    118
+     
+
+Tem5LowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 5 lower limit alarm."
+
+   	::=    119
+     
+
+Tem5LowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 5 lower limit alarm cancel."
+
+   	::=    120
+     
+
+Tem6LowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 6 lower limit alarm."
+
+   	::=    121
+     
+
+Tem6LowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 6 lower limit alarm cancel."
+
+   	::=    122
+     
+
+Tem7LowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 7 lower limit alarm."
+
+   	::=    123
+     
+
+Tem7LowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 7 lower limit alarm cancel."
+
+   	::=    124
+     
+
+Tem8LowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 8 lower limit alarm."
+
+   	::=    125
+     
+
+Tem8LowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 8 lower limit alarm cancel."
+
+   	::=    126
+     
+
+Tem9LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 9 lower limit alarm."
+
+	::=    30335
+     
+
+Tem9LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 9 lower limit alarm cancel."
+
+	::=    30336
+     
+
+Tem10LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 10 lower limit alarm."
+
+	::=    30337
+     
+
+Tem10LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 10 lower limit alarm cancel."
+
+	::=    30338
+     
+
+Tem11LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 11 lower limit alarm."
+
+	::=    30339
+     
+
+Tem11LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 11 lower limit alarm cancel."
+
+	::=    30340
+     
+
+Tem12LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 12 lower limit alarm."
+
+	::=    30341
+     
+
+Tem12LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 12 lower limit alarm cancel."
+
+	::=    30342
+     
+
+Tem13LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 13 lower limit alarm."
+
+	::=    30343
+     
+
+Tem13LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 13 lower limit alarm cancel."
+
+	::=    30344
+     
+
+Tem14LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 14 lower limit alarm."
+
+	::=    30345
+     
+
+Tem14LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 14 lower limit alarm cancel."
+
+	::=    30346
+     
+
+Tem15LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 15 lower limit alarm."
+
+	::=    30347
+     
+
+Tem15LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 15 lower limit alarm cancel."
+
+	::=    30348
+     
+
+Tem16LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 16 lower limit alarm."
+
+	::=    30349
+     
+
+Tem16LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 16 lower limit alarm cancel."
+
+	::=    30350
+     
+
+Tem17LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 17 lower limit alarm."
+
+	::=    30351
+     
+
+Tem17LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 17 lower limit alarm cancel."
+
+	::=    30352
+     
+
+Tem18LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 18 lower limit alarm."
+
+	::=    30353
+     
+
+Tem18LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 18 lower limit alarm cancel."
+
+	::=    30354
+     
+
+Tem19LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 19 lower limit alarm."
+
+	::=    30355
+     
+
+Tem19LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 19 lower limit alarm cancel."
+
+	::=    30356
+     
+
+Tem20LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 20 lower limit alarm."
+
+	::=    30357
+     
+
+Tem20LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 20 lower limit alarm cancel."
+
+	::=    30358
+     
+
+Tem21LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 21 lower limit alarm."
+
+	::=    30359
+     
+
+Tem21LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 21 lower limit alarm cancel."
+
+	::=    30360
+     
+
+Tem22LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 22 lower limit alarm."
+
+	::=    30361
+     
+
+Tem22LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 22 lower limit alarm cancel."
+
+	::=    30362
+     
+
+Tem23LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 23 lower limit alarm."
+
+	::=    30363
+     
+
+Tem23LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 23 lower limit alarm cancel."
+
+	::=    30364
+     
+
+Tem24LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 24 lower limit alarm."
+
+	::=    30365
+     
+
+Tem24LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 24 lower limit alarm cancel."
+
+	::=    30366
+     
+
+
+--湿度上限告警----
+
+Hum1UpperLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 1 upper limit alarm."
+
+   	::=    127
+     
+
+Hum1UpperLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 1 upper limit alarm cancel."
+
+   	::=    128
+     
+
+Hum2UpperLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 2 upper limit alarm."
+
+   	::=    129
+     
+
+Hum2UpperLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 2 upper limit alarm cancel."
+
+   	::=    130
+     
+
+Hum3UpperLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 3 upper limit alarm."
+
+   	::=    131
+     
+
+Hum3UpperLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 3 upper limit alarm cancel."
+
+   	::=    132
+     
+
+Hum4UpperLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 4 upper limit alarm."
+
+   	::=    133
+     
+
+Hum4UpperLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 4 upper limit alarm cancel."
+
+   	::=    134
+     
+
+Hum5UpperLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 5 upper limit alarm."
+
+   	::=    135
+     
+
+Hum5UpperLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 5 upper limit alarm cancel."
+
+   	::=    136
+     
+
+Hum6UpperLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 6 upper limit alarm."
+
+   	::=    137
+     
+
+Hum6UpperLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 6 upper limit alarm cancel."
+
+   	::=    138
+     
+
+Hum7UpperLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 7 upper limit alarm."
+
+   	::=    139
+     
+
+Hum7UpperLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 7 upper limit alarm cancel."
+
+   	::=    140
+     
+
+Hum8UpperLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 8 upper limit alarm."
+
+   	::=    141
+     
+
+Hum8UpperLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 8 upper limit alarm cancel."
+
+   	::=    142
+     
+ 
+Hum9UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 9 upper limit alarm."
+
+	::=    30367
+     
+
+Hum9UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 9 upper limit alarm cancel."
+
+	::=    30368
+     
+
+Hum10UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 10 upper limit alarm."
+
+	::=    30369
+     
+
+Hum10UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 10 upper limit alarm cancel."
+
+	::=    30370
+     
+
+Hum11UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 11 upper limit alarm."
+
+	::=    30371
+     
+
+Hum11UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 11 upper limit alarm cancel."
+
+	::=    30372
+     
+
+Hum12UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 12 upper limit alarm."
+
+	::=    30373
+     
+
+Hum12UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 12 upper limit alarm cancel."
+
+	::=    30374
+     
+
+Hum13UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 13 upper limit alarm."
+
+	::=    30375
+     
+
+Hum13UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 13 upper limit alarm cancel."
+
+	::=    30376
+     
+
+Hum14UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 14 upper limit alarm."
+
+	::=    30377
+     
+
+Hum14UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 14 upper limit alarm cancel."
+
+	::=    30378
+     
+
+Hum15UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 15 upper limit alarm."
+
+	::=    30379
+     
+
+Hum15UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 15 upper limit alarm cancel."
+
+	::=    30380
+     
+
+Hum16UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 16 upper limit alarm."
+
+	::=    30381
+     
+
+Hum16UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 16 upper limit alarm cancel."
+
+	::=    30382
+     
+
+Hum17UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 17 upper limit alarm."
+
+	::=    30383
+     
+
+Hum17UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 17 upper limit alarm cancel."
+
+	::=    30384
+     
+
+Hum18UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 18 upper limit alarm."
+
+	::=    30385
+     
+
+Hum18UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 18 upper limit alarm cancel."
+
+	::=    30386
+     
+
+Hum19UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 19 upper limit alarm."
+
+	::=    30387
+     
+
+Hum19UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 19 upper limit alarm cancel."
+
+	::=    30388
+     
+
+Hum20UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 20 upper limit alarm."
+
+	::=    30389
+     
+
+Hum20UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 20 upper limit alarm cancel."
+
+	::=    30390
+     
+
+Hum21UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 21 upper limit alarm."
+
+	::=    30391
+     
+
+Hum21UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 21 upper limit alarm cancel."
+
+	::=    30392
+     
+
+Hum22UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 22 upper limit alarm."
+
+	::=    30393
+     
+
+Hum22UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 22 upper limit alarm cancel."
+
+	::=    30394
+     
+
+Hum23UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 23 upper limit alarm."
+
+	::=    30395
+     
+
+Hum23UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 23 upper limit alarm cancel."
+
+	::=    30396
+     
+
+Hum24UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 24 upper limit alarm."
+
+	::=    30397
+     
+
+Hum24UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 24 upper limit alarm cancel."
+
+	::=    30398
+     
+
+
+--湿度下限告警--
+
+Hum1LowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 1 lower limit alarm."
+
+   	::=    143
+     
+
+Hum1LowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 1 lower limit alarm cancel."
+
+   	::=    144
+     
+
+Hum2LowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 2 lower limit alarm."
+
+   	::=    145
+     
+
+Hum2LowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 2 lower limit alarm cancel."
+
+   	::=    146
+     
+
+Hum3LowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 3 lower limit alarm."
+
+   	::=    147
+     
+
+Hum3LowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 3 lower limit alarm cancel."
+
+   	::=    148
+     
+
+Hum4LowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 4 lower limit alarm."
+
+   	::=    149
+     
+
+Hum4LowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 4 lower limit alarm cancel."
+
+   	::=    150
+     
+
+Hum5LowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 5 lower limit alarm."
+
+   	::=    151
+     
+
+Hum5LowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 5 lower limit alarm cancel."
+
+   	::=    152
+     
+
+Hum6LowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 6 lower limit alarm."
+
+   	::=    153
+     
+
+Hum6LowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 6 lower limit alarm cancel."
+
+   	::=    154
+     
+
+Hum7LowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 7 lower limit alarm."
+
+   	::=    155
+     
+
+Hum7LowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 7 lower limit alarm cancel."
+
+   	::=    156
+     
+
+Hum8LowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 8 lower limit alarm."
+
+   	::=    157
+     
+
+Hum8LowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 8 lower limit alarm cancel."
+
+   	::=    158
+     
+
+Hum9LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 9 lower limit alarm."
+
+	::=    30399
+     
+
+Hum9LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 9 lower limit alarm cancel."
+
+	::=    30400
+     
+
+Hum10LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 10 lower limit alarm."
+
+	::=    30401
+     
+
+Hum10LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 10 lower limit alarm cancel."
+
+	::=    30402
+     
+
+Hum11LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 11 lower limit alarm."
+
+	::=    30403
+     
+
+Hum11LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 11 lower limit alarm cancel."
+
+	::=    30404
+     
+
+Hum12LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 12 lower limit alarm."
+
+	::=    30405
+     
+
+Hum12LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 12 lower limit alarm cancel."
+
+	::=    30406
+     
+
+Hum13LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 13 lower limit alarm."
+
+	::=    30407
+     
+
+Hum13LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 13 lower limit alarm cancel."
+
+	::=    30408
+     
+
+Hum14LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 14 lower limit alarm."
+
+	::=    30409
+     
+
+Hum14LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 14 lower limit alarm cancel."
+
+	::=    30410
+     
+
+Hum15LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 15 lower limit alarm."
+
+	::=    30411
+     
+
+Hum15LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 15 lower limit alarm cancel."
+
+	::=    30412
+     
+
+Hum16LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 16 lower limit alarm."
+
+	::=    30413
+     
+
+Hum16LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 16 lower limit alarm cancel."
+
+	::=    30414
+     
+
+Hum17LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 17 lower limit alarm."
+
+	::=    30415
+     
+
+Hum17LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 17 lower limit alarm cancel."
+
+	::=    30416
+     
+
+Hum18LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 18 lower limit alarm."
+
+	::=    30417
+     
+
+Hum18LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 18 lower limit alarm cancel."
+
+	::=    30418
+     
+
+Hum19LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 19 lower limit alarm."
+
+	::=    30419
+     
+
+Hum19LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 19 lower limit alarm cancel."
+
+	::=    30420
+     
+
+Hum20LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 20 lower limit alarm."
+
+	::=    30421
+     
+
+Hum20LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 20 lower limit alarm cancel."
+
+	::=    30422
+     
+
+Hum21LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 21 lower limit alarm."
+
+	::=    30423
+     
+
+Hum21LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 21 lower limit alarm cancel."
+
+	::=    30424
+     
+
+Hum22LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 22 lower limit alarm."
+
+	::=    30425
+     
+
+Hum22LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 22 lower limit alarm cancel."
+
+	::=    30426
+     
+
+Hum23LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 23 lower limit alarm."
+
+	::=    30427
+     
+
+Hum23LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 23 lower limit alarm cancel."
+
+	::=    30428
+     
+
+Hum24LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 24 lower limit alarm."
+
+	::=    30429
+     
+
+Hum24LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 24 lower limit alarm cancel."
+
+	::=    30430
+     
+
+
+--电池电量告警
+
+BatCapLowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Battery capacity lower limit alarm."
+
+   	::=    159
+     
+
+BatCapLowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Battery capacity lower limit alarm cancel."
+
+   	::=    160
+     
+
+BatDchTimeLowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Battery discharge time lower limit alarm."
+
+   	::=    161
+     
+
+BatDchTimeLowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Battery discharge time lower limit alarm cancel."
+
+   	::=    162
+     
+
+BatVoltUpperLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Battery voltage upper limit alarm."
+
+   	::=    163
+     
+
+BatVoltUpperLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Battery voltage upper limit alarm cancel."
+
+   	::=    164
+     
+
+BatVoltLowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Battery voltage lower limit alarm."
+
+   	::=    165
+     
+
+BatVoltLowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Battery voltage lower limit alarm cancel."
+
+   	::=    166
+     
+
+BatDisconnectedAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Battery Energy Module disconnected alarm."
+
+   	::=    167
+     
+
+BatDisconnectedAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Battery Energy Module disconnected alarm cancel."
+
+   	::=    168
+     
+--add by huangguowei 2015 10 16
+
+BatteryCurrentUpperLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Battery current upper limit alarm."
+
+   	::=    169
+     
+
+BatteryCurrentUpperLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Battery current upper limit alarm cancel."
+
+   	::=    170
+     
+
+BatteryCurrentLowerLimitAlarm TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Battery current lower limit alarm."
+
+   	::=    171
+     
+
+BatteryCurrentLowerLimitAlarmCancel TRAP-TYPE
+
+    ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Battery current lower limit alarm cancel."
+
+   	::=    172
+     
+
+
+
+
+
+--温湿度模块断线告警
+ 
+TemHum24Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 24 disconneted."
+
+	::=    30431
+     
+
+TemHum24Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 24 conneted."
+
+	::=    30432
+     
+
+TemHum23Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 23 disconneted."
+
+	::=    30433
+     
+
+TemHum23Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 23 conneted."
+
+	::=    30434
+     
+
+TemHum22Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 22 disconneted."
+
+	::=    30435
+     
+
+TemHum22Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 22 conneted."
+
+	::=    30436
+     
+
+TemHum21Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 21 disconneted."
+
+	::=    30437
+     
+
+TemHum21Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 21 conneted."
+
+	::=    30438
+     
+
+TemHum20Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 20 disconneted."
+
+	::=    30439
+     
+
+TemHum20Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 20 conneted."
+
+	::=    30440
+     
+
+TemHum19Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 19 disconneted."
+
+	::=    30441
+     
+
+TemHum19Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 19 conneted."
+
+	::=    30442
+     
+
+TemHum18Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 18 disconneted."
+
+	::=    30443
+     
+
+TemHum18Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 18 conneted."
+
+	::=    30444
+     
+
+TemHum17Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 17 disconneted."
+
+	::=    30445
+     
+
+TemHum17Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 17 conneted."
+
+	::=    30446
+     
+
+TemHum16Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 16 disconneted."
+
+	::=    30447
+     
+
+TemHum16Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 16 conneted."
+
+	::=    30448
+     
+
+TemHum15Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 15 disconneted."
+
+	::=    30449
+     
+
+TemHum15Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 15 conneted."
+
+	::=    30450
+     
+
+TemHum14Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 14 disconneted."
+
+	::=    30451
+     
+
+TemHum14Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 14 conneted."
+
+	::=    30452
+     
+
+TemHum13Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 13 disconneted."
+
+	::=    30453
+     
+
+TemHum13Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 13 conneted."
+
+	::=    30454
+     
+
+TemHum12Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 12 disconneted."
+
+	::=    30455
+     
+
+TemHum12Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 12 conneted."
+
+	::=    30456
+     
+
+TemHum11Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 11 disconneted."
+
+	::=    30457
+     
+
+TemHum11Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 11 conneted."
+
+	::=    30458
+     
+
+TemHum10Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 10 disconneted."
+
+	::=    30459
+     
+
+TemHum10Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 10 conneted."
+
+	::=    30460
+     
+
+TemHum9Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 9 disconneted."
+
+	::=    30461
+     
+
+TemHum9Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 9 conneted."
+
+	::=    30462
+     
+ 
+ 
+TemHum8Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 8 disconneted."  
+
+   	::=    207
+     
+
+TemHum8Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 8 conneted."
+
+   	::=    208
+     
+
+TemHum7Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 7 disconneted."
+
+   	::=    209
+     
+
+TemHum7Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 7 conneted."
+
+   	::=    210
+     
+
+TemHum6Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 6 disconneted."
+
+   	::=    211
+     
+
+TemHum6Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 6 conneted."
+
+   	::=    212
+     
+
+TemHum5Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 5 disconneted."
+
+   	::=    213
+     
+
+TemHum5Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 5 conneted."
+
+   	::=    214
+     
+
+TemHum4Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 4 disconneted."
+
+   	::=    215
+     
+
+TemHum4Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 4 conneted."
+
+   	::=    216
+     
+
+TemHum3Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 3 disconneted."
+
+   	::=    217
+     
+
+TemHum3Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 3 conneted."
+
+   	::=    218
+     
+
+TemHum2Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 2 disconneted."
+
+   	::=    219
+     
+
+TemHum2Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 2 conneted."
+
+   	::=    220
+     
+
+TemHum1Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 1 disconneted."
+
+   	::=    221
+     
+
+TemHum1Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 1 conneted."
+
+   	::=    222
+     
+
+
+
+--信号采集卡告警
+
+SSCSwitch1Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 1 alarm."
+
+   	::=    7935
+     
+
+SSCSwitch1AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 1 alarm cancel."
+
+   	::=    7936
+     
+
+SSCSwitch2Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 2 alarm."
+
+   	::=    7937
+     
+
+SSCSwitch2AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 2 alarm cancel."
+
+   	::=    7938
+     
+
+SSCSwitch3Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 3 alarm."
+
+   	::=    7939
+     
+
+SSCSwitch3AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 3 alarm cancel."
+
+   	::=    7940
+     
+
+SSCSwitch4Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 4 alarm."
+
+   	::=    7941
+     
+
+SSCSwitch4AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 4 alarm cancel."
+
+   	::=    7942
+     
+
+SSCSwitch5Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 5 alarm."
+
+   	::=    7943
+     
+
+SSCSwitch5AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 5 alarm cancel."
+
+   	::=    7944
+     
+
+SSCSwitch6Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 6 alarm."
+
+   	::=    7945
+     
+
+SSCSwitch6AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 6 alarm cancel."
+
+   	::=    7946
+     
+
+SSCSwitch7Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 7 alarm."
+
+   	::=    7947
+     
+
+SSCSwitch7AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 7 alarm cancel."
+
+   	::=    7948
+     
+
+SSCSwitch8Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 8 alarm."
+
+   	::=    7949
+     
+
+SSCSwitch8AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 8 alarm cancel."
+
+   	::=    7950
+     
+
+SSCSwitch9Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 9 alarm."
+
+   	::=    7951
+     
+
+SSCSwitch9AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 9 alarm cancel."
+
+   	::=    7952
+     
+
+SSCSwitch10Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 10 alarm."
+
+   	::=    7953
+     
+
+SSCSwitch10AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 10 alarm cancel."
+
+   	::=    7954
+     
+
+SSCSwitch11Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 11 alarm."
+
+   	::=    7955
+     
+
+SSCSwitch11AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 11 alarm cancel."
+
+   	::=    7956
+     
+
+SSCSwitch12Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 12 alarm."
+
+   	::=    7957
+     
+
+SSCSwitch12AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 12 alarm cancel."
+
+   	::=    7958
+     
+
+SSCSwitch13Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 13 alarm."
+
+   	::=    7959
+     
+
+SSCSwitch13AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 13 alarm cancel."
+
+   	::=    7960
+     
+
+SSCSwitch14Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 14 alarm."
+
+   	::=    7961
+     
+
+SSCSwitch14AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 14 alarm cancel."
+
+   	::=    7962
+     
+
+SSCSwitch15Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 15 alarm."
+
+   	::=    7963
+     
+
+SSCSwitch15AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 15 alarm cancel."
+
+   	::=    7964
+     
+
+SSCSwitch16Alarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 16 alarm."
+
+   	::=    7965
+     
+
+SSCSwitch16AlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 16 alarm cancel."
+
+   	::=    7966
+     
+
+--信号采集卡断线告警
+
+SSCDisconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card Module disconneted."
+
+   	::=    7997
+     
+
+SSCConneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card Module conneted."
+
+   	::=    7998
+     
+
+--信号采集卡上下限告警
+
+--模拟量1的上下限告警
+
+SSC1UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 1 upper limit alarm."
+
+   	::=    7999
+     
+
+SSC1UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 1 upper limit alarm cancel."
+
+   	::=    8000
+     
+
+SSC1LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 1 lower limit alarm."
+
+   	::=    8001
+     
+
+SSC1LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 1 lower limit alarm cancel."
+
+   	::=    8002
+     
+
+--模拟量2的上下限告警
+
+SSC2UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 2 upper limit alarm."
+
+   	::=    8003
+     
+
+SSC2UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 2 upper limit alarm cancel."
+
+   	::=    8004
+     
+
+SSC2LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 2 lower limit alarm."
+
+   	::=    8005
+     
+
+SSC2LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 2 lower limit alarm cancel."
+
+   	::=    8006
+     
+
+--模拟量3的上下限告警
+
+SSC3UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 3 upper limit alarm."
+
+   	::=    8007
+     
+
+SSC3UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 3 upper limit alarm cancel."
+
+   	::=    8008
+     
+
+SSC3LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 3 lower limit alarm."
+
+   	::=    8009
+     
+
+SSC3LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 3 lower limit alarm cancel."
+
+   	::=    8010
+     
+
+--模拟量4的上下限告警
+
+SSC4UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 4 upper limit alarm."
+
+   	::=    8011
+     
+
+SSC4UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 4 upper limit alarm cancel."
+
+   	::=    8012
+     
+
+SSC4LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 4 lower limit alarm."
+
+   	::=    8013
+     
+
+SSC4LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 4 lower limit alarm cancel."
+
+   	::=    8014
+     
+
+--模拟量5的上下限告警
+
+SSC5UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 5 upper limit alarm."
+
+   	::=    8015
+     
+
+SSC5UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 5 upper limit alarm cancel."
+
+   	::=    8016
+     
+
+SSC5LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 5 lower limit alarm."
+
+   	::=    8017
+     
+
+SSC5LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 5 lower limit alarm cancel."
+
+   	::=    8018
+     
+
+--模拟量6的上下限告警
+
+SSC6UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 6 upper limit alarm."
+
+   	::=    8019
+     
+
+SSC6UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 6 upper limit alarm cancel."
+
+   	::=    8020
+     
+
+SSC6LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 6 lower limit alarm."
+
+   	::=    8021
+     
+
+SSC6LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 6 lower limit alarm cancel."
+
+   	::=    8022
+     
+
+--模拟量7的上下限告警
+
+SSC7UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 7 upper limit alarm."
+
+   	::=    8023
+     
+
+SSC7UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 7 upper limit alarm cancel."
+
+   	::=    8024
+     
+
+SSC7LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 7 lower limit alarm."
+
+   	::=    8025
+     
+
+SSC7LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 7 lower limit alarm cancel."
+
+   	::=    8026
+     
+
+--模拟量8的上下限告警
+
+SSC8UpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 8 upper limit alarm."
+
+   	::=    8027
+     
+
+SSC8UpperLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 8 upper limit alarm cancel."
+
+   	::=    8028
+     
+
+SSC8LowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 8 lower limit alarm."
+
+   	::=    8029
+     
+
+SSC8LowerLimitAlarmCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 8 lower limit alarm cancel."
+
+   	::=    8030
+     
+
+
+
+
+
+--红外模块控制开启状态（成功或失败）
+
+IR1CtrlOpenFail TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 1 control air conditioning open fail."
+
+   	::=    8033
+     
+
+IR1CtrlOpenFailCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 1 control air conditioning open fail cancel."
+
+   	::=    8034
+     
+
+IR2CtrlOpenFail TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 2 control air conditioning open fail."
+
+   	::=    8035
+     
+
+IR2CtrlOpenFailCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 2 control air conditioning open fail cancel."
+
+   	::=    8036
+     
+
+IR3CtrlOpenFail TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 3 control air conditioning open fail."
+
+   	::=    8037
+     
+
+IR3CtrlOpenFailCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 3 control air conditioning open fail cancel."
+
+   	::=    8038
+     
+
+IR4CtrlOpenFail TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 4 control air conditioning open fail."
+
+   	::=    8039
+     
+
+IR4CtrlOpenFailCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 4 control air conditioning open fail cancel."
+
+   	::=    8040
+     
+
+IR5CtrlOpenFail TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 5 control air conditioning open fail."
+
+   	::=    8041
+     
+
+IR5CtrlOpenFailCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 5 control air conditioning open fail cancel."
+
+   	::=    8042
+     
+
+IR6CtrlOpenFail TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 6 control air conditioning open fail."
+
+   	::=    8043
+     
+
+IR6CtrlOpenFailCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 6 control air conditioning open fail cancel."
+
+   	::=    8044
+     
+
+IR7CtrlOpenFail TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 7 control air conditioning open fail."
+
+   	::=    8045
+     
+
+IR7CtrlOpenFailCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 7 control air conditioning open fail cancel."
+
+   	::=    8046
+     
+
+IR8CtrlOpenFail TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 8 control air conditioning open fail."
+
+   	::=    8047
+     
+
+IR8CtrlOpenFailCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 8 control air conditioning open fail cancel."
+
+   	::=    8048
+     
+
+--红外模块控制关闭状态（成功或失败）
+
+IR1CtrlCloseFail TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 1 control air conditioning close fail."
+
+   	::=    8049
+     
+
+IR1CtrlCloseFailCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 1 control air conditioning close fail cancel."
+
+   	::=    8050
+     
+
+IR2CtrlCloseFail TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 2 control air conditioning close fail."
+
+   	::=    8051
+     
+
+IR2CtrlCloseFailCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 2 control air conditioning close fail cancel."
+
+   	::=    8052
+     
+
+IR3CtrlCloseFail TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 3 control air conditioning close fail."
+
+   	::=    8053
+     
+
+IR3CtrlCloseFailCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 3 control air conditioning close fail cancel."
+
+   	::=    8054
+     
+
+IR4CtrlCloseFail TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 4 control air conditioning close fail."
+
+   	::=    8055
+     
+
+IR4CtrlCloseFailCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 4 control air conditioning close fail cancel."
+
+   	::=    8056
+     
+
+IR5CtrlCloseFail TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 5 control air conditioning close fail."
+
+   	::=    8057
+     
+
+IR5CtrlCloseFailCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 5 control air conditioning close fail cancel."
+
+   	::=    8058
+     
+
+IR6CtrlCloseFail TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 6 control air conditioning close fail."
+
+   	::=    8059
+     
+
+IR6CtrlCloseFailCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 6 control air conditioning close fail cancel."
+
+   	::=    8060
+     
+
+IR7CtrlCloseFail TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 7 control air conditioning close fail."
+
+   	::=    8061
+     
+
+IR7CtrlCloseFailCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 7 control air conditioning close fail cancel."
+
+   	::=    8062
+     
+
+IR8CtrlCloseFail TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 8 control air conditioning close fail."
+
+   	::=    8063
+     
+
+IR8CtrlCloseFailCancel TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 8 control air conditioning close fail cancel."
+
+   	::=    8064
+     
+
+--红外模块断线告警
+
+IR1Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 1 Disconneted."
+
+   	::=    8065
+     
+
+IR1Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 1 Conneted."
+
+   	::=    8066
+     
+
+IR2Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 2 Disconneted."
+
+   	::=    8067
+     
+
+IR2Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 2 Conneted."
+
+   	::=    8068
+     
+
+IR3Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 3 Disconneted."
+
+   	::=    8069
+     
+
+IR3Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 3 Conneted."
+
+   	::=    8070
+     
+
+IR4Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 4 Disconneted."
+
+   	::=    8071
+     
+
+IR4Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 4 Conneted."
+
+   	::=    8072
+     
+
+IR5Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 5 Disconneted."
+
+   	::=    8073
+     
+
+IR5Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 5 Conneted."
+
+   	::=    8074
+     
+
+IR6Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 6 Disconneted."
+
+   	::=    8075
+     
+
+IR6Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 6 Conneted."
+
+   	::=    8076
+     
+
+IR7Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 7 Disconneted."
+
+   	::=    8077
+     
+
+IR7Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 7 Conneted."
+
+   	::=    8078
+     
+
+IR8Disconneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 8 Disconneted."
+
+   	::=    8079
+     
+
+IR8Conneted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 8 Conneted."
+
+   	::=    8080
+     
+
+--远程电源控制模块
+
+DischargeStarted TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Discharge Started."
+
+   	::=    4095
+     
+
+DischargeStopped TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Discharge Stopped."
+
+   	::=    4096
+     
+
+InputPowerOff TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Input power off."
+
+   	::=    4097
+     
+   	
+InputPowerNormal TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Input power normal."
+
+   	::=    4098
+     
+
+
+InputVoltageUpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The input voltage is higher than the upper limit."
+
+   	::=    4099
+     
+
+InputVoltageUpperLimitNormal TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The input voltage is normal."
+
+   	::=    4100
+     
+
+InputVoltageLowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The input voltage is lower than the lower limit."
+
+   	::=    4101
+     
+
+InputVoltageLowerLimitNormal TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The input voltage is normal."
+
+   	::=    4102
+     
+
+InputCurrentUpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The input current is higher than the upper limit."
+
+   	::=    4103
+     
+
+InputCurrentUpperLimitNormal TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The input current is normal."
+
+   	::=    4104
+     
+
+InputCurrentLowerLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The input current is lower than the lower limit."
+
+   	::=    4105
+     
+
+InputCurrentLowerLimitNormal TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The input current is normal."
+
+   	::=    4106
+     
+
+WireTemperatureUpperLimitAlarm TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Wire temperature is higher than the upper limit."
+
+   	::=    4107
+     
+
+WireTemperatureUpperLimitNormal TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Wire temperature is normal."
+
+   	::=    4108
+     
+
+ControlFault TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Control fault."
+
+   	::=    4109
+     
+
+ControlNormal TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: Control normal."
+
+   	::=    4110
+     
+
+DischargeModuleOffline TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The discharge module offline."
+
+   	::=    4157
+     
+
+DischargeModuleOnline TRAP-TYPE
+
+	ENTERPRISE p485mib
+
+	DESCRIPTION
+
+		"INFORMATION: The discharge module online."
+
+   	::=    4158
+     
+
+
+
+END

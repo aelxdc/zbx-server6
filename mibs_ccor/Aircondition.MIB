@@ -1,0 +1,1909 @@
+--Aircondition-MIB { iso(1) org(3) dod(6) internet(1) private(4)
+--      enterprises(1) rcmib(939) }
+
+
+Aircondition-MIB DEFINITIONS ::= BEGIN
+-- Title: PPC TOP LEVEL MIB
+-- Date: January 07, 1994    Version 1.00
+--
+-- Date: January 17, 1994    Version 1.01
+--
+-- Date: July 14, 1994    Version 1.02
+
+
+IMPORTS
+	enterprises, IpAddress
+		FROM RFC1155-SMI
+	DisplayString
+		FROM RFC1213-MIB
+	OBJECT-TYPE
+		FROM RFC-1212
+	TRAP-TYPE
+		FROM RFC-1215;
+
+Aircondition                           OBJECT IDENTIFIER ::=  { enterprises 939 }
+
+FirstAircondition OBJECT IDENTIFIER ::=  { Aircondition 1}
+FirstAirconditionAnalog                       OBJECT IDENTIFIER ::=  { FirstAircondition 1 }
+FirstAirconditionStatus                       OBJECT IDENTIFIER ::=  { FirstAircondition 2 }
+FirstAirconditionAlarm                       OBJECT IDENTIFIER ::=  { FirstAircondition 3 }
+
+SecondAircondition OBJECT IDENTIFIER ::=  { Aircondition 2}
+SecondAirconditionAnalog                       OBJECT IDENTIFIER ::=  { SecondAircondition 1 }
+SecondAirconditionStatus                       OBJECT IDENTIFIER ::=  { SecondAircondition 2 }
+SecondAirconditionAlarm                       OBJECT IDENTIFIER ::=  { SecondAircondition 3 }
+
+ThirtAircondition OBJECT IDENTIFIER ::=  { Aircondition 3}
+ThirtAirconditionAnalog                       OBJECT IDENTIFIER ::=  { ThirtAircondition 1 }
+ThirtAirconditionStatus                       OBJECT IDENTIFIER ::=  { ThirtAircondition 2 }
+ThirtAirconditionAlarm                       OBJECT IDENTIFIER ::=  { ThirtAircondition 3 }
+
+FouthAircondition OBJECT IDENTIFIER ::=  { Aircondition 4}
+FouthAirconditionAnalog                       OBJECT IDENTIFIER ::=  { FouthAircondition 1 }
+FouthAirconditionStatus                       OBJECT IDENTIFIER ::=  { FouthAircondition 2 }
+FouthAirconditionAlarm                       OBJECT IDENTIFIER ::=  { FouthAircondition 3 }
+
+
+-- the AirconditionAnalog group
+--addAirconditionAnalog
+First_Indoor_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Indoor_temperature"
+	::= { FirstAirconditionAnalog 1 }
+First_Indoor_humidity OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Indoor_humidity"
+	::= { FirstAirconditionAnalog 2 }
+First_Return_air_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Return_air_temperature"
+	::= { FirstAirconditionAnalog 3 }
+First_Return_air_humidity OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Return_air_humidity"
+	::= { FirstAirconditionAnalog 4 }
+First_Supply_air_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Supply_air_temperature"
+	::= { FirstAirconditionAnalog 5 }
+First_Supply_air_humidity OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Supply_air_humidity"
+	::= { FirstAirconditionAnalog 6 }
+First_Starting_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Starting_temperature"
+	::= { FirstAirconditionAnalog 7 }
+First_Shutdown_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Shutdown_temperature"
+	::= { FirstAirconditionAnalog 8 }
+First_Temperature_deviation OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Temperature_deviation"
+	::= { FirstAirconditionAnalog 9 }
+First_Humidity_deviation OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Humidity_deviation"
+	::= { FirstAirconditionAnalog 10 }
+First_Temperature_set_point OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Temperature_set_point"
+	::= { FirstAirconditionAnalog 11 }
+First_Humidity_set_point OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Humidity_set_point"
+	::= { FirstAirconditionAnalog 12 }
+First_Return_air_temperature_upper_limit OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Return_air_temperature_upper_limit"
+	::= { FirstAirconditionAnalog 13 }
+First_Return_humidity_upper_limit OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Return_humidity_upper_limit"
+	::= { FirstAirconditionAnalog 14 }
+First_Return_air_temperature_lower_limit OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Return_air_temperature_lower_limit"
+	::= { FirstAirconditionAnalog 15 }
+First_Return_humidity_lower_limit OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Return_humidity_lower_limit"
+	::= { FirstAirconditionAnalog 16 }
+First_The_amount_of_analog OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_The_amount_of_analog"
+	::= { FirstAirconditionAnalog 17 }
+First_The_amount_of_State OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_The_amount_of_State"
+	::= { FirstAirconditionAnalog 18 }
+First_The_amount_of_alarm OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_The_amount_of_alarm"
+	::= { FirstAirconditionAnalog 19 }
+Second_Indoor_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Indoor_temperature"
+	::= { SecondAirconditionAnalog 1 }
+Second_Indoor_humidity OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Indoor_humidity"
+	::= { SecondAirconditionAnalog 2 }
+Second_Return_air_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Return_air_temperature"
+	::= { SecondAirconditionAnalog 3 }
+Second_Return_air_humidity OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Return_air_humidity"
+	::= { SecondAirconditionAnalog 4 }
+Second_Supply_air_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Supply_air_temperature"
+	::= { SecondAirconditionAnalog 5 }
+Second_Supply_air_humidity OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Supply_air_humidity"
+	::= { SecondAirconditionAnalog 6 }
+Second_Starting_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Starting_temperature"
+	::= { SecondAirconditionAnalog 7 }
+Second_Shutdown_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Shutdown_temperature"
+	::= { SecondAirconditionAnalog 8 }
+Second_Temperature_deviation OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Temperature_deviation"
+	::= { SecondAirconditionAnalog 9 }
+Second_Humidity_deviation OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Humidity_deviation"
+	::= { SecondAirconditionAnalog 10 }
+Second_Temperature_set_point OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Temperature_set_point"
+	::= { SecondAirconditionAnalog 11 }
+Second_Humidity_set_point OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Humidity_set_point"
+	::= { SecondAirconditionAnalog 12 }
+Second_Return_air_temperature_upper_limit OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Return_air_temperature_upper_limit"
+	::= { SecondAirconditionAnalog 13 }
+Second_Return_humidity_upper_limit OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Return_humidity_upper_limit"
+	::= { SecondAirconditionAnalog 14 }
+Second_Return_air_temperature_lower_limit OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Return_air_temperature_lower_limit"
+	::= { SecondAirconditionAnalog 15 }
+Second_Return_humidity_lower_limit OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Return_humidity_lower_limit"
+	::= { SecondAirconditionAnalog 16 }
+Second_The_amount_of_analog OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_The_amount_of_analog"
+	::= { SecondAirconditionAnalog 17 }
+Second_The_amount_of_State OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_The_amount_of_State"
+	::= { SecondAirconditionAnalog 18 }
+Second_The_amount_of_alarm OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_The_amount_of_alarm"
+	::= { SecondAirconditionAnalog 19 }
+Thirt_Indoor_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Indoor_temperature"
+	::= { ThirtAirconditionAnalog 1 }
+Thirt_Indoor_humidity OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Indoor_humidity"
+	::= { ThirtAirconditionAnalog 2 }
+Thirt_Return_air_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Return_air_temperature"
+	::= { ThirtAirconditionAnalog 3 }
+Thirt_Return_air_humidity OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Return_air_humidity"
+	::= { ThirtAirconditionAnalog 4 }
+Thirt_Supply_air_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Supply_air_temperature"
+	::= { ThirtAirconditionAnalog 5 }
+Thirt_Supply_air_humidity OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Supply_air_humidity"
+	::= { ThirtAirconditionAnalog 6 }
+Thirt_Starting_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Starting_temperature"
+	::= { ThirtAirconditionAnalog 7 }
+Thirt_Shutdown_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Shutdown_temperature"
+	::= { ThirtAirconditionAnalog 8 }
+Thirt_Temperature_deviation OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Temperature_deviation"
+	::= { ThirtAirconditionAnalog 9 }
+Thirt_Humidity_deviation OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Humidity_deviation"
+	::= { ThirtAirconditionAnalog 10 }
+Thirt_Temperature_set_point OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Temperature_set_point"
+	::= { ThirtAirconditionAnalog 11 }
+Thirt_Humidity_set_point OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Humidity_set_point"
+	::= { ThirtAirconditionAnalog 12 }
+Thirt_Return_air_temperature_upper_limit OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Return_air_temperature_upper_limit"
+	::= { ThirtAirconditionAnalog 13 }
+Thirt_Return_humidity_upper_limit OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Return_humidity_upper_limit"
+	::= { ThirtAirconditionAnalog 14 }
+Thirt_Return_air_temperature_lower_limit OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Return_air_temperature_lower_limit"
+	::= { ThirtAirconditionAnalog 15 }
+Thirt_Return_humidity_lower_limit OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Return_humidity_lower_limit"
+	::= { ThirtAirconditionAnalog 16 }
+Thirt_The_amount_of_analog OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_The_amount_of_analog"
+	::= { ThirtAirconditionAnalog 17 }
+Thirt_The_amount_of_State OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_The_amount_of_State"
+	::= { ThirtAirconditionAnalog 18 }
+Thirt_The_amount_of_alarm OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_The_amount_of_alarm"
+	::= { ThirtAirconditionAnalog 19 }
+Fouth_Indoor_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Indoor_temperature"
+	::= { FouthAirconditionAnalog 1 }
+Fouth_Indoor_humidity OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Indoor_humidity"
+	::= { FouthAirconditionAnalog 2 }
+Fouth_Return_air_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Return_air_temperature"
+	::= { FouthAirconditionAnalog 3 }
+Fouth_Return_air_humidity OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Return_air_humidity"
+	::= { FouthAirconditionAnalog 4 }
+Fouth_Supply_air_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Supply_air_temperature"
+	::= { FouthAirconditionAnalog 5 }
+Fouth_Supply_air_humidity OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Supply_air_humidity"
+	::= { FouthAirconditionAnalog 6 }
+Fouth_Starting_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Starting_temperature"
+	::= { FouthAirconditionAnalog 7 }
+Fouth_Shutdown_temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Shutdown_temperature"
+	::= { FouthAirconditionAnalog 8 }
+Fouth_Temperature_deviation OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Temperature_deviation"
+	::= { FouthAirconditionAnalog 9 }
+Fouth_Humidity_deviation OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Humidity_deviation"
+	::= { FouthAirconditionAnalog 10 }
+Fouth_Temperature_set_point OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Temperature_set_point"
+	::= { FouthAirconditionAnalog 11 }
+Fouth_Humidity_set_point OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Humidity_set_point"
+	::= { FouthAirconditionAnalog 12 }
+Fouth_Return_air_temperature_upper_limit OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Return_air_temperature_upper_limit"
+	::= { FouthAirconditionAnalog 13 }
+Fouth_Return_humidity_upper_limit OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Return_humidity_upper_limit"
+	::= { FouthAirconditionAnalog 14 }
+Fouth_Return_air_temperature_lower_limit OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Return_air_temperature_lower_limit"
+	::= { FouthAirconditionAnalog 15 }
+Fouth_Return_humidity_lower_limit OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Return_humidity_lower_limit"
+	::= { FouthAirconditionAnalog 16 }
+Fouth_The_amount_of_analog OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_The_amount_of_analog"
+	::= { FouthAirconditionAnalog 17 }
+Fouth_The_amount_of_State OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_The_amount_of_State"
+	::= { FouthAirconditionAnalog 18 }
+Fouth_The_amount_of_alarm OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 "
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_The_amount_of_alarm"
+	::= { FouthAirconditionAnalog 19 }
+-- the AirconditionStatus group
+--addAirconditionStatus
+First_OnOROff_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_OnOROff_state"
+	::= { FirstAirconditionStatus 1 }
+First_Fan_operation_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Fan_operation_state"
+	::= { FirstAirconditionStatus 2 }
+First_Compressor_operation_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Compressor_operation_state"
+	::= { FirstAirconditionStatus 3 }
+First_Pattern OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Pattern"
+	::= { FirstAirconditionStatus 4 }
+First_Heater_operation_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Heater_operation_state"
+	::= { FirstAirconditionStatus 5 }
+First_Dehumidifier_running_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Dehumidifier_running_state"
+	::= { FirstAirconditionStatus 6 }
+First_Humidifier_running_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Humidifier_running_state"
+	::= { FirstAirconditionStatus 7 }
+Second_OnOROff_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_OnOROff_state"
+	::= { SecondAirconditionStatus 1 }
+Second_Fan_operation_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Fan_operation_state"
+	::= { SecondAirconditionStatus 2 }
+Second_Compressor_operation_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Compressor_operation_state"
+	::= { SecondAirconditionStatus 3 }
+Second_Pattern OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Pattern"
+	::= { SecondAirconditionStatus 4 }
+Second_Heater_operation_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Heater_operation_state"
+	::= { SecondAirconditionStatus 5 }
+Second_Dehumidifier_running_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Dehumidifier_running_state"
+	::= { SecondAirconditionStatus 6 }
+Second_Humidifier_running_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Humidifier_running_state"
+	::= { SecondAirconditionStatus 7 }
+Thirt_OnOROff_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_OnOROff_state"
+	::= { ThirtAirconditionStatus 1 }
+Thirt_Fan_operation_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Fan_operation_state"
+	::= { ThirtAirconditionStatus 2 }
+Thirt_Compressor_operation_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Compressor_operation_state"
+	::= { ThirtAirconditionStatus 3 }
+Thirt_Pattern OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Pattern"
+	::= { ThirtAirconditionStatus 4 }
+Thirt_Heater_operation_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Heater_operation_state"
+	::= { ThirtAirconditionStatus 5 }
+Thirt_Dehumidifier_running_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Dehumidifier_running_state"
+	::= { ThirtAirconditionStatus 6 }
+Thirt_Humidifier_running_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Humidifier_running_state"
+	::= { ThirtAirconditionStatus 7 }
+Fouth_OnOROff_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_OnOROff_state"
+	::= { FouthAirconditionStatus 1 }
+Fouth_Fan_operation_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Fan_operation_state"
+	::= { FouthAirconditionStatus 2 }
+Fouth_Compressor_operation_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Compressor_operation_state"
+	::= { FouthAirconditionStatus 3 }
+Fouth_Pattern OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Pattern"
+	::= { FouthAirconditionStatus 4 }
+Fouth_Heater_operation_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Heater_operation_state"
+	::= { FouthAirconditionStatus 5 }
+Fouth_Dehumidifier_running_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Dehumidifier_running_state"
+	::= { FouthAirconditionStatus 6 }
+Fouth_Humidifier_running_state OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Stoped(0),
+		Running(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Humidifier_running_state"
+	::= { FouthAirconditionStatus 7 }
+-- the AirconditionAlarm group
+--addAirconditionAlarm
+First_CommunicationsAlarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_CommunicationsAlarm"
+	::= { FirstAirconditionAlarm 1 }
+First_High_temperature_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_High_temperature_alarm"
+	::= { FirstAirconditionAlarm 2 }
+First_High_humidity_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_High_humidity_alarm"
+	::= { FirstAirconditionAlarm 3 }
+First_Low_temperature_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Low_temperature_alarm"
+	::= { FirstAirconditionAlarm 4 }
+First_Low_humidity_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Low_humidity_alarm"
+	::= { FirstAirconditionAlarm 5 }
+First_Fan_fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Fan_fault"
+	::= { FirstAirconditionAlarm 6 }
+First_Humidifier_fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Humidifier_fault"
+	::= { FirstAirconditionAlarm 7 }
+First_Water_Leakage_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Water_Leakage_alarm"
+	::= { FirstAirconditionAlarm 8 }
+First_Power_failure OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Power_failure"
+	::= { FirstAirconditionAlarm 9 }
+First_Fire_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Fire_alarm"
+	::= { FirstAirconditionAlarm 10 }
+First_General_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_General_alarm"
+	::= { FirstAirconditionAlarm 11 }
+First_Compressor_fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"First_Compressor_fault"
+	::= { FirstAirconditionAlarm 12 }
+Second_CommunicationsAlarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_CommunicationsAlarm"
+	::= { SecondAirconditionAlarm 1 }
+Second_High_temperature_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_High_temperature_alarm"
+	::= { SecondAirconditionAlarm 2 }
+Second_High_humidity_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_High_humidity_alarm"
+	::= { SecondAirconditionAlarm 3 }
+Second_Low_temperature_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Low_temperature_alarm"
+	::= { SecondAirconditionAlarm 4 }
+Second_Low_humidity_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Low_humidity_alarm"
+	::= { SecondAirconditionAlarm 5 }
+Second_Fan_fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Fan_fault"
+	::= { SecondAirconditionAlarm 6 }
+Second_Humidifier_fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Humidifier_fault"
+	::= { SecondAirconditionAlarm 7 }
+Second_Water_Leakage_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Water_Leakage_alarm"
+	::= { SecondAirconditionAlarm 8 }
+Second_Power_failure OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Power_failure"
+	::= { SecondAirconditionAlarm 9 }
+Second_Fire_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Fire_alarm"
+	::= { SecondAirconditionAlarm 10 }
+Second_General_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_General_alarm"
+	::= { SecondAirconditionAlarm 11 }
+Second_Compressor_fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Second_Compressor_fault"
+	::= { SecondAirconditionAlarm 12 }
+Thirt_CommunicationsAlarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_CommunicationsAlarm"
+	::= { ThirtAirconditionAlarm 1 }
+Thirt_High_temperature_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_High_temperature_alarm"
+	::= { ThirtAirconditionAlarm 2 }
+Thirt_High_humidity_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_High_humidity_alarm"
+	::= { ThirtAirconditionAlarm 3 }
+Thirt_Low_temperature_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Low_temperature_alarm"
+	::= { ThirtAirconditionAlarm 4 }
+Thirt_Low_humidity_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Low_humidity_alarm"
+	::= { ThirtAirconditionAlarm 5 }
+Thirt_Fan_fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Fan_fault"
+	::= { ThirtAirconditionAlarm 6 }
+Thirt_Humidifier_fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Humidifier_fault"
+	::= { ThirtAirconditionAlarm 7 }
+Thirt_Water_Leakage_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Water_Leakage_alarm"
+	::= { ThirtAirconditionAlarm 8 }
+Thirt_Power_failure OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Power_failure"
+	::= { ThirtAirconditionAlarm 9 }
+Thirt_Fire_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Fire_alarm"
+	::= { ThirtAirconditionAlarm 10 }
+Thirt_General_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_General_alarm"
+	::= { ThirtAirconditionAlarm 11 }
+Thirt_Compressor_fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Thirt_Compressor_fault"
+	::= { ThirtAirconditionAlarm 12 }
+Fouth_CommunicationsAlarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_CommunicationsAlarm"
+	::= { FouthAirconditionAlarm 1 }
+Fouth_High_temperature_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_High_temperature_alarm"
+	::= { FouthAirconditionAlarm 2 }
+Fouth_High_humidity_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_High_humidity_alarm"
+	::= { FouthAirconditionAlarm 3 }
+Fouth_Low_temperature_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Low_temperature_alarm"
+	::= { FouthAirconditionAlarm 4 }
+Fouth_Low_humidity_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Low_humidity_alarm"
+	::= { FouthAirconditionAlarm 5 }
+Fouth_Fan_fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Fan_fault"
+	::= { FouthAirconditionAlarm 6 }
+Fouth_Humidifier_fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Humidifier_fault"
+	::= { FouthAirconditionAlarm 7 }
+Fouth_Water_Leakage_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Water_Leakage_alarm"
+	::= { FouthAirconditionAlarm 8 }
+Fouth_Power_failure OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Power_failure"
+	::= { FouthAirconditionAlarm 9 }
+Fouth_Fire_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Fire_alarm"
+	::= { FouthAirconditionAlarm 10 }
+Fouth_General_alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_General_alarm"
+	::= { FouthAirconditionAlarm 11 }
+Fouth_Compressor_fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fouth_Compressor_fault"
+	::= { FouthAirconditionAlarm 12 }
+-- Traps
+--AirconditionTrap
+--addAirconditionTrap
+First_CommunicationsAlarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_CommunicationsAlarm: Occur!"
+	::= 1001 
+First_CommunicationsAlarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_CommunicationsAlarm: Cancel!"
+	::= 1002 
+First_High_temperature_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_High_temperature_alarm: Occur!"
+	::= 1003 
+First_High_temperature_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_High_temperature_alarm: Cancel!"
+	::= 1004 
+First_High_humidity_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_High_humidity_alarm: Occur!"
+	::= 1005 
+First_High_humidity_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_High_humidity_alarm: Cancel!"
+	::= 1006 
+First_Low_temperature_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_Low_temperature_alarm: Occur!"
+	::= 1007 
+First_Low_temperature_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_Low_temperature_alarm: Cancel!"
+	::= 1008 
+First_Low_humidity_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_Low_humidity_alarm: Occur!"
+	::= 1009 
+First_Low_humidity_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_Low_humidity_alarm: Cancel!"
+	::= 1010 
+First_Fan_fault_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_Fan_fault: Occur!"
+	::= 1011 
+First_Fan_fault_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_Fan_fault: Cancel!"
+	::= 1012 
+First_Humidifier_fault_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_Humidifier_fault: Occur!"
+	::= 1013 
+First_Humidifier_fault_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_Humidifier_fault: Cancel!"
+	::= 1014 
+First_Water_Leakage_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_Water_Leakage_alarm: Occur!"
+	::= 1015 
+First_Water_Leakage_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_Water_Leakage_alarm: Cancel!"
+	::= 1016 
+First_Power_failure_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_Power_failure: Occur!"
+	::= 1017 
+First_Power_failure_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_Power_failure: Cancel!"
+	::= 1018 
+First_Fire_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_Fire_alarm: Occur!"
+	::= 1019 
+First_Fire_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_Fire_alarm: Cancel!"
+	::= 1020 
+First_General_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_General_alarm: Occur!"
+	::= 1021 
+First_General_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_General_alarm: Cancel!"
+	::= 1022 
+First_Compressor_fault_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_Compressor_fault: Occur!"
+	::= 1023 
+First_Compressor_fault_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"First_Compressor_fault: Cancel!"
+	::= 1024 
+Second_CommunicationsAlarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_CommunicationsAlarm: Occur!"
+	::= 1025 
+Second_CommunicationsAlarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_CommunicationsAlarm: Cancel!"
+	::= 1026 
+Second_High_temperature_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_High_temperature_alarm: Occur!"
+	::= 1027 
+Second_High_temperature_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_High_temperature_alarm: Cancel!"
+	::= 1028 
+Second_High_humidity_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_High_humidity_alarm: Occur!"
+	::= 1029 
+Second_High_humidity_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_High_humidity_alarm: Cancel!"
+	::= 1030 
+Second_Low_temperature_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_Low_temperature_alarm: Occur!"
+	::= 1031 
+Second_Low_temperature_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_Low_temperature_alarm: Cancel!"
+	::= 1032 
+Second_Low_humidity_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_Low_humidity_alarm: Occur!"
+	::= 1033 
+Second_Low_humidity_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_Low_humidity_alarm: Cancel!"
+	::= 1034 
+Second_Fan_fault_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_Fan_fault: Occur!"
+	::= 1035 
+Second_Fan_fault_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_Fan_fault: Cancel!"
+	::= 1036 
+Second_Humidifier_fault_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_Humidifier_fault: Occur!"
+	::= 1037 
+Second_Humidifier_fault_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_Humidifier_fault: Cancel!"
+	::= 1038 
+Second_Water_Leakage_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_Water_Leakage_alarm: Occur!"
+	::= 1039 
+Second_Water_Leakage_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_Water_Leakage_alarm: Cancel!"
+	::= 1040 
+Second_Power_failure_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_Power_failure: Occur!"
+	::= 1041 
+Second_Power_failure_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_Power_failure: Cancel!"
+	::= 1042 
+Second_Fire_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_Fire_alarm: Occur!"
+	::= 1043 
+Second_Fire_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_Fire_alarm: Cancel!"
+	::= 1044 
+Second_General_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_General_alarm: Occur!"
+	::= 1045 
+Second_General_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_General_alarm: Cancel!"
+	::= 1046 
+Second_Compressor_fault_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_Compressor_fault: Occur!"
+	::= 1047 
+Second_Compressor_fault_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Second_Compressor_fault: Cancel!"
+	::= 1048 
+Thirt_CommunicationsAlarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_CommunicationsAlarm: Occur!"
+	::= 1049 
+Thirt_CommunicationsAlarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_CommunicationsAlarm: Cancel!"
+	::= 1050 
+Thirt_High_temperature_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_High_temperature_alarm: Occur!"
+	::= 1051 
+Thirt_High_temperature_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_High_temperature_alarm: Cancel!"
+	::= 1052 
+Thirt_High_humidity_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_High_humidity_alarm: Occur!"
+	::= 1053 
+Thirt_High_humidity_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_High_humidity_alarm: Cancel!"
+	::= 1054 
+Thirt_Low_temperature_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_Low_temperature_alarm: Occur!"
+	::= 1055 
+Thirt_Low_temperature_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_Low_temperature_alarm: Cancel!"
+	::= 1056 
+Thirt_Low_humidity_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_Low_humidity_alarm: Occur!"
+	::= 1057 
+Thirt_Low_humidity_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_Low_humidity_alarm: Cancel!"
+	::= 1058 
+Thirt_Fan_fault_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_Fan_fault: Occur!"
+	::= 1059 
+Thirt_Fan_fault_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_Fan_fault: Cancel!"
+	::= 1060 
+Thirt_Humidifier_fault_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_Humidifier_fault: Occur!"
+	::= 1061 
+Thirt_Humidifier_fault_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_Humidifier_fault: Cancel!"
+	::= 1062 
+Thirt_Water_Leakage_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_Water_Leakage_alarm: Occur!"
+	::= 1063 
+Thirt_Water_Leakage_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_Water_Leakage_alarm: Cancel!"
+	::= 1064 
+Thirt_Power_failure_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_Power_failure: Occur!"
+	::= 1065 
+Thirt_Power_failure_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_Power_failure: Cancel!"
+	::= 1066 
+Thirt_Fire_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_Fire_alarm: Occur!"
+	::= 1067 
+Thirt_Fire_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_Fire_alarm: Cancel!"
+	::= 1068 
+Thirt_General_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_General_alarm: Occur!"
+	::= 1069 
+Thirt_General_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_General_alarm: Cancel!"
+	::= 1070 
+Thirt_Compressor_fault_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_Compressor_fault: Occur!"
+	::= 1071 
+Thirt_Compressor_fault_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Thirt_Compressor_fault: Cancel!"
+	::= 1072 
+Fouth_CommunicationsAlarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_CommunicationsAlarm: Occur!"
+	::= 1073 
+Fouth_CommunicationsAlarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_CommunicationsAlarm: Cancel!"
+	::= 1074 
+Fouth_High_temperature_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_High_temperature_alarm: Occur!"
+	::= 1075 
+Fouth_High_temperature_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_High_temperature_alarm: Cancel!"
+	::= 1076 
+Fouth_High_humidity_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_High_humidity_alarm: Occur!"
+	::= 1077 
+Fouth_High_humidity_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_High_humidity_alarm: Cancel!"
+	::= 1078 
+Fouth_Low_temperature_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_Low_temperature_alarm: Occur!"
+	::= 1079 
+Fouth_Low_temperature_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_Low_temperature_alarm: Cancel!"
+	::= 1080 
+Fouth_Low_humidity_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_Low_humidity_alarm: Occur!"
+	::= 1081 
+Fouth_Low_humidity_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_Low_humidity_alarm: Cancel!"
+	::= 1082 
+Fouth_Fan_fault_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_Fan_fault: Occur!"
+	::= 1083 
+Fouth_Fan_fault_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_Fan_fault: Cancel!"
+	::= 1084 
+Fouth_Humidifier_fault_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_Humidifier_fault: Occur!"
+	::= 1085 
+Fouth_Humidifier_fault_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_Humidifier_fault: Cancel!"
+	::= 1086 
+Fouth_Water_Leakage_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_Water_Leakage_alarm: Occur!"
+	::= 1087 
+Fouth_Water_Leakage_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_Water_Leakage_alarm: Cancel!"
+	::= 1088 
+Fouth_Power_failure_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_Power_failure: Occur!"
+	::= 1089 
+Fouth_Power_failure_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_Power_failure: Cancel!"
+	::= 1090 
+Fouth_Fire_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_Fire_alarm: Occur!"
+	::= 1091 
+Fouth_Fire_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_Fire_alarm: Cancel!"
+	::= 1092 
+Fouth_General_alarm_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_General_alarm: Occur!"
+	::= 1093 
+Fouth_General_alarm_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_General_alarm: Cancel!"
+	::= 1094 
+Fouth_Compressor_fault_Occur TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_Compressor_fault: Occur!"
+	::= 1095 
+Fouth_Compressor_fault_Cancel TRAP-TYPE
+	ENTERPRISE  Aircondition
+	DESCRIPTION
+		"Fouth_Compressor_fault: Cancel!"
+	::= 1096
+
+END
+
+
+
+

@@ -1,0 +1,2103 @@
+--HighFrequencySwitchingPowerSupply-MIB { iso(1) org(3) dod(6) internet(1) private(4)
+--      enterprises(1) rcmib(952) }
+
+
+HighFrequencySwitchingPowerSupply-MIB DEFINITIONS ::= BEGIN
+-- Title: PPC TOP LEVEL MIB
+-- Date: January 07, 1994    Version 1.00
+--
+-- Date: January 17, 1994    Version 1.01
+--
+-- Date: July 14, 1994    Version 1.02
+
+
+IMPORTS
+	enterprises, IpAddress
+		FROM RFC1155-SMI
+	DisplayString
+		FROM RFC1213-MIB
+	OBJECT-TYPE
+		FROM RFC-1212
+	TRAP-TYPE
+		FROM RFC-1215;
+
+HighFrequencySwitchingPowerSupply                           OBJECT IDENTIFIER ::=  { enterprises 952 }
+
+AC_Distribution												 OBJECT IDENTIFIER ::=  { HighFrequencySwitchingPowerSupply 1 }
+Rectifier_Modules							                 OBJECT IDENTIFIER ::=  { HighFrequencySwitchingPowerSupply 2 }
+DC_Distribution                 							OBJECT IDENTIFIER ::=  { HighFrequencySwitchingPowerSupply 3 }
+Collective_Monitor                  						OBJECT IDENTIFIER ::=  { HighFrequencySwitchingPowerSupply 4 }
+AlarmTrap			                  						OBJECT IDENTIFIER ::=  { HighFrequencySwitchingPowerSupply 20 }
+
+AC_Distribution_Analog										OBJECT IDENTIFIER ::=  { AC_Distribution 1 }
+AC_Distribution_Status_and_Alarm							 OBJECT IDENTIFIER ::=  { AC_Distribution 2 }
+
+DC_Distribution_Analog												 OBJECT IDENTIFIER ::=  { DC_Distribution 1 }
+DC_Distribution_Status_and_Alarm							          OBJECT IDENTIFIER ::=  { DC_Distribution 2 }
+
+Collective_Monitor_Analog												 OBJECT IDENTIFIER ::=  { Collective_Monitor 1 }
+Collective_Monitor_Status_and_Alarm							          OBJECT IDENTIFIER ::=  { Collective_Monitor 2 }
+
+-- the HighFrequencySwitchingPowerSupplyAnalog group
+--addHighFrequencySwitchingPowerSupplyAnalog
+AC_Screen_Number OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "1"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"AC_Screen_Number"
+	::= { AC_Distribution_Analog 1 }
+Input_Road_Number_of_Frist_AC_Screen OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "1"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Input_Road_Number_of_Frist_AC_Screen"
+	::= { AC_Distribution_Analog 2 }
+Road_I_Input_line_AB/Phase_A_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_I_Input_line_AB/Phase_A_Voltage in 0.01 V"
+	::= { AC_Distribution_Analog 3 }
+Road_I_Input_line_BC/Phase_B_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_I_Input_line_BC/Phase_B_Voltage in 0.01 V"
+	::= { AC_Distribution_Analog 4 }
+Road_I_Input_line_CA/Phase_C_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_I_Input_line_CA/Phase_C_Voltage in 0.01 V"
+	::= { AC_Distribution_Analog 5 }
+Road_I_Input_Frequency OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01Hz"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_I_Input_Frequency in 0.01 Hz"
+	::= { AC_Distribution_Analog 6 }
+Road_II_Input_line_AB/Phase_A_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_II_Input_line_AB/Phase_A_Voltage in 0.01 V"
+	::= { AC_Distribution_Analog 7 }
+Road_II_Input_line_BC/Phase_B_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_II_Input_line_BC/Phase_B_Voltage in 0.01 V"
+	::= { AC_Distribution_Analog 8 }
+Road_II_Input_line_CA/Phase_C_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_II_Input_line_CA/Phase_C_Voltage in 0.01 V"
+	::= { AC_Distribution_Analog 9 }
+Road_II_Input_Frequency OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01Hz"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_II_Input_Frequency in 0.01 Hz"
+	::= { AC_Distribution_Analog 10 }
+AC_Screen_Phase_A_Output_Current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01A"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"AC_Screen_Phase_A_Output_Current in 0.01 A"
+	::= { AC_Distribution_Analog 11 }
+AC_Screen_Phase_B_Output_Current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01A"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"AC_Screen_Phase_B_Output_Current in 0.01 A"
+	::= { AC_Distribution_Analog 12 }
+AC_Screen_Phase_C_Output_Current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01A"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"AC_Screen_Phase_C_Output_Current in 0.01 A"
+	::= { AC_Distribution_Analog 13 }
+AC_Output_Switch_Number OBJECT-TYPE
+	SYNTAX INTEGER (0..10) 
+	UNITS     "1"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"AC_Output_Switch_Number"
+	::= { AC_Distribution_Analog 14 }
+Rectifier_Modules_Output_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Modules_Output_Voltage in 0.01 V"
+	::= { Rectifier_Modules 1 }
+Rectifier_Modules_Number OBJECT-TYPE
+	SYNTAX INTEGER (0..30)
+	UNITS     "1"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Modules_Number"
+	::= { Rectifier_Modules 2 }
+Rectifier_Modules_Analog_Table OBJECT-TYPE
+	SYNTAX SEQUENCE OF Rectifier_Modules_Analog_Struct
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Modules_Analog_Table"
+	::= { Rectifier_Modules 3 }
+Rectifier_Modules_Analog_Entry OBJECT-TYPE
+	SYNTAX Rectifier_Modules_Analog_Struct
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"An entry (conceptual row) in the Rectifier_Modules_Analog_Table"
+	INDEX  { Rectifier_Module_Index }
+	::= { Rectifier_Modules_Analog_Table 1 }
+Rectifier_Modules_Analog_Struct ::=
+	SEQUENCE {
+		Rectifier_Module_Index								INTEGER,		
+	    Rectifier_Module_Output_Current     				INTEGER,
+	    Rectifier_Module_Current_Limit_Point_Percent        INTEGER,
+	    Rectifier_Module_Output_Voltage						INTEGER,
+	    Rectifier_Module_Temperature                        INTEGER,
+	    Rectifier_Module_AC_Triphase_Input_Voltage_AB/A     INTEGER,
+	    Rectifier_Module_AC_Triphase_Input_Voltage_BC/B     INTEGER,
+	    Rectifier_Module_AC_Triphase_Input_Voltage_CA/C     INTEGER,
+	}
+Rectifier_Module_Index OBJECT-TYPE
+	SYNTAX INTEGER (1..30)
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"The auxiliary variable used for identifying instances of the columnar objects in the Rectifier_Modules_Analog_Table"
+	::= { Rectifier_Modules_Analog_Entry 1 }
+Rectifier_Module_Output_Current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01A"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_Output_Current in 0.01 A"
+	::= { Rectifier_Modules_Analog_Entry 2 }
+Rectifier_Module_Current_Limit_Point_Percent OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01%"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_Current_Limit_Point_Percent in 0.01 %"
+	::= { Rectifier_Modules_Analog_Entry 3 }
+Rectifier_Module_Output_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_Output_Voltage in 0.01 V"
+	::= { Rectifier_Modules_Analog_Entry 4 }
+Rectifier_Module_Temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 degrees Celsius"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_Temperature in 0.01 degrees Celsius"
+	::= { Rectifier_Modules_Analog_Entry 5 }
+Rectifier_Module_AC_Triphase_Input_Voltage_AB/A OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_AC_Triphase_Input_Voltage_AB/A in 0.01 V"
+	::= { Rectifier_Modules_Analog_Entry 6 }
+Rectifier_Module_AC_Triphase_Input_Voltage_BC/B OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_AC_Triphase_Input_Voltage_BC/B in 0.01 V"
+	::= { Rectifier_Modules_Analog_Entry 7 }
+Rectifier_Module_AC_Triphase_Input_Voltage_CA/C OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_AC_Triphase_Input_Voltage_CA/C in 0.01 V"
+	::= { Rectifier_Modules_Analog_Entry 8 }
+Rectifier_Modules_Status_and_Alarm_Table OBJECT-TYPE
+	SYNTAX SEQUENCE OF Rectifier_Modules_Status_and_Alarm_Struct
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Modules_Status_and_Alarm_Table"
+	::= { Rectifier_Modules 4 }
+Rectifier_Modules_Status_and_Alarm_Entry OBJECT-TYPE
+	SYNTAX Rectifier_Modules_Status_and_Alarm_Struct
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"An entry (conceptual row) in the Rectifier_Modules_Status_and_Alarm_Table"
+	INDEX  { Rectifier_Module_Index }	
+	::= { Rectifier_Modules_Status_and_Alarm_Table 1 }
+Rectifier_Modules_Status_and_Alarm_Struct ::=
+	SEQUENCE {
+		Rectifier_Module_Index								INTEGER,		
+	    Rectifier_Module_Switch_State	     				INTEGER,
+	    Rectifier_Module_Current_Limiting_State		        INTEGER,
+	    Rectifier_Module_Charge_State						INTEGER,
+	    Rectifier_Module_Test_State                        	INTEGER,
+	    Rectifier_Module_WALK-In_Mode					    INTEGER,
+	    Rectifier_Module_Enable_Sequence_Start-up		    INTEGER,
+	    Rectifier_Module_Module_Fault					    INTEGER,  
+	    Rectifier_Module_Communication_Failure		        INTEGER,
+	    Rectifier_Module_Protection_Function				INTEGER,
+	    Rectifier_Module_Current_Imbalance                 	INTEGER,
+	    Rectifier_Module_AC_Voltage_Imbalance				INTEGER,
+	    Rectifier_Module_AC_Phase_Loss					    INTEGER,
+	    Rectifier_Module_Environment_Temperature_Abnormity	INTEGER,
+	}
+Rectifier_Module_Index OBJECT-TYPE
+	SYNTAX INTEGER (1..30)
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"The auxiliary variable used for identifying instances of the columnar objects in the Rectifier_Modules_Status_and_Alarm_Table"
+	::= { Rectifier_Modules_Status_and_Alarm_Entry 1 }
+Rectifier_Module_Switch_State OBJECT-TYPE
+	SYNTAX INTEGER  {
+		ON(0),
+		OFF(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_Switch_State"
+	::= { Rectifier_Modules_Status_and_Alarm_Entry 2 }
+Rectifier_Module_Current_Limiting_State OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Limited(0),
+		Unlimited(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_Current_Limiting_State"
+	::= { Rectifier_Modules_Status_and_Alarm_Entry 3 }
+Rectifier_Module_Charge_State OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Automatic(0),
+		Manual(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_Charge_State"
+	::= { Rectifier_Modules_Status_and_Alarm_Entry 4 }
+Rectifier_Module_Test_State OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Close(0),
+		Active(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_Test_State"
+	::= { Rectifier_Modules_Status_and_Alarm_Entry 5 }
+Rectifier_Module_WALK-In_Mode OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Enable(0),
+		Disable(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_WALK-In_Mode"
+	::= { Rectifier_Modules_Status_and_Alarm_Entry 6 }
+Rectifier_Module_Enable_Sequence_Start-up OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Enable(0),
+		Disable(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_Enable_Sequence_Start-up"
+	::= { Rectifier_Modules_Status_and_Alarm_Entry 7 }
+Rectifier_Module_Module_Fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_Module_Fault"
+	::= { Rectifier_Modules_Status_and_Alarm_Entry 8 }
+Rectifier_Module_Communication_Failure OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_Communication_Failure"
+	::= { Rectifier_Modules_Status_and_Alarm_Entry 9 }
+Rectifier_Module_Protection_Function OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_Protection_Function"
+	::= { Rectifier_Modules_Status_and_Alarm_Entry 10 }
+Rectifier_Module_Current_Imbalance OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_Current_Imbalance"
+	::= { Rectifier_Modules_Status_and_Alarm_Entry 11 }
+Rectifier_Module_AC_Voltage_Imbalance OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_AC_Voltage_Imbalance"
+	::= { Rectifier_Modules_Status_and_Alarm_Entry 12 }
+Rectifier_Module_AC_Phase_Loss OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_AC_Phase_Loss"
+	::= { Rectifier_Modules_Status_and_Alarm_Entry 13 }
+Rectifier_Module_Environment_Temperature_Abnormity OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Module_Environment_Temperature_Abnormity"
+	::= { Rectifier_Modules_Status_and_Alarm_Entry 14 }
+Rectifier_Modules_Remote_Control OBJECT-TYPE
+	SYNTAX OCTET STRING
+	ACCESS read-write
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Modules_Remote_Control
+			Command format: 'parameter1,parameter2' or 'parameter1 parameter2'
+				parameter1:	
+							1 -- Floating Charge
+							2 -- Equalizing Charge
+							3 -- Test
+							4 -- Turn On
+				            5 -- Turn Off
+				parameter2:	Rectifier Module Index, Range 1-30
+				e.g. '4,10' or '4 10' means 'Turn on the tenth Rectifier Module'."
+	::= { Rectifier_Modules 5 }
+DC_Screen_Number OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "1"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"DC_Screen_Number"
+	::= { DC_Distribution_Analog 1 }
+DC_Output_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"DC_Output_Voltage in 0.01 V"
+	::= { DC_Distribution_Analog 2 }
+Total_Load_Current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01A"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Total_Load_Current in 0.01 A"
+	::= { DC_Distribution_Analog 3 }
+Accumulator_Number OBJECT-TYPE
+	SYNTAX INTEGER (0..8)
+	UNITS     "1"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_Number"
+	::= { DC_Distribution_Analog 4 }
+Accumulator_Charge_Discharge_Current_Table OBJECT-TYPE
+	SYNTAX SEQUENCE OF Accumulator_Charge_Discharge_Current_Struct
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_Charge_Discharge_Current_Table"
+	::= { DC_Distribution_Analog 5 }
+Accumulator_Charge_Discharge_Current_Entry OBJECT-TYPE
+	SYNTAX Accumulator_Charge_Discharge_Current_Struct
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"An entry (conceptual row) in the Accumulator_Charge_Discharge_Current_Table"
+	INDEX  { Accumulator_Index }
+	::= { Accumulator_Charge_Discharge_Current_Table 1 }
+Accumulator_Charge_Discharge_Current_Struct ::=
+	SEQUENCE {
+		Accumulator_Index								INTEGER,		
+	    Accumulator_Charge_Discharge_Current			INTEGER,
+	}
+Accumulator_Index OBJECT-TYPE
+	SYNTAX INTEGER
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"The auxiliary variable used for identifying instances of the columnar objects in the Accumulator_Charge_Discharge_Current_Table"
+	::= { Accumulator_Charge_Discharge_Current_Entry 1 }
+Accumulator_Charge_Discharge_Current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01A"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_Charge_Discharge_Current in 0.01 A"
+	::= { Accumulator_Charge_Discharge_Current_Entry 2 }
+Batteries_Total_Current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01A"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Batteries_Total_Current in 0.01 A"
+	::= { DC_Distribution_Analog 6 }
+Accumulator_1_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_1_Voltage in 0.01 V"
+	::= { DC_Distribution_Analog 7 }
+Accumulator_2_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_2_Voltage in 0.01 V"
+	::= { DC_Distribution_Analog 8 }
+Accumulator_3_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_3_Voltage in 0.01 V"
+	::= { DC_Distribution_Analog 9 }
+Accumulator_4_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_4_Voltage in 0.01 V"
+	::= { DC_Distribution_Analog 10 }
+Accumulator_5_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_5_Voltage in 0.01 V"
+	::= { DC_Distribution_Analog 11 }
+Accumulator_6_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_6_Voltage in 0.01 V"
+	::= { DC_Distribution_Analog 12 }
+Accumulator_1_Midpoint_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_1_Midpoint_Voltage in 0.01 V"
+	::= { DC_Distribution_Analog 13 }
+Accumulator_2_Midpoint_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_2_Midpoint_Voltage in 0.01 V"
+	::= { DC_Distribution_Analog 14 }
+Accumulator_3_Midpoint_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_3_Midpoint_Voltage in 0.01 V"
+	::= { DC_Distribution_Analog 15 }
+Accumulator_4_Midpoint_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_4_Midpoint_Voltage in 0.01 V"
+	::= { DC_Distribution_Analog 16 }
+Accumulator_5_Midpoint_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_5_Midpoint_Voltage in 0.01 V"
+	::= { DC_Distribution_Analog 17 }
+Accumulator_6_Midpoint_Voltage OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01V"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_6_Midpoint_Voltage in 0.01 V"
+	::= { DC_Distribution_Analog 18 }
+Accumulator_1_Remain_Capacity_Percent OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01%"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_1_Remain_Capacity_Percent in 0.01 %"
+	::= { DC_Distribution_Analog 19 }
+Accumulator_2_Remain_Capacity_Percent OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01%"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_2_Remain_Capacity_Percent in 0.01 %"
+	::= { DC_Distribution_Analog 20 }
+Accumulator_3_Remain_Capacity_Percent OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01%"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_3_Remain_Capacity_Percent in 0.01 %"
+	::= { DC_Distribution_Analog 21 }
+Accumulator_4_Remain_Capacity_Percent OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01%"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_4_Remain_Capacity_Percent in 0.01 %"
+	::= { DC_Distribution_Analog 22 }
+Accumulator_5_Remain_Capacity_Percent OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01%"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_5_Remain_Capacity_Percent in 0.01 %"
+	::= { DC_Distribution_Analog 23 }
+Accumulator_6_Remain_Capacity_Percent OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01%"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_6_Remain_Capacity_Percent in 0.01 %"
+	::= { DC_Distribution_Analog 24 }
+Accumulator_1_Temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 degrees Celsius"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_1_Temperature in 0.01 degrees Celsius"
+	::= { DC_Distribution_Analog 25 }
+Accumulator_2_Temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 degrees Celsius"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_2_Temperature in 0.01 degrees Celsius"
+		::= { DC_Distribution_Analog 26 }
+Accumulator_3_Temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 degrees Celsius"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_3_Temperature in 0.01 degrees Celsius"
+	::= { DC_Distribution_Analog 27 }
+Accumulator_4_Temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 degrees Celsius"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_4_Temperature in 0.01 degrees Celsius"
+	::= { DC_Distribution_Analog 28 }
+Accumulator_5_Temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 degrees Celsius"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_5_Temperature in 0.01 degrees Celsius"
+	::= { DC_Distribution_Analog 29 }
+Accumulator_6_Temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 degrees Celsius"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_6_Temperature in 0.01 degrees Celsius"
+	::= { DC_Distribution_Analog 30 }
+Entironment_Temperature_1 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 degrees Celsius"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Entironment_Temperature_1 in 0.01 degrees Celsius"
+	::= { DC_Distribution_Analog 31 }
+Entironment_Temperature_2 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 degrees Celsius"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Entironment_Temperature_2 in 0.01 degrees Celsius"
+	::= { DC_Distribution_Analog 32 }
+Entironment_Temperature_3 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 degrees Celsius"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Entironment_Temperature_3 in 0.01 degrees Celsius"
+	::= { DC_Distribution_Analog 33 }
+Entironment_Humidity_1 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01%"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Entironment_Humidity_1 in 0.01 %"
+	::= { DC_Distribution_Analog 34 }
+Entironment_Humidity_2 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01%"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Entironment_Humidity_2 in 0.01 %"
+	::= { DC_Distribution_Analog 35 }
+Entironment_Humidity_3 OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01%"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Entironment_Humidity_3 in 0.01 %"
+	::= { DC_Distribution_Analog 36 }
+Fan_Group_1_Fan_1_Revs OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01rpm"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fan_Group_1_Fan_1_Revs in 0.01 rpm"
+	::= { DC_Distribution_Analog 37 }
+Fan_Group_1_Fan_2_Revs OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01rpm"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fan_Group_1_Fan_2_Revs in 0.01 rpm"
+	::= { DC_Distribution_Analog 38 }
+Fan_Group_2_Fan_1_Revs OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01rpm"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fan_Group_2_Fan_1_Revs in 0.01 rpm"
+	::= { DC_Distribution_Analog 39 }
+Fan_Group_2_Fan_2_Revs OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01rpm"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fan_Group_2_Fan_2_Revs in 0.01 rpm"
+	::= { DC_Distribution_Analog 40 }
+DC_Branch_Number OBJECT-TYPE
+	SYNTAX INTEGER (0..16)
+	UNITS     "1"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"DC_Branch_Number"
+	::= { DC_Distribution_Analog 41 }
+DC_Branch_Current_Table OBJECT-TYPE
+	SYNTAX SEQUENCE OF DC_Branch_Current_Struct
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"DC_Branch_Current_Table"
+	::= { DC_Distribution_Analog 42 }
+DC_Branch_Current_Entry OBJECT-TYPE
+	SYNTAX DC_Branch_Current_Struct
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"An entry (conceptual row) in the DC_Branch_Current_Table"
+	INDEX  { DC_Branch_Index }
+	::= { DC_Branch_Current_Table 1 }
+DC_Branch_Current_Struct ::=
+	SEQUENCE {
+		DC_Branch_Index						INTEGER,		
+	    DC_Branch_Current     				INTEGER,
+	}
+DC_Branch_Index OBJECT-TYPE
+	SYNTAX INTEGER
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"The auxiliary variable used for identifying instances of the columnar objects in the DC_Branch_Current_Table"
+	::= { DC_Branch_Current_Entry 1 }
+DC_Branch_Current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01A"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"DC_Branch_Current in 0.01 A"
+	::= { DC_Branch_Current_Entry 2 }
+Battery_Temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 degrees Celsius"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Battery_Temperature in 0.01 degrees Celsius"
+	::= { DC_Distribution_Analog 43 }
+Rectifier_Total_Current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01A"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Rectifier_Total_Current in 0.01 A"
+	::= { DC_Distribution_Analog 44 }
+Solar_Energy_Total_Current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01A"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Solar_Energy_Total_Current in 0.01 A"
+	::= { DC_Distribution_Analog 45 }
+Wind_Energy_Total_Current OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01A"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Wind_Energy_Total_Current in 0.01 A"
+	::= { DC_Distribution_Analog 46 }
+Battery_Energy OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01Ah"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Battery_Energy in 0.01 Ah"
+	::= { DC_Distribution_Analog 47 }
+Entironment_Temperature OBJECT-TYPE
+	SYNTAX INTEGER
+	UNITS     "0.01 degrees Celsius"
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Entironment_Temperature in 0.01 degrees Celsius"
+	::= { Collective_Monitor_Analog 1 }
+
+-- the HighFrequencySwitchingPowerSupplyStatus group
+--addHighFrequencySwitchingPowerSupplyStatus
+
+-- the AC_Distribution_Status_and_Alarm group
+--addAC_Distribution_Status_and_Alarm
+AC_Switch_Status OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Automatic(0),
+		Manual(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"AC_Switch_Status"
+	::= { AC_Distribution_Status_and_Alarm 1 }
+Road_I_Input_line_AB/Phase_A_Voltage_lower_limit_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_I_Input_line_AB/Phase_A_Voltage_lower_limit_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 2 }
+Road_I_Input_line_AB/Phase_A_Voltage_upper_limit_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_I_Input_line_AB/Phase_A_Voltage_upper_limit_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 3 }
+Road_I_Input_line_BC/Phase_B_Voltage_lower_limit_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_I_Input_line_BC/Phase_B_Voltage_lower_limit_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 4 }
+Road_I_Input_line_BC/Phase_B_Voltage_upper_limit_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_I_Input_line_BC/Phase_B_Voltage_upper_limit_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 5 }
+Road_I_Input_line_CA/Phase_C_Voltage_lower_limit_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_I_Input_line_CA/Phase_C_Voltage_lower_limit_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 6 }
+Road_I_Input_line_CA/Phase_C_Voltage_upper_limit_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_I_Input_line_CA/Phase_C_Voltage_upper_limit_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 7 }
+Road_I_Input_Frequency_lower_limit_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_I_Input_Frequency_lower_limit_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 8 }
+Road_I_Input_Frequency_upper_limit_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_I_Input_Frequency_upper_limit_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 9 }
+Road_II_Input_line_AB/Phase_A_Voltage_lower_limit_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_II_Input_line_AB/Phase_A_Voltage_lower_limit_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 10 }
+Road_II_Input_line_AB/Phase_A_Voltage_upper_limit_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_II_Input_line_AB/Phase_A_Voltage_upper_limit_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 11 }
+Road_II_Input_line_BC/Phase_B_Voltage_lower_limit_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_II_Input_line_BC/Phase_B_Voltage_lower_limit_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 12 }
+Road_II_Input_line_BC/Phase_B_Voltage_upper_limit_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_II_Input_line_BC/Phase_B_Voltage_upper_limit_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 13 }
+Road_II_Input_line_CA/Phase_C_Voltage_lower_limit_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_II_Input_line_CA/Phase_C_Voltage_lower_limit_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 14 }
+Road_II_Input_line_CA/Phase_C_Voltage_upper_limit_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_II_Input_line_CA/Phase_C_Voltage_upper_limit_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 15 }
+Road_II_Input_Frequency_lower_limit_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_II_Input_Frequency_lower_limit_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 16 }
+Road_II_Input_Frequency_upper_limit_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_II_Input_Frequency_upper_limit_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 17 }
+AC_SPD_Switch_Close OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"AC_SPD_Switch_Close"
+	::= { AC_Distribution_Status_and_Alarm 18 }
+AC_Communication_Failure OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"AC_Communication_Failure"
+	::= { AC_Distribution_Status_and_Alarm 19 }
+AC_Output_Switch_Close OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"AC_Output_Switch_Close"
+	::= { AC_Distribution_Status_and_Alarm 20 }
+AC_Road_I_Supply_Failure OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"AC_Road_I_Supply_Failure"
+	::= { AC_Distribution_Status_and_Alarm 21 }
+AC_Output_Switch_State_Table OBJECT-TYPE
+	SYNTAX SEQUENCE OF AC_Output_Switch_State_Struct
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"AC_Output_Switch_State_Table"
+	::= { AC_Distribution_Status_and_Alarm 22 }
+AC_Output_Switch_State_Entry OBJECT-TYPE
+	SYNTAX AC_Output_Switch_State_Struct
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"An entry (conceptual row) in the AC_Output_Switch_State_Table"
+	INDEX  { AC_Output_Switch_Index }
+	::= { AC_Output_Switch_State_Table 1 }
+AC_Output_Switch_State_Struct ::=
+	SEQUENCE {
+		AC_Output_Switch_Index					INTEGER,		
+	    AC_Output_Switch_State     				INTEGER,
+	}
+AC_Output_Switch_Index OBJECT-TYPE
+	SYNTAX INTEGER
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"The auxiliary variable used for identifying instances of the columnar objects in the AC_Output_Switch_State_Table"
+	::= { AC_Output_Switch_State_Entry 1 }
+AC_Output_Switch_State OBJECT-TYPE
+	SYNTAX INTEGER  {
+		ON(0),
+		OFF(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"AC_Output_Switch_State"
+	::= { AC_Output_Switch_State_Entry 2 }
+Accident_Lighting_Switch_Close OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accident_Lighting_Switch_Close"
+	::= { AC_Distribution_Status_and_Alarm 23 }
+Road_I_Input_line_AB/Phase_A_Voltage_Phase_loss_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_I_Input_line_AB/Phase_A_Voltage_Phase_loss_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 24 }
+Road_I_Input_line_BC/Phase_B_Voltage_Phase_loss_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_I_Input_line_BC/Phase_B_Voltage_Phase_loss_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 25 }
+Road_I_Input_line_CA/Phase_C_Voltage_Phase_loss_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_I_Input_line_CA/Phase_C_Voltage_Phase_loss_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 26 }
+Road_II_Input_line_AB/Phase_A_Voltage_Phase_loss_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_II_Input_line_AB/Phase_A_Voltage_Phase_loss_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 27 }
+Road_II_Input_line_BC/Phase_B_Voltage_Phase_loss_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_II_Input_line_BC/Phase_B_Voltage_Phase_loss_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 28 }
+Road_II_Input_line_CA/Phase_C_Voltage_Phase_loss_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Road_II_Input_line_CA/Phase_C_Voltage_Phase_loss_Alarm"
+	::= { AC_Distribution_Status_and_Alarm 29 }
+DC_Voltage_lower_limit_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"DC_Voltage_lower_limit_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 1 }
+DC_Voltage_upper_limit_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"DC_Voltage_upper_limit_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 2 }
+DC_SPD_Fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"DC_SPD_Fault"
+	::= { DC_Distribution_Status_and_Alarm 3 }
+DC_Communication_Failure OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"DC_Communication_Failure"
+	::= { DC_Distribution_Status_and_Alarm 4 }
+Total_Load_Fuse_Break OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Total_Load_Fuse_Break"
+	::= { DC_Distribution_Status_and_Alarm 5 }
+Accumulator_Fuse_Alarm_Table OBJECT-TYPE
+	SYNTAX SEQUENCE OF Accumulator_Fuse_Alarm_Struct
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_Fuse_Alarm_Table"
+	::= { DC_Distribution_Status_and_Alarm 6 }
+Accumulator_Fuse_Alarm_Entry OBJECT-TYPE
+	SYNTAX Accumulator_Fuse_Alarm_Struct
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"An entry (conceptual row) in the Accumulator_Fuse_Alarm_Table"
+	INDEX  { Accumulator_Index }
+	::= { Accumulator_Fuse_Alarm_Table 1 }
+Accumulator_Fuse_Alarm_Struct ::=
+	SEQUENCE {
+		Accumulator_Index					INTEGER,		
+	    Accumulator_Fuse_Break 				INTEGER,
+	}
+Accumulator_Index OBJECT-TYPE
+	SYNTAX INTEGER
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"The auxiliary variable used for identifying instances of the columnar objects in the Accumulator_Fuse_Alarm_Table"
+	::= { Accumulator_Fuse_Alarm_Entry 1 }
+Accumulator_Fuse_Break OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_Fuse_Break"
+	::= { Accumulator_Fuse_Alarm_Entry 2 }
+Accumulator_1_Charge_Over_Current OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_1_Charge_Over_Current"
+	::= { DC_Distribution_Status_and_Alarm 7 }
+Accumulator_2_Charge_Over_Current OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_2_Charge_Over_Current"
+	::= { DC_Distribution_Status_and_Alarm 8 }
+Accumulator_3_Charge_Over_Current OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_3_Charge_Over_Current"
+	::= { DC_Distribution_Status_and_Alarm 9 }
+Accumulator_4_Charge_Over_Current OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_4_Charge_Over_Current"
+	::= { DC_Distribution_Status_and_Alarm 10 }
+Accumulator_5_Charge_Over_Current OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_5_Charge_Over_Current"
+	::= { DC_Distribution_Status_and_Alarm 11 }
+Accumulator_6_Charge_Over_Current OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_6_Charge_Over_Current"
+	::= { DC_Distribution_Status_and_Alarm 12 }
+Accumulator_1_Imbalance OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_1_Imbalance"
+	::= { DC_Distribution_Status_and_Alarm 13 }
+Accumulator_2_Imbalance OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_2_Imbalance"
+	::= { DC_Distribution_Status_and_Alarm 14 }
+Accumulator_3_Imbalance OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_3_Imbalance"
+	::= { DC_Distribution_Status_and_Alarm 15 }
+Accumulator_4_Imbalance OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_4_Imbalance"
+	::= { DC_Distribution_Status_and_Alarm 16 }
+Accumulator_5_Imbalance OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_5_Imbalance"
+	::= { DC_Distribution_Status_and_Alarm 17 }
+Accumulator_6_Imbalance OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_6_Imbalance"
+	::= { DC_Distribution_Status_and_Alarm 18 }
+Accumulator_1_Loss OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_1_Loss"
+	::= { DC_Distribution_Status_and_Alarm 19 }
+Accumulator_2_Loss OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_2_Loss"
+	::= { DC_Distribution_Status_and_Alarm 20 }
+Accumulator_3_Loss OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_3_Loss"
+	::= { DC_Distribution_Status_and_Alarm 21 }
+Accumulator_4_Loss OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_4_Loss"
+	::= { DC_Distribution_Status_and_Alarm 22 }
+Accumulator_5_Loss OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_5_Loss"
+	::= { DC_Distribution_Status_and_Alarm 23 }
+Accumulator_6_Loss OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_6_Loss"
+	::= { DC_Distribution_Status_and_Alarm 24 }
+BLVD_Power_Down OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"BLVD_Power_Down"
+	::= { DC_Distribution_Status_and_Alarm 25 }
+Load_Power_Down_LLVD1 OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Load_Power_Down_LLVD1"
+	::= { DC_Distribution_Status_and_Alarm 26 }
+Load_Power_Down_LLVD2 OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Load_Power_Down_LLVD2"
+	::= { DC_Distribution_Status_and_Alarm 27 }
+Battery_Current_Fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Battery_Current_Fault"
+	::= { DC_Distribution_Status_and_Alarm 28 }
+Accumulator_Current_Imbalance OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Accumulator_Current_Imbalance"
+	::= { DC_Distribution_Status_and_Alarm 29 }
+Battery_Temperature_Compensation_Enable OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Battery_Temperature_Compensation_Enable"
+	::= { DC_Distribution_Status_and_Alarm 30 }
+Battery_Discharge_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Battery_Discharge_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 31 }
+Battery_Equalizing_Charge_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Battery_Equalizing_Charge_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 32 }
+Battery_Over_Temperature_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Battery_Over_Temperature_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 33 }
+Battery_Under_Temperature_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Battery_Under_Temperature_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 34 }
+Battery_Temperature_Sensor_1_Fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Battery_Temperature_Sensor_1_Fault"
+	::= { DC_Distribution_Status_and_Alarm 35 }
+Battery_Temperature_Sensor_2_Fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Battery_Temperature_Sensor_2_Fault"
+	::= { DC_Distribution_Status_and_Alarm 36 }
+Entironment_Over_Temperature_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Entironment_Over_Temperature_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 37 }
+Entironment_Under_Temperature_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Entironment_Under_Temperature_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 38 }
+Entironment_Temperature_Sensor_1_Fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Entironment_Temperature_Sensor_1_Fault"
+	::= { DC_Distribution_Status_and_Alarm 39 }
+Entironment_Temperature_Sensor_2_Fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Entironment_Temperature_Sensor_2_Fault"
+	::= { DC_Distribution_Status_and_Alarm 40 }
+Entironment_Over_Humidity_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Entironment_Over_Humidity_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 41 }
+Entironment_Under_Humidity_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Entironment_Under_Humidity_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 42 }
+Entironment_Humidity_Sensor_1_Fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Entironment_Humidity_Sensor_1_Fault"
+	::= { DC_Distribution_Status_and_Alarm 43 }
+Magnetic_Contact_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Magnetic_Contact_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 44 }
+Waterlogging_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Waterlogging_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 45 }
+Smoke_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Smoke_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 46 }
+Switch_Input_1_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Switch_Input_1_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 47 }
+Switch_Input_2_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Switch_Input_2_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 48 }
+Switch_Input_3_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Switch_Input_3_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 49 }
+Switch_Input_4_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Switch_Input_4_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 50 }
+Switch_Input_5_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Switch_Input_5_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 51 }
+Switch_Input_6_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Switch_Input_6_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 52 }
+Switch_Input_7_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Switch_Input_7_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 53 }
+Switch_Input_8_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Switch_Input_8_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 54 }
+Fan_Group_1_Fan_1_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fan_Group_1_Fan_1_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 55 }
+Fan_Group_1_Fan_2_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fan_Group_1_Fan_2_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 56 }
+Fan_Group_2_Fan_1_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fan_Group_2_Fan_1_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 57 }
+Fan_Group_2_Fan_2_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Fan_Group_2_Fan_2_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 58 }
+Temperature_Control_Over_Temperature_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Temperature_Control_Over_Temperature_Alarm"
+	::= { DC_Distribution_Status_and_Alarm 59 }
+Temperature_Control_Sensor_1_Fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Temperature_Control_Sensor_1_Fault"
+	::= { DC_Distribution_Status_and_Alarm 60 }
+Temperature_Control_Sensor_2_Fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Temperature_Control_Sensor_2_Fault"
+	::= { DC_Distribution_Status_and_Alarm 61 }
+Battery_Test_Failure OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Battery_Test_Failure"
+	::= { DC_Distribution_Status_and_Alarm 62 }
+Load_Output_Fuse_Alarm_Table OBJECT-TYPE
+	SYNTAX SEQUENCE OF Load_Output_Fuse_Alarm_Struct
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"Load_Output_Fuse_Alarm_Table"
+	::= { DC_Distribution_Status_and_Alarm 63 }
+Load_Output_Fuse_Alarm_Entry OBJECT-TYPE
+	SYNTAX Load_Output_Fuse_Alarm_Struct
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"An entry (conceptual row) in the Load_Output_Fuse_Alarm_Table"
+	INDEX  { Load_Output_Branch_Index }
+	::= { Load_Output_Fuse_Alarm_Table 1 }
+Load_Output_Fuse_Alarm_Struct ::=
+	SEQUENCE {
+		Load_Output_Branch_Index				INTEGER,		
+	    Load_Output_Fuse_Break     				INTEGER,
+	}
+Load_Output_Branch_Index OBJECT-TYPE
+	SYNTAX INTEGER
+	ACCESS not-accessible
+	STATUS mandatory
+	DESCRIPTION
+		"The auxiliary variable used for identifying instances of the columnar objects in the Load_Output_Fuse_Alarm_Table"
+	::= { Load_Output_Fuse_Alarm_Entry 1 }
+Load_Output_Fuse_Break OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Load_Output_Fuse_Break"
+	::= { Load_Output_Fuse_Alarm_Entry 2 }
+System_Control_Status OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Automatic(0),
+		Manual(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"System_Control_Status"
+	::= { Collective_Monitor_Status_and_Alarm 1 }
+Monitoring_Hardware_Fault_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Monitoring_Hardware_Fault_Alarm"
+	::= { Collective_Monitor_Status_and_Alarm 2 }
+Alarm_Disenable_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Alarm_Disenable_Alarm"
+	::= { Collective_Monitor_Status_and_Alarm 3 }
+PSU_Loss OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"PSU_Loss"
+	::= { Collective_Monitor_Status_and_Alarm 4 }
+PSU_Redundancy_Lack OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"PSU_Redundancy_Lack"
+	::= { Collective_Monitor_Status_and_Alarm 5 }
+Multi-module_Fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Multi-module_Fault"
+	::= { Collective_Monitor_Status_and_Alarm 6 }
+Module_Loading_Fault OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Module_Loading_Fault"
+	::= { Collective_Monitor_Status_and_Alarm 7 }
+Single_module_Fault_by_Redundancy OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Single_module_Fault(Redundancy)"
+	::= { Collective_Monitor_Status_and_Alarm 8 }
+Single_module_Fault_by_Nonredundant OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Single_module_Fault(Nonredundant)"
+	::= { Collective_Monitor_Status_and_Alarm 9 }
+Module_Redundancy_Enable OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Module_Redundancy_Enable"
+	::= { Collective_Monitor_Status_and_Alarm 10 }
+System_Overload_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"System_Overload_Alarm"
+	::= { Collective_Monitor_Status_and_Alarm 11 }
+System_Underload_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"System_Underload_Alarm"
+	::= { Collective_Monitor_Status_and_Alarm 12 }
+DC_Overvoltage_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"DC_Overvoltage_Alarm"
+	::= { Collective_Monitor_Status_and_Alarm 13 }
+DC_Undervoltage_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"DC_Undervoltage_Alarm"
+	::= { Collective_Monitor_Status_and_Alarm 14 }
+Entironment_Over_Temperature_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Entironment_Over_Temperature_Alarm"
+	::= { Collective_Monitor_Status_and_Alarm 15 }
+Battery_Over_Temperature_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Battery_Over_Temperature_Alarm"
+	::= { Collective_Monitor_Status_and_Alarm 16 }
+Battery_Under_Temperature_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Battery_Under_Temperature_Alarm"
+	::= { Collective_Monitor_Status_and_Alarm 17 }
+Entironment_Under_Temperature_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Entironment_Under_Temperature_Alarm"
+	::= { Collective_Monitor_Status_and_Alarm 18 }
+Communication_Alarm OBJECT-TYPE
+	SYNTAX INTEGER  {
+		Normal(0),
+		Alarm(1)
+	}
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Communication_Alarm"
+	::= { Collective_Monitor_Status_and_Alarm 19 }
+
+-- Traps
+--HighFrequencySwitchingPowerSupplyTrap
+--addHighFrequencySwitchingPowerSupplyTrap
+HighFrequencySwitchingPowerSupply_AlarmAdd NOTIFICATION-TYPE 
+  STATUS      current 
+	DESCRIPTION 
+ "SEVERE: Alarm Occur!" 
+
+	::= { AlarmTrap 100 }
+HighFrequencySwitchingPowerSupply_AlarmRemove NOTIFICATION-TYPE 
+  STATUS      current 
+	DESCRIPTION 
+ "SEVERE: Alarm Cancel!" 
+
+	::= { AlarmTrap 101 }
+
+
+
+END
+
+
+
+

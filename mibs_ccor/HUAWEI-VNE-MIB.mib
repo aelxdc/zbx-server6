@@ -1,0 +1,552 @@
+-- =================================================================
+-- Copyright (C) 2017 by  HUAWEI TECHNOLOGIES. All rights reserved
+-- 
+-- Description: The HUAWEI-VNE-MIB provides information about DataComm TRAPS
+-- 
+-- Reference:
+-- Version: V1.08
+-- History:
+-- 
+-- =================================================================
+
+	HUAWEI-VNE-MIB DEFINITIONS ::= BEGIN
+ 
+		IMPORTS
+			entPhysicalIndex, entPhysicalName			
+				FROM ENTITY-MIB			
+			hwDatacomm			
+				FROM HUAWEI-MIB			
+			IANAItuProbableCause			
+				FROM IANA-ITU-ALARM-TC-MIB			
+			OBJECT-GROUP, MODULE-COMPLIANCE, NOTIFICATION-GROUP			
+				FROM SNMPv2-CONF			
+			IpAddress, Integer32, Unsigned32, OBJECT-TYPE, MODULE-IDENTITY, NOTIFICATION-TYPE			
+				FROM SNMPv2-SMI
+            DisplayString 
+                FROM SNMPv2-TC;
+	
+	
+-- December 22, 2015 at 00:00 GMT
+-- 1.3.6.1.4.1.2011.5.25.345
+
+
+		hwVNEMIB MODULE-IDENTITY 
+			LAST-UPDATED "201711302000Z"		--Nov 30, 2017 at 00:00 GMT
+			ORGANIZATION 
+				"Huawei Technologies Co.,Ltd."
+			CONTACT-INFO 
+				"Huawei Industrial Base Bantian, Longgang Shenzhen 518129 People's Republic of China Website: http://www.huawei.com Email: support@huawei.com "
+			DESCRIPTION 
+				"This is the VNE mib definition for DataCom."
+                        REVISION  "201711302000Z"
+                        DESCRIPTION  "add hwAntiSplitBrainFuncFailAlarm and hwAntiSplitBrainFuncFailResume. add hwAntiSplitBrainFuncReliabilityDeAlarmand hwAntiSplitBrainFuncReliabilityDeResume"
+                        REVISION  "201711162000Z"
+                        DESCRIPTION  "add hwCuInterfaceVersionNegotiationFail and hwCuInterfaceVersionNegotiationFailResume. add hwCpConflictIPAlarm and hwUpConflictIPAlarm"
+                        REVISION  "201710232000Z"
+                        DESCRIPTION "add hwULPULicenseLimit and hwULPULicenseLimitResume."                       
+                        REVISION  "201707202000Z"
+                        DESCRIPTION  "add hwVNEDatabaseDisConnected and hwVNEDatabaseConnectionResume and hwVNEDatabaseServiceException and hwVNEDatabaseServiceResume and hwVNEDatabaseServiceCPUOverload and hwVNEDatabaseServiceCPUOverloadResume and hwVNEDatabaseServiceMemoryOverload and hwVNEDatabaseServiceMemoryOverloadResume. "
+                        REVISION  "201704262000Z"
+                        DESCRIPTION  "add hwVNEGMDBDisConnected and hwVNEGMDBConnectionResume and hwVNEGMDBServiceException and hwVNEGMDBServiceResume and hwVNEGMDBServiceCPUOverload and hwVNEGMDBServiceCPUOverloadResume and hwVNEGMDBServiceMemoryOverload and hwVNEGMDBServiceMemoryOverloadResume. "
+                        REVISION  "201611282000Z"                        
+                        DESCRIPTION  "add hwCreateVmFail and hwCreateVmFailResum. "
+                        
+                        REVISION  "201602242000Z"
+                        DESCRIPTION  "add hwVFabPlaneFailResum and hwVFabHealthyFailResum  TO hwVNETrapGroup . "
+
+                        REVISION  "201602222000Z"
+                        DESCRIPTION  "add hwVFabPlaneFailResum and hwVFabHealthyFailResum  . "
+
+                        REVISION  "201501222000Z"
+                        DESCRIPTION  "The initial revision of this MIB module . "
+			::= { hwDatacomm 345 }
+
+-- Node definitions
+-- 
+-- 1.3.6.1.4.1.2011.5.25.345.1
+		-- 1.3.6.1.4.1.2011.5.25.345.1
+		hwVNETrapObject OBJECT IDENTIFIER ::= { hwVNEMIB 1 }
+		
+			
+--  1.3.6.1.4.1.2011.5.25.345.1.1          
+        -- 1.3.6.1.4.1.2011.5.25.345.1.1
+        hwPlaneID OBJECT-TYPE
+            SYNTAX Integer32
+            MAX-ACCESS accessible-for-notify
+            STATUS current
+            DESCRIPTION
+                "The plane id."
+            ::= { hwVNETrapObject 1 }
+            
+--  1.3.6.1.4.1.2011.5.25.345.1.2          
+        -- 1.3.6.1.4.1.2011.5.25.345.1.2
+        hwPlaneFailReason OBJECT-TYPE
+            SYNTAX Integer32
+            MAX-ACCESS accessible-for-notify
+            STATUS current
+            DESCRIPTION
+                "The reason id."
+            ::= { hwVNETrapObject 2 }
+			
+--  1.3.6.1.4.1.2011.5.25.345.1.3          
+        -- 1.3.6.1.4.1.2011.5.25.345.1.3
+        hwSubhealthyRate OBJECT-TYPE
+            SYNTAX Integer32
+            MAX-ACCESS accessible-for-notify
+            STATUS current
+            DESCRIPTION
+                "The rate of subhealthy."
+            ::= { hwVNETrapObject 3 }
+            
+--  1.3.6.1.4.1.2011.5.25.345.1.4          
+        -- 1.3.6.1.4.1.2011.5.25.345.1.4
+        hwVmSlotId OBJECT-TYPE
+            SYNTAX Integer32
+            MAX-ACCESS accessible-for-notify
+            STATUS current
+            DESCRIPTION
+                "The id of vm."
+            ::= { hwVNETrapObject 4 }
+
+--  1.3.6.1.4.1.2011.5.25.345.1.5          
+        -- 1.3.6.1.4.1.2011.5.25.345.1.5
+        hwCreateVmFailReason OBJECT-TYPE
+            SYNTAX Integer32
+            MAX-ACCESS accessible-for-notify
+            STATUS current
+            DESCRIPTION
+                "The reason id."
+            ::= { hwVNETrapObject 5 }            
+
+--  1.3.6.1.4.1.2011.5.25.345.1.6          
+        -- 1.3.6.1.4.1.2011.5.25.345.1.6
+        hwVNFCID OBJECT-TYPE
+            SYNTAX Unsigned32
+            MAX-ACCESS accessible-for-notify
+            STATUS current
+            DESCRIPTION
+                "The vnfc id."
+            ::= { hwVNETrapObject 6 }  
+
+--  1.3.6.1.4.1.2011.5.25.345.1.7          
+        -- 1.3.6.1.4.1.2011.5.25.345.1.7
+        hwPID OBJECT-TYPE
+            SYNTAX Unsigned32
+            MAX-ACCESS accessible-for-notify
+            STATUS current
+            DESCRIPTION
+                "The component id."
+            ::= { hwVNETrapObject 7 }		
+
+--  1.3.6.1.4.1.2011.5.25.345.1.8          
+        -- 1.3.6.1.4.1.2011.5.25.345.1.8
+        hwServerLocator OBJECT-TYPE
+            SYNTAX DisplayString
+            MAX-ACCESS accessible-for-notify
+            STATUS current
+            DESCRIPTION
+                "The server locator."
+            ::= { hwVNETrapObject 8 }					
+
+--  1.3.6.1.4.1.2011.5.25.345.1.9          
+        -- 1.3.6.1.4.1.2011.5.25.345.1.9
+        hwClusterName OBJECT-TYPE
+            SYNTAX DisplayString
+            MAX-ACCESS accessible-for-notify
+            STATUS current
+            DESCRIPTION
+                "The cluster name."
+            ::= { hwVNETrapObject 9 }
+
+--  1.3.6.1.4.1.2011.5.25.345.1.10          
+        -- 1.3.6.1.4.1.2011.5.25.345.1.10
+        hwLicenseNumbers OBJECT-TYPE
+            SYNTAX Integer32
+            MAX-ACCESS accessible-for-notify
+            STATUS current
+            DESCRIPTION
+                "The number of the license."
+            ::= { hwVNETrapObject 10 }
+            
+--  1.3.6.1.4.1.2011.5.25.345.1.11          
+        -- 1.3.6.1.4.1.2011.5.25.345.1.11
+        hwUlpuNumbers OBJECT-TYPE
+            SYNTAX Integer32
+            MAX-ACCESS accessible-for-notify
+            STATUS current
+            DESCRIPTION
+                "The number of the ULPU."
+            ::= { hwVNETrapObject 11 } 	
+
+-- 1.3.6.1.4.1.2011.5.25.345.1.12
+        hwCuInterfaceVersionCp OBJECT-TYPE
+            SYNTAX Integer32
+            MAX-ACCESS accessible-for-notify
+            STATUS current
+            DESCRIPTION
+                "The interface version of CP."
+            ::= { hwVNETrapObject 12 }
+
+-- 1.3.6.1.4.1.2011.5.25.345.1.13
+        hwCuInterfaceVersionUp OBJECT-TYPE
+            SYNTAX Integer32
+            MAX-ACCESS accessible-for-notify
+            STATUS current
+            DESCRIPTION
+                "The interface version of UP."
+            ::= { hwVNETrapObject 13 }
+
+-- 1.3.6.1.4.1.2011.5.25.345.1.14
+        hwCuInterfaceVersionReason OBJECT-TYPE
+            SYNTAX Integer32
+            MAX-ACCESS accessible-for-notify
+            STATUS current
+            DESCRIPTION
+                "The fail/success reason of interface version negotiation."
+            ::= { hwVNETrapObject 14 }
+            
+-- 1.3.6.1.4.1.2011.5.25.345.1.15
+        hwCpPoolName OBJECT-TYPE
+            SYNTAX DisplayString (SIZE (1..35))
+            MAX-ACCESS accessible-for-notify
+            STATUS current
+            DESCRIPTION
+                "The name of the address pool."
+            ::= { hwVNETrapObject 15 }
+         
+-- 1.3.6.1.4.1.2011.5.25.345.1.16
+        hwCpGateway OBJECT-TYPE
+            SYNTAX IpAddress
+            MAX-ACCESS read-create
+            STATUS current
+            DESCRIPTION
+                "Gateway IP address.
+                By default, the mask is 255.255.255.255."
+            ::= { hwVNETrapObject 16 }         
+            
+-- 1.3.6.1.4.1.2011.5.25.345.1.17
+        hwCpNetmask OBJECT-TYPE
+            SYNTAX IpAddress
+            MAX-ACCESS read-create
+            STATUS current
+            DESCRIPTION
+                "Netmask IP address.
+                By default, the mask is 255.255.255.255."
+            ::= { hwVNETrapObject 17 }           
+            
+-- 1.3.6.1.4.1.2011.5.25.345.1.18
+        hwUpId OBJECT-TYPE
+            SYNTAX Unsigned32
+            MAX-ACCESS accessible-for-notify
+            STATUS current
+            DESCRIPTION
+                "Netmask IP address.
+                By default, the mask is 255.255.255.255."
+            ::= { hwVNETrapObject 18 } 
+
+-- 1.3.6.1.4.1.2011.5.25.345.1.19
+        hwUpInterface OBJECT-TYPE
+            SYNTAX DisplayString (SIZE (1..64))
+            MAX-ACCESS accessible-for-notify
+            STATUS current
+            DESCRIPTION
+                "Netmask IP address.
+                By default, the mask is 255.255.255.255."
+            ::= { hwVNETrapObject 19 }             
+
+-- 1.3.6.1.4.1.2011.5.25.345.1.20
+        hwAntiSplitBrainFuncReason OBJECT-TYPE
+            SYNTAX DisplayString (SIZE (1..128))
+            MAX-ACCESS accessible-for-notify
+            STATUS current
+            DESCRIPTION
+                "The reason of tanti-split-brain function failed."
+            ::= { hwVNETrapObject 20 }	
+ 
+-- 1.3.6.1.4.1.2011.5.25.345.2
+		-- 1.3.6.1.4.1.2011.5.25.345.2	
+		hwVNETrapMIB OBJECT IDENTIFIER ::= { hwVNEMIB 2 }
+		
+--  1.3.6.1.4.1.2011.5.25.345.2.1
+		-- 1.3.6.1.4.1.2011.5.25.345.2.1
+		hwVFabricTrap OBJECT IDENTIFIER ::= { hwVNETrapMIB 1 }
+
+--  1.3.6.1.4.1.2011.5.25.345.2.1.1
+		-- 1.3.6.1.4.1.2011.5.25.345.2.1.1 
+		hwVFabPlaneFail NOTIFICATION-TYPE 
+			OBJECTS { entPhysicalIndex, entPhysicalIndex, hwPlaneID, hwPlaneFailReason }
+			STATUS current
+			DESCRIPTION 
+				"fabric plane goes down."
+			::= { hwVFabricTrap 1 }
+
+			
+--  1.3.6.1.4.1.2011.5.25.345.2.1.2
+		-- 1.3.6.1.4.1.2011.5.25.345.2.1.2 
+		hwVFabPlaneFailResum NOTIFICATION-TYPE 
+			OBJECTS { entPhysicalIndex, entPhysicalIndex, hwPlaneID, hwPlaneFailReason }
+			STATUS current
+			DESCRIPTION 
+				"fabric plane goes up."
+			::= { hwVFabricTrap 2 }
+		
+--  1.3.6.1.4.1.2011.5.25.345.2.1.3
+		-- 1.3.6.1.4.1.2011.5.25.345.2.1.3
+		hwVFabHealthyFail NOTIFICATION-TYPE 
+			OBJECTS { entPhysicalIndex, entPhysicalIndex, hwPlaneID, hwSubhealthyRate }
+			STATUS current
+			DESCRIPTION 
+				"fabric link goes fault."
+			::= { hwVFabricTrap 3 }
+			
+			
+--  1.3.6.1.4.1.2011.5.25.345.2.1.4
+		-- 1.3.6.1.4.1.2011.5.25.345.2.1.4
+		hwVFabHealthyFailResum NOTIFICATION-TYPE 
+			OBJECTS { entPhysicalIndex, entPhysicalIndex, hwPlaneID, hwSubhealthyRate }
+			STATUS current
+			DESCRIPTION 
+				"fabric link goes normal."
+			::= { hwVFabricTrap 4 }
+					
+--  1.3.6.1.4.1.2011.5.25.345.2.2
+		-- 1.3.6.1.4.1.2011.5.25.345.2.2
+		hwCreateVmTrap OBJECT IDENTIFIER ::= { hwVNETrapMIB 2 }
+
+--  1.3.6.1.4.1.2011.5.25.345.2.2.1
+		-- 1.3.6.1.4.1.2011.5.25.345.2.2.1 
+		hwCreateVmFail NOTIFICATION-TYPE 
+			OBJECTS { entPhysicalIndex, entPhysicalIndex, hwVmSlotId, hwCreateVmFailReason }
+			STATUS current
+			DESCRIPTION 
+				"Create vm goes down."
+			::= { hwCreateVmTrap 1 }
+
+			
+--  1.3.6.1.4.1.2011.5.25.345.2.2.2
+		-- 1.3.6.1.4.1.2011.5.25.345.2.2.2 
+		hwCreateVmFailResum NOTIFICATION-TYPE 
+			OBJECTS { entPhysicalIndex, entPhysicalIndex, hwVmSlotId}
+			STATUS current
+			DESCRIPTION 
+				"Create vm goes up."
+			::= { hwCreateVmTrap 2 }
+
+--  1.3.6.1.4.1.2011.5.25.345.2.3
+		-- 1.3.6.1.4.1.2011.5.25.345.2.3
+		hwDatabaseTrap OBJECT IDENTIFIER ::= { hwVNETrapMIB 3 }
+		
+--  1.3.6.1.4.1.2011.5.25.345.2.3.1
+		-- 1.3.6.1.4.1.2011.5.25.345.2.3.1 
+		hwVNEDatabaseDisConnected NOTIFICATION-TYPE 
+			OBJECTS { hwVNFCID, hwPID, hwServerLocator, hwClusterName}
+			STATUS current
+			DESCRIPTION 
+				"The database connection is broken."
+			::= { hwDatabaseTrap 1 }		
+
+--  1.3.6.1.4.1.2011.5.25.345.2.3.2
+		-- 1.3.6.1.4.1.2011.5.25.345.2.3.2 
+		hwVNEDatabaseConnectionResume NOTIFICATION-TYPE 
+			OBJECTS { hwVNFCID, hwPID, hwServerLocator, hwClusterName}
+			STATUS current
+			DESCRIPTION 
+				"The database connection is resumed."
+			::= { hwDatabaseTrap 2 }		
+
+--  1.3.6.1.4.1.2011.5.25.345.2.3.3
+		-- 1.3.6.1.4.1.2011.5.25.345.2.3.3 
+		hwVNEDatabaseServiceException NOTIFICATION-TYPE 
+			OBJECTS { hwVNFCID, hwPID, hwServerLocator, hwClusterName}
+			STATUS current
+			DESCRIPTION 
+				"An exception occurred in the database service."
+			::= { hwDatabaseTrap 3 }	
+			
+--  1.3.6.1.4.1.2011.5.25.345.2.3.4
+		-- 1.3.6.1.4.1.2011.5.25.345.2.3.4 
+		hwVNEDatabaseServiceResume NOTIFICATION-TYPE 
+			OBJECTS { hwVNFCID, hwPID, hwServerLocator, hwClusterName}
+			STATUS current
+			DESCRIPTION 
+				"The database service is resumed. "
+			::= { hwDatabaseTrap 4 }				
+
+--  1.3.6.1.4.1.2011.5.25.345.2.3.5
+		-- 1.3.6.1.4.1.2011.5.25.345.2.3.5 
+		hwVNEDatabaseServiceCPUOverload NOTIFICATION-TYPE 
+			OBJECTS { hwVNFCID, hwPID, hwServerLocator, hwClusterName}
+			STATUS current
+			DESCRIPTION 
+				"The database service CPU is overload. "
+			::= { hwDatabaseTrap 5 }
+			
+--  1.3.6.1.4.1.2011.5.25.345.2.3.6
+		-- 1.3.6.1.4.1.2011.5.25.345.2.3.6 
+		hwVNEDatabaseServiceCPUOverloadResume NOTIFICATION-TYPE 
+			OBJECTS { hwVNFCID, hwPID, hwServerLocator, hwClusterName}
+			STATUS current
+			DESCRIPTION 
+				"The CPU overload of database service is resumed. "
+			::= { hwDatabaseTrap 6 }
+
+--  1.3.6.1.4.1.2011.5.25.345.2.3.7
+		-- 1.3.6.1.4.1.2011.5.25.345.2.3.7 
+		hwVNEDatabaseServiceMemoryOverload NOTIFICATION-TYPE 
+			OBJECTS { hwVNFCID, hwPID, hwServerLocator, hwClusterName}
+			STATUS current
+			DESCRIPTION 
+				"The database service memory is overload."
+			::= { hwDatabaseTrap 7 }
+
+--  1.3.6.1.4.1.2011.5.25.345.2.3.8
+		-- 1.3.6.1.4.1.2011.5.25.345.2.3.8 
+		hwVNEDatabaseServiceMemoryOverloadResume NOTIFICATION-TYPE 
+			OBJECTS { hwVNFCID, hwPID, hwServerLocator, hwClusterName}
+			STATUS current
+			DESCRIPTION 
+				"The memory overload of database service is resumed."
+			::= { hwDatabaseTrap 8 }
+
+--  1.3.6.1.4.1.2011.5.25.345.2.4
+		-- 1.3.6.1.4.1.2011.5.25.345.2.4
+		hwCURESTrap OBJECT IDENTIFIER ::= { hwVNETrapMIB 4 }
+		
+--  1.3.6.1.4.1.2011.5.25.345.2.4.1
+		-- 1.3.6.1.4.1.2011.5.25.345.2.4.1 
+		hwULPULicenseLimit NOTIFICATION-TYPE 
+			OBJECTS { hwLicenseNumbers, hwUlpuNumbers}
+			STATUS current
+			DESCRIPTION 
+				"The number of ULPU resources on the device reached the license limit."
+			::= { hwCURESTrap 1 }	           
+
+--  1.3.6.1.4.1.2011.5.25.345.2.4.2
+		-- 1.3.6.1.4.1.2011.5.25.345.2.4.2 
+		hwULPULicenseLimitResume NOTIFICATION-TYPE 
+			OBJECTS { hwLicenseNumbers, hwUlpuNumbers}
+			STATUS current
+			DESCRIPTION 
+				"The number of ULPU resources fell below the upper license limit of the device again."
+			::= { hwCURESTrap 2 }
+
+-- 1.3.6.1.4.1.2011.5.25.345.2.5
+        hwCuInterfaceVersionTrap OBJECT IDENTIFIER ::= { hwVNETrapMIB 5 }
+
+        -- 1.3.6.1.4.1.2011.5.25.345.2.5.1
+        hwCuInterfaceVersionNegotiationFail NOTIFICATION-TYPE
+        OBJECTS{ hwCuInterfaceVersionCp, hwCuInterfaceVersionUp, hwCuInterfaceVersionReason }
+        STATUS current
+        DESCRIPTION
+            "Interface version negotiation failed."
+        ::= { hwCuInterfaceVersionTrap 1 }
+
+        -- 1.3.6.1.4.1.2011.5.25.345.2.5.2
+        hwCuInterfaceVersionNegotiationFailResume NOTIFICATION-TYPE
+        OBJECTS{ hwCuInterfaceVersionCp, hwCuInterfaceVersionUp, hwCuInterfaceVersionReason }
+        STATUS current
+        DESCRIPTION
+            "Interface version negotiation failed resume."
+        ::= { hwCuInterfaceVersionTrap 2 }
+
+-- 1.3.6.1.4.1.2011.5.25.345.2.6
+        hwCuConflictIpTrap OBJECT IDENTIFIER ::= { hwVNETrapMIB 6 }
+
+        -- 1.3.6.1.4.1.2011.5.25.345.2.6.1
+        hwCpConflictIPAlarm NOTIFICATION-TYPE
+        OBJECTS{ hwCpPoolName, hwCpGateway, hwCpNetmask, hwUpId ,hwUpInterface}
+        STATUS current
+        DESCRIPTION
+            "The gateway of CP address pool is conflict with the IP address of UP interface."
+        ::= { hwCuConflictIpTrap 1 }
+
+        -- 1.3.6.1.4.1.2011.5.25.345.2.6.2
+        hwUpConflictIPAlarm NOTIFICATION-TYPE
+        OBJECTS{ hwCpGateway, hwCpNetmask, hwUpInterface }
+        STATUS current
+        DESCRIPTION
+            "The IP address of UP interface is conflict with the gateway of CP address pool."
+        ::= { hwCuConflictIpTrap 2 }
+
+-- 1.3.6.1.4.1.2011.5.25.345.2.7
+        hwAntiSplitBrainTrap OBJECT IDENTIFIER ::= { hwVNETrapMIB 7 }
+		
+        -- 1.3.6.1.4.1.2011.5.25.345.2.7.1
+        hwAntiSplitBrainFuncFailAlarm NOTIFICATION-TYPE
+        OBJECTS { hwAntiSplitBrainFuncReason }
+        STATUS current
+        DESCRIPTION
+            "The anti-split-brain function failed to be enabled."
+        ::= { hwAntiSplitBrainTrap 1 }
+		
+        -- 1.3.6.1.4.1.2011.5.25.345.2.7.2
+        hwAntiSplitBrainFuncFailResume NOTIFICATION-TYPE
+        OBJECTS { hwAntiSplitBrainFuncReason }
+        STATUS current
+        DESCRIPTION
+            "The anti-split-brain function is enabled."
+        ::= { hwAntiSplitBrainTrap 2 }
+		
+        -- 1.3.6.1.4.1.2011.5.25.345.2.7.3
+        hwAntiSplitBrainFuncReliabilityDeAlarm NOTIFICATION-TYPE
+        OBJECTS { hwAntiSplitBrainFuncReason }
+        STATUS current
+        DESCRIPTION
+            "Anti-split-brain function reliability deteriorates."
+        ::= { hwAntiSplitBrainTrap 3 }
+		
+        -- 1.3.6.1.4.1.2011.5.25.345.2.7.4
+        hwAntiSplitBrainFuncReliabilityDeResume NOTIFICATION-TYPE
+        OBJECTS { hwAntiSplitBrainFuncReason }
+        STATUS current
+        DESCRIPTION
+            "Anti-split-brain function reliability is resumed."
+        ::= { hwAntiSplitBrainTrap 4 }
+        
+-- 1.3.6.1.4.1.2011.5.25.345.3
+		hwVNEMIBConformance OBJECT IDENTIFIER ::= { hwVNEMIB 3 }
+			
+--  1.3.6.1.4.1.2011.5.25.345.3.1
+		-- 1.3.6.1.4.1.2011.5.25.345.3.1
+		hwVNEMIBCompliances OBJECT IDENTIFIER ::= { hwVNEMIBConformance 1 }
+		
+
+-- 1.3.6.1.4.1.2011.5.25.345.3.1.1
+		-- 1.3.6.1.4.1.2011.5.25.345.3.1.1
+		hwVNEMIBCompliance MODULE-COMPLIANCE
+			STATUS current
+			DESCRIPTION 
+				"Compliance statement for agents that provide full support for 
+				hwVNETrapMIB."
+			MODULE -- this module
+				MANDATORY-GROUPS { hwVNEObjectGroup }
+			::= { hwVNEMIBCompliances 1 }
+
+--  1.3.6.1.4.1.2011.5.25.345.3.2
+		-- 1.3.6.1.4.1.2011.5.25.345.3.2
+		hwVNETrapGroups OBJECT IDENTIFIER ::= { hwVNEMIBConformance 2 }
+
+		
+--  1.3.6.1.4.1.2011.5.25.345.3.2.1
+		-- 1.3.6.1.4.1.2011.5.25.345.3.2.1
+		hwVNEObjectGroup OBJECT-GROUP
+			OBJECTS { hwPlaneID, hwSubhealthyRate, hwPlaneFailReason, hwVmSlotId, hwVNFCID, hwPID, hwServerLocator, hwClusterName,hwLicenseNumbers,hwUlpuNumbers, hwCuInterfaceVersionCp, hwCuInterfaceVersionUp, hwCuInterfaceVersionReason, hwCpPoolName, hwCpGateway, hwCpNetmask, hwUpId ,hwUpInterface}
+			STATUS current
+			DESCRIPTION 
+				"Group for VNE mib objects."
+			::= { hwVNETrapGroups 1 }
+
+--  1.3.6.1.4.1.2011.5.25.345.3.2.2
+		-- 1.3.6.1.4.1.2011.5.25.345.3.2.2
+		hwVNETrapGroup NOTIFICATION-GROUP
+			NOTIFICATIONS { hwVFabPlaneFail, hwVFabPlaneFailResum, hwVFabHealthyFail, hwVFabHealthyFailResum, hwCreateVmFail, hwCreateVmFailResum, hwVNEDatabaseDisConnected, hwVNEDatabaseConnectionResume, hwVNEDatabaseServiceException, hwVNEDatabaseServiceResume, hwVNEDatabaseServiceCPUOverload, hwVNEDatabaseServiceCPUOverloadResume, hwVNEDatabaseServiceMemoryOverload, hwVNEDatabaseServiceMemoryOverloadResume,hwULPULicenseLimit,hwULPULicenseLimitResume, hwCuInterfaceVersionNegotiationFail, hwCuInterfaceVersionNegotiationFailResume,hwCpConflictIPAlarm,hwUpConflictIPAlarm}
+			STATUS current
+			DESCRIPTION 
+				"Group for all VNE mibs."
+			::= { hwVNETrapGroups 2 }
+
+	END
+
+--
+-- HUAWEI-VNE-MIB.my
+--

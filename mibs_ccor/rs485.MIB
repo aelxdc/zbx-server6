@@ -1,0 +1,7254 @@
+--PPC-MIB { iso(1) org(3) dod(6) internet(1) private(4)
+
+--      enterprises(1) ppc(936) }
+
+
+
+
+
+RS485-MIB DEFINITIONS ::= BEGIN
+
+-- Title: PPC TOP LEVEL MIB
+
+-- Date: January 07, 1994    Version 1.00
+
+--
+
+-- Date: January 17, 1994    Version 1.01
+
+--
+
+-- Date: July 14, 1994    Version 1.02
+
+
+
+
+
+IMPORTS
+
+	enterprises, IpAddress
+
+		FROM RFC1155-SMI
+
+	DisplayString
+
+		FROM RFC1213-MIB
+
+	OBJECT-TYPE
+
+		FROM RFC-1212
+
+	TRAP-TYPE
+
+		FROM RFC-1215;
+
+
+
+
+
+p485mib                             OBJECT IDENTIFIER ::=  { enterprises 936 }
+
+
+
+products                        OBJECT IDENTIFIER ::=  { p485mib 1 }
+
+
+
+hardware                        OBJECT IDENTIFIER ::=  { products 1 }
+
+
+
+rs485bus                        OBJECT IDENTIFIER ::=  { hardware 2 }
+
+
+
+Environment                     OBJECT IDENTIFIER ::=  { rs485bus 1 }	--add Environment by lzf 2011.6.8
+
+IRModule              			OBJECT IDENTIFIER ::=  { rs485bus 2 }	--add IRCtrl by lzf 2011.6.15
+
+RemDischargeModule               		OBJECT IDENTIFIER ::=  { rs485bus 3 }	--add RemDischargeCtrl by lzf 2011.6.15
+
+BatteryEnergy                   OBJECT IDENTIFIER ::=  { rs485bus 4 }	--add BatteryEnergy by lzf 2011.6.16
+
+SignalSample                    OBJECT IDENTIFIER ::=  { rs485bus 5 }	--add SignalSample by lzf 2011.6.16
+
+rs485trap						OBJECT IDENTIFIER ::=  { rs485bus 6 }	--add rs485trap by huangguowei 2014.12.24
+
+
+
+--add by lzf 2011.6.8
+
+EnvironmentStatus          		OBJECT IDENTIFIER ::=  { Environment 1 }
+
+IRQueryStatus                	OBJECT IDENTIFIER ::=  { IRModule 1 }
+
+IRCtrlStatus                	OBJECT IDENTIFIER ::=  { IRModule 2 }
+
+RemDischargeModuleStatus          	OBJECT IDENTIFIER ::=  { RemDischargeModule 1 }
+
+RemDischargeCtrlStatus   	     	    OBJECT IDENTIFIER ::=  { RemDischargeModule 2 }
+
+BatteryEnergyStatus             OBJECT IDENTIFIER ::=  { BatteryEnergy 1 }
+
+SignalSampleStatus              OBJECT IDENTIFIER ::=  { SignalSample 1 }
+
+SignalSampleCtrlStatus          OBJECT IDENTIFIER ::=  { SignalSample 2 }
+
+-- object types
+
+
+
+
+
+-- the ppcmgmt group
+
+
+
+
+
+-- 增加环境状态的查询     add lzf 2011.6.10
+
+-- the EnvironmentStatus group
+
+
+
+--第1路温湿度
+
+EnvironTemperature1  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 1 }
+
+
+
+EnvironHumidity1 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 2 }
+
+
+
+--第2路温湿度
+
+EnvironTemperature2  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 3 }
+
+
+
+EnvironHumidity2 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 4 }
+
+
+
+--第3路温湿度
+
+EnvironTemperature3  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 5 }
+
+
+
+EnvironHumidity3 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 6 }
+
+
+
+--第4路温湿度
+
+EnvironTemperature4  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 7 }
+
+
+
+EnvironHumidity4 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 8 }
+
+
+
+--第5路温湿度
+
+EnvironTemperature5  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 9 }
+
+
+
+EnvironHumidity5 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 10 }
+
+
+
+--第6路温湿度
+
+EnvironTemperature6  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 11 }
+
+
+
+EnvironHumidity6 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 12 }
+
+
+
+
+
+--第7路温湿度
+
+EnvironTemperature7  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 13 }
+
+
+
+EnvironHumidity7 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 14 }
+
+
+
+--第8路温湿度
+
+EnvironTemperature8  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 15 }
+
+
+
+EnvironHumidity8 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 16 }
+
+
+
+--第9路温湿度
+
+EnvironTemperature9  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 17 }
+
+
+
+EnvironHumidity9 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 18 }
+
+
+
+--第10路温湿度
+
+EnvironTemperature10  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 19 }
+
+
+
+EnvironHumidity10 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 20 }
+
+
+
+--第11路温湿度
+
+EnvironTemperature11  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 21 }
+
+
+
+EnvironHumidity11 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 22 }
+
+
+
+--第12路温湿度
+
+EnvironTemperature12  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 23 }
+
+
+
+EnvironHumidity12 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 24 }
+
+
+
+--第13路温湿度
+
+EnvironTemperature13  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 25 }
+
+
+
+EnvironHumidity13 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 26 }
+
+
+
+--第14路温湿度
+
+EnvironTemperature14  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 27 }
+
+
+
+EnvironHumidity14 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 28 }
+
+
+
+
+
+--第15路温湿度
+
+EnvironTemperature15  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 29 }
+
+
+
+EnvironHumidity15 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 30 }
+
+
+
+--第16路温湿度
+
+EnvironTemperature16  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 31 }
+
+
+
+EnvironHumidity16 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 32}
+
+
+--第17路温湿度
+
+EnvironTemperature17  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 33 }
+
+
+
+EnvironHumidity17 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 34 }
+
+
+
+--第18路温湿度
+
+EnvironTemperature18  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 35 }
+
+
+
+EnvironHumidity18 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 36 }
+
+
+
+--第19路温湿度
+
+EnvironTemperature19  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 37 }
+
+
+
+EnvironHumidity19 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 38 }
+
+
+
+--第20路温湿度
+
+EnvironTemperature20  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 39 }
+
+
+
+EnvironHumidity20 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 40 }
+
+
+
+--第21路温湿度
+
+EnvironTemperature21  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 41 }
+
+
+
+EnvironHumidity21 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 42 }
+
+
+
+--第22路温湿度
+
+EnvironTemperature22  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 43 }
+
+
+
+EnvironHumidity22 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 44 }
+
+
+
+
+
+--第23路温湿度
+
+EnvironTemperature23  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 45 }
+
+
+
+EnvironHumidity23 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 46 }
+
+
+
+--第24路温湿度
+
+EnvironTemperature24  OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current temperature in 1/10 degrees Centigrade."
+
+	::= { EnvironmentStatus 47 }
+
+
+
+EnvironHumidity24 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The current humidity in 1/10 %."
+
+	::= { EnvironmentStatus 48}
+--红外所对应的空调的状态
+
+Air1RunningStatus  OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		AirConditionOpen(0),
+
+		AirConditionClose(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Air conditioning 1 Running Status."
+
+	::= { IRQueryStatus 1 }
+
+Air2RunningStatus  OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		AirConditionOpen(0),
+
+		AirConditionClose(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Air conditioning 2 RunningStatus."
+
+	::= { IRQueryStatus 2 }
+
+Air3RunningStatus  OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		AirConditionOpen(0),
+
+		AirConditionClose(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Air conditioning 3 RunningStatus."
+
+	::= { IRQueryStatus 3 }
+
+Air4RunningStatus  OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		AirConditionOpen(0),
+
+		AirConditionClose(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Air conditioning 4 RunningStatus."
+
+	::= { IRQueryStatus 4 }
+
+Air5RunningStatus  OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		AirConditionOpen(0),
+
+		AirConditionClose(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Air conditioning 5 RunningStatus."
+
+	::= { IRQueryStatus 5 }
+
+Air6RunningStatus  OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		AirConditionOpen(0),
+
+		AirConditionClose(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Air conditioning 6 RunningStatus."
+
+	::= { IRQueryStatus 6 }
+
+Air7RunningStatus  OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		AirConditionOpen(0),
+
+		AirConditionClose(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Air conditioning 7 RunningStatus."
+
+	::= { IRQueryStatus 7 }
+
+Air8RunningStatus  OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		AirConditionOpen(0),
+
+		AirConditionClose(1)
+
+	}
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Air conditioning 8 RunningStatus."
+
+	::= { IRQueryStatus 8 }
+
+
+
+--红外控制
+
+--IR MODULE 1
+
+IR1Ctrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		IR1CtrlOpen(1),
+
+		IR1CtrlClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"IR1CtrlOpen(1) open the Air conditioning;
+
+		 IR1CtrlClose(2) close the Air conditioning."
+
+	::= { IRCtrlStatus 1 }
+
+--IR MODULE 2
+
+IR2Ctrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		IR2CtrlOpen(1),
+
+		IR2CtrlClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"IR2CtrlOpen(1) open the Air conditioning;
+
+		 IR2CtrlClose(2) close the Air conditioning."
+
+	::= { IRCtrlStatus 2 }
+
+--IR MODULE 3
+
+IR3Ctrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		IR3CtrlOpen(1),
+
+		IR3CtrlClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"IR3CtrlOpen(1) open the Air conditioning;
+
+		 IR3CtrlClose(2) close the Air conditioning."
+
+	::= { IRCtrlStatus 3 }
+
+--IR MODULE 4
+
+IR4Ctrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		IR4CtrlOpen(1),
+
+		IR4CtrlClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"IR4CtrlOpen(1) open the Air conditioning;
+
+		 IR4CtrlClose(2) close the Air conditioning."
+
+	::= { IRCtrlStatus 4 }
+
+--IR MODULE 5
+
+IR5Ctrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		IR5CtrlOpen(1),
+
+		IR5CtrlClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"IR5CtrlOpen(1) open the Air conditioning;
+
+		 IR5CtrlClose(2) close the Air conditioning."
+
+	::= { IRCtrlStatus 5 }
+
+--IR MODULE 6
+
+IR6Ctrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		IR6CtrlOpen(1),
+
+		IR6CtrlClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"IR6CtrlOpen(1) open the Air conditioning;
+
+		 IR6CtrlClose(2) close the Air conditioning."
+
+	::= { IRCtrlStatus 6 }
+
+--IR MODULE 7
+
+IR7Ctrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		IR7CtrlOpen(1),
+
+		IR7CtrlClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"IR7CtrlOpen(1) open the Air conditioning;
+
+		 IR7CtrlClose(2) close the Air conditioning."
+
+	::= { IRCtrlStatus 7 }
+
+--IR MODULE 8
+
+IR8Ctrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		IR8CtrlOpen(1),
+
+		IR8CtrlClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"IR8CtrlOpen(1) open the Air conditioning;
+
+		 IR8CtrlClose(2) close the Air conditioning."
+
+	::= { IRCtrlStatus 8 }
+
+--远程电源控制
+
+--剩余断开电源时间
+
+LineTemperature  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 degrees Centigrade"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Line temperature."
+
+	::= { RemDischargeModuleStatus 1 }
+
+SinglePhaseInputVoltage  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 V"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The single-phase input voltage."
+
+	::= { RemDischargeModuleStatus 2 }
+
+SinglePhaseInputCurrent  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 A"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The single-phase input current."
+
+	::= { RemDischargeModuleStatus 3 }
+
+SinglePhaseInputFrequency  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 Hz"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The single-phase input frequency."
+
+	::= { RemDischargeModuleStatus 4 }
+
+ThreePhaseInputVoltageA  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 V"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Three phase input voltage A."
+
+	::= { RemDischargeModuleStatus 5 }
+
+ThreePhaseInputVoltageB  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 V"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Three phase input voltage B."
+
+	::= { RemDischargeModuleStatus 6 }
+
+
+ThreePhaseInputVoltageC  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 V"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Three phase input voltage C."
+
+	::= { RemDischargeModuleStatus 7 }
+
+ThreePhaseInputCurrentA  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 A"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The three-phase input current A."
+
+	::= { RemDischargeModuleStatus 8 }
+
+ThreePhaseInputCurrentB  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 A"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The three-phase input current B."
+
+	::= { RemDischargeModuleStatus 9 }
+
+ThreePhaseInputCurrentC  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 A"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The three-phase input current C."
+
+	::= { RemDischargeModuleStatus 10 }
+
+ThreePhaseInputFrequency  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 Hz"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The three-phase input frequency."
+
+	::= { RemDischargeModuleStatus 11 }
+
+ResidualDischargeTime  OBJECT-TYPE
+
+	SYNTAX INTEGER
+	UNITS      "0.01 Minute"
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Residual discharge time in 0.01 minute."
+
+	::= { RemDischargeModuleStatus 12 }
+
+PreDischargeState  OBJECT-TYPE
+
+       SYNTAX     INTEGER {
+           Normal(0),
+           InstructionsToStop(1),
+           HostIsDisconnected(2),
+           UPSDisconnected(3),
+           InputPowerOff(4),
+           UPSFault(5),
+           ReachedTheDischargeVoltageLowerLimit(6),
+           ReachedTheDischargeDapacityLimit(7),
+           DischargeTimeOver(8)
+       }
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+               "Pre discharge state:
+               	0- normal, 
+                1- instructions to stop, 
+                2- host is disconnected, 
+                3- UPS disconnected, 
+                4- input power off, 
+                5- UPS fault, 
+                6- reached the discharge voltage lower limit,
+                7- reached the discharge capacity limit, 
+                8- discharge time over."
+	::= { RemDischargeModuleStatus 13 }
+
+FinallyStopTheDischargeState  OBJECT-TYPE
+
+       SYNTAX     INTEGER {
+           Normal(0),
+           InstructionsToStop(1),
+           HostIsDisconnected(2),
+           UPSDisconnected(3),
+           InputPowerOff(4),
+           UPSFault(5),
+           ReachedTheDischargeVoltageLowerLimit(6),
+           ReachedTheDischargeDapacityLimit(7),
+           DischargeTimeOver(8)
+       }
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+               "Finally stop the discharge state:
+                0- normal, 
+                1- instructions to stop, 
+                2- host is disconnected, 
+                3- UPS disconnected, 
+                4- input power off, 
+                5- UPS fault, 
+                6- reached the discharge voltage lower limit,
+                7- reached the discharge capacity limit, 
+                8- discharge time over."
+	::= { RemDischargeModuleStatus 14 }
+
+OneOrThreePhaseConnected  OBJECT-TYPE
+
+       SYNTAX     INTEGER {
+           OnePhaseConnected(1),
+           ThreePhaseConnected(3)
+       }
+       MAX-ACCESS read-only
+       STATUS     current
+       DESCRIPTION
+               "OneOrThreePhaseConnected:
+                1- One Phase Connected, 
+                3- Three Phase Connected."
+	::= { RemDischargeModuleStatus 15 }
+
+
+
+--控制远程电源控制模块
+
+--module 1
+
+RemDischargeCtrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		StartDischarge(1),
+
+		StopDischarge(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"StartDischarge(1): start discharge.;
+
+		 StopDischarge(2): stop discharge."
+
+	::= { RemDischargeCtrlStatus 1 }
+
+
+--电池电量
+
+BatteryVoltage OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Battery Voltage in 1/10 V."
+
+	::= { BatteryEnergyStatus 1 }
+
+BatteryCurrent OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Battery Current in 1/10 A."
+
+	::= { BatteryEnergyStatus 2 }
+
+BatteryTemperature OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Battery Temperature in 1/10 degrees Centigrade."
+
+	::= { BatteryEnergyStatus 3 }
+
+BatteryCapacity OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Battery Capacity in 1/10 %."
+
+	::= { BatteryEnergyStatus 4 }
+
+BatteryBackupTime OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Battery Backup Time in 1/10 min."
+
+	::= { BatteryEnergyStatus 5 }
+
+BatteryStatus OBJECT-TYPE
+
+	SYNTAX DisplayString
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Battery Status."
+
+	::= { BatteryEnergyStatus 6 }
+
+--信号采集卡模拟量
+
+SSCAnalog1 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Signal Sample Card Analog 1 in 1/10 ."
+
+	::= { SignalSampleStatus 1 }
+
+SSCAnalog2 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Signal Sample Card Analog 2 in 1/10 ."
+
+	::= { SignalSampleStatus 2 }
+
+SSCAnalog3 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Signal Sample Card Analog 3 in 1/10 ."
+
+	::= { SignalSampleStatus 3 }
+
+SSCAnalog4 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Signal Sample Card Analog 4 in 1/10 ."
+
+	::= { SignalSampleStatus 4 }
+
+SSCAnalog5 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Signal Sample Card Analog 5 in 1/10 ."
+
+	::= { SignalSampleStatus 5 }
+
+SSCAnalog6 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Signal Sample Card Analog 6 in 1/10 ."
+
+	::= { SignalSampleStatus 6 }
+
+SSCAnalog7 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Signal Sample Card Analog 7 in 1/10 ."
+
+	::= { SignalSampleStatus 7 }
+
+SSCAnalog8 OBJECT-TYPE
+
+	SYNTAX INTEGER
+
+	ACCESS read-only
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"The Signal Sample Card Analog 8 in 1/10 ."
+
+	::= { SignalSampleStatus 8 }
+
+--信号采集卡控制
+
+--module 1
+
+Road1OutputCtrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		Road1OutputOpen(1),
+
+		Road1OutputClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Road1OutputOpen(1): The first output open;
+
+		 Road1OutputClose(2): The first output close."
+
+	::= { SignalSampleCtrlStatus 1 }
+
+--module 2
+
+Road2OutputCtrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		Road2OutputOpen(1),
+
+		Road2OutputClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Road2OutputOpen(1): The second output open;
+
+		 Road2OutputClose(2): The second output close."
+
+	::= { SignalSampleCtrlStatus 2 }
+
+--module 3
+
+Road3OutputCtrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		Road3OutputOpen(1),
+
+		Road3OutputClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Road3OutputOpen(1): The third output open;
+
+		 Road3OutputClose(2): The third output close."
+
+	::= { SignalSampleCtrlStatus 3 }
+
+--module 4
+
+Road4OutputCtrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		Road4OutputOpen(1),
+
+		Road4OutputClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Road4OutputOpen(1): The fourth output open;
+
+		 Road4OutputClose(2): The fourth output close."
+
+	::= { SignalSampleCtrlStatus 4 }
+
+--module 5
+
+Road5OutputCtrl OBJECT-TYPE
+
+	SYNTAX INTEGER  {
+
+		Road5OutputOpen(1),
+
+		Road5OutputClose(2)
+
+	}
+
+	ACCESS read-write
+
+	STATUS mandatory
+
+	DESCRIPTION
+
+		"Road5OutputOpen(1): The fifth output open;
+
+		 Road5OutputClose(2): The fifth output close."
+
+	::= { SignalSampleCtrlStatus 5 }
+
+
+
+-- Traps
+
+--开关量告警
+
+
+TH1Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity1 alarm."
+
+	::= {  rs485trap 30207
+     }
+	
+TH1Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity1 alarm cancel."
+
+	::= {  rs485trap 30208
+     }
+
+TH1Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity1 alarm."
+
+	::= {  rs485trap 30209
+     }
+
+TH1Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity1 alarm cancel."
+
+	::= {  rs485trap 30210
+     }
+
+TH2Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity2 alarm."
+
+	::= {  rs485trap 30211
+     }
+
+TH2Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity2 alarm cancel."
+
+	::= {  rs485trap 30212
+     }
+
+TH2Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity2 alarm."
+
+	::= {  rs485trap 30213
+     }
+
+TH2Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity2 alarm cancel."
+
+	::= {  rs485trap 30214
+     }
+
+TH3Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity3 alarm."
+
+	::= {  rs485trap 30215
+     }
+
+TH3Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity3 alarm cancel."
+
+	::= {  rs485trap 30216
+     }
+
+TH3Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity3 alarm."
+
+	::= {  rs485trap 30217
+     }
+
+TH3Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity3 alarm cancel."
+
+	::= {  rs485trap 30218
+     }
+
+TH4Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity4 alarm."
+
+	::= {  rs485trap 30219
+     }
+
+TH4Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity4 alarm cancel."
+
+	::= {  rs485trap 30220
+     }
+
+TH4Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity4 alarm."
+
+	::= {  rs485trap 30221
+     }
+
+TH4Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity4 alarm cancel."
+
+	::= {  rs485trap 30222
+     }
+
+TH5Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity5 alarm."
+
+	::= {  rs485trap 30223
+     }
+
+TH5Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity5 alarm cancel."
+
+	::= {  rs485trap 30224
+     }
+
+TH5Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity5 alarm."
+
+	::= {  rs485trap 30225
+     }
+
+TH5Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity5 alarm cancel."
+
+	::= {  rs485trap 30226
+     }
+
+TH6Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity6 alarm."
+
+	::= {  rs485trap 30227
+     }
+
+TH6Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity6 alarm cancel."
+
+	::= {  rs485trap 30228
+     }
+
+TH6Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity6 alarm."
+
+	::= {  rs485trap 30229
+     }
+
+TH6Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity6 alarm cancel."
+
+	::= {  rs485trap 30230
+     }
+
+TH7Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity7 alarm."
+
+	::= {  rs485trap 30231
+     }
+
+TH7Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity7 alarm cancel."
+
+	::= {  rs485trap 30232
+     }
+
+TH7Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity7 alarm."
+
+	::= {  rs485trap 30233
+     }
+
+TH7Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity7 alarm cancel."
+
+	::= {  rs485trap 30234
+     }
+
+TH8Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity8 alarm."
+
+	::= {  rs485trap 30235
+     }
+
+TH8Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity8 alarm cancel."
+
+	::= {  rs485trap 30236
+     }
+
+TH8Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity8 alarm."
+
+	::= {  rs485trap 30237
+     }
+
+TH8Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity8 alarm cancel."
+
+	::= {  rs485trap 30238
+     }
+
+TH9Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity9 alarm."
+
+	::= {  rs485trap 30239
+     }
+
+TH9Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity9 alarm cancel."
+
+	::= {  rs485trap 30240
+     }
+
+TH9Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity9 alarm."
+
+	::= {  rs485trap 30241
+     }
+
+TH9Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity9 alarm cancel."
+
+	::= {  rs485trap 30242
+     }
+
+TH10Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity10 alarm."
+
+	::= {  rs485trap 30243
+     }
+
+TH10Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity10 alarm cancel."
+
+	::= {  rs485trap 30244
+     }
+
+TH10Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity10 alarm."
+
+	::= {  rs485trap 30245
+     }
+
+TH10Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity10 alarm cancel."
+
+	::= {  rs485trap 30246
+     }
+
+TH11Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity11 alarm."
+
+	::= {  rs485trap 30247
+     }
+
+TH11Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity11 alarm cancel."
+
+	::= {  rs485trap 30248
+     }
+
+TH11Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity11 alarm."
+
+	::= {  rs485trap 30249
+     }
+
+TH11Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity11 alarm cancel."
+
+	::= {  rs485trap 30250
+     }
+
+TH12Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity12 alarm."
+
+	::= {  rs485trap 30251
+     }
+
+TH12Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity12 alarm cancel."
+
+	::= {  rs485trap 30252
+     }
+
+TH12Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity12 alarm."
+
+	::= {  rs485trap 30253
+     }
+
+TH12Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity12 alarm cancel."
+
+	::= {  rs485trap 30254
+     }
+
+TH13Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity13 alarm."
+
+	::= {  rs485trap 30255
+     }
+
+TH13Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity13 alarm cancel."
+
+	::= {  rs485trap 30256
+     }
+
+TH13Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity13 alarm."
+
+	::= {  rs485trap 30257
+     }
+
+TH13Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity13 alarm cancel."
+
+	::= {  rs485trap 30258
+     }
+
+TH14Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity14 alarm."
+
+	::= {  rs485trap 30259
+     }
+
+TH14Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity14 alarm cancel."
+
+	::= {  rs485trap 30260
+     }
+
+TH14Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity14 alarm."
+
+	::= {  rs485trap 30261
+     }
+
+TH14Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity14 alarm cancel."
+
+	::= {  rs485trap 30262
+     }
+
+TH15Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity15 alarm."
+
+	::= {  rs485trap 30263
+     }
+
+TH15Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity15 alarm cancel."
+
+	::= {  rs485trap 30264
+     }
+
+TH15Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity15 alarm."
+
+	::= {  rs485trap 30265
+     }
+
+TH15Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity15 alarm cancel."
+
+	::= {  rs485trap 30266
+     }
+
+TH16Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity16 alarm."
+
+	::= {  rs485trap 30267
+     }
+
+TH16Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity16 alarm cancel."
+
+	::= {  rs485trap 30268
+     }
+
+TH16Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity16 alarm."
+
+	::= {  rs485trap 30269
+     }
+
+TH16Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity16 alarm cancel."
+
+	::= {  rs485trap 30270
+     }
+
+TH17Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity17 alarm."
+
+	::= {  rs485trap 30271
+     }
+
+TH17Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity17 alarm cancel."
+
+	::= {  rs485trap 30272
+     }
+
+TH17Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity17 alarm."
+
+	::= {  rs485trap 30273
+     }
+
+TH17Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity17 alarm cancel."
+
+	::= {  rs485trap 30274
+     }
+
+TH18Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity18 alarm."
+
+	::= {  rs485trap 30275
+     }
+
+TH18Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity18 alarm cancel."
+
+	::= {  rs485trap 30276
+     }
+
+TH18Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity18 alarm."
+
+	::= {  rs485trap 30277
+     }
+
+TH18Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity18 alarm cancel."
+
+	::= {  rs485trap 30278
+     }
+
+TH19Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity19 alarm."
+
+	::= {  rs485trap 30279
+     }
+
+TH19Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity19 alarm cancel."
+
+	::= {  rs485trap 30280
+     }
+
+TH19Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity19 alarm."
+
+	::= {  rs485trap 30281
+     }
+
+TH19Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity19 alarm cancel."
+
+	::= {  rs485trap 30282
+     }
+
+TH20Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity20 alarm."
+
+	::= {  rs485trap 30283
+     }
+
+TH20Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity20 alarm cancel."
+
+	::= {  rs485trap 30284
+     }
+
+TH20Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity20 alarm."
+
+	::= {  rs485trap 30285
+     }
+
+TH20Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity20 alarm cancel."
+
+	::= {  rs485trap 30286
+     }
+
+TH21Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity21 alarm."
+
+	::= {  rs485trap 30287
+     }
+
+TH21Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity21 alarm cancel."
+
+	::= {  rs485trap 30288
+     }
+
+TH21Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity21 alarm."
+
+	::= {  rs485trap 30289
+     }
+
+TH21Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity21 alarm cancel."
+
+	::= {  rs485trap 30290
+     }
+
+TH22Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity22 alarm."
+
+	::= {  rs485trap 30291
+     }
+
+TH22Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity22 alarm cancel."
+
+	::= {  rs485trap 30292
+     }
+
+TH22Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity22 alarm."
+
+	::= {  rs485trap 30293
+     }
+
+TH22Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity22 alarm cancel."
+
+	::= {  rs485trap 30294
+     }
+
+TH23Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity23 alarm."
+
+	::= {  rs485trap 30295
+     }
+
+TH23Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity23 alarm cancel."
+
+	::= {  rs485trap 30296
+     }
+
+TH23Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity23 alarm."
+
+	::= {  rs485trap 30297
+     }
+
+TH23Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity23 alarm cancel."
+
+	::= {  rs485trap 30298
+     }
+
+TH24Switch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity24 alarm."
+
+	::= {  rs485trap 30299
+     }
+
+TH24Switch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 1 of TemperatureHumidity24 alarm cancel."
+
+	::= {  rs485trap 30300
+     }
+
+TH24Switch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity24 alarm."
+
+	::= {  rs485trap 30301
+     }
+
+TH24Switch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The switch 2 of TemperatureHumidity24 alarm cancel."
+
+	::= {  rs485trap 30302
+     }
+
+--温度上限告警--
+
+Tem1UpperLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 1 upper limit alarm."
+
+   	::= {  rs485trap 95
+     }
+
+Tem1UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 1 upper limit alarm cancel."
+
+   	::= {  rs485trap 96
+     }
+
+Tem2UpperLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 2 upper limit alarm."
+
+   	::= {  rs485trap 97
+     }
+
+Tem2UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 2 upper limit alarm cancel."
+
+   	::= {  rs485trap 98
+     }
+
+Tem3UpperLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 3 upper limit alarm."
+
+   	::= {  rs485trap 99
+     }
+
+Tem3UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 3 upper limit alarm cancel."
+
+   	::= {  rs485trap 100
+     }
+
+Tem4UpperLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 4 upper limit alarm."
+
+   	::= {  rs485trap 101
+     }
+
+Tem4UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 4 upper limit alarm cancel."
+
+   	::= {  rs485trap 102
+     }
+
+Tem5UpperLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 5 upper limit alarm."
+
+   	::= {  rs485trap 103
+     }
+
+Tem5UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 5 upper limit alarm cancel."
+
+   	::= {  rs485trap 104
+     }
+
+Tem6UpperLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 6 upper limit alarm."
+
+   	::= {  rs485trap 105
+     }
+
+Tem6UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 6 upper limit alarm cancel."
+
+   	::= {  rs485trap 106
+     }
+
+Tem7UpperLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 7 upper limit alarm."
+
+   	::= {  rs485trap 107
+     }
+
+Tem7UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 7 upper limit alarm cancel."
+
+   	::= {  rs485trap 108
+     }
+
+Tem8UpperLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 8 upper limit alarm."
+
+   	::= {  rs485trap 109
+     }
+
+Tem8UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 8 upper limit alarm cancel."
+
+   	::= {  rs485trap 110
+     }
+ 
+Tem9UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 9 upper limit alarm."
+
+	::= {  rs485trap 30303
+     }
+
+Tem9UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 9 upper limit alarm cancel."
+
+	::= {  rs485trap 30304
+     }
+
+Tem10UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 10 upper limit alarm."
+
+	::= {  rs485trap 30305
+     }
+
+Tem10UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 10 upper limit alarm cancel."
+
+	::= {  rs485trap 30306
+     }
+
+Tem11UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 11 upper limit alarm."
+
+	::= {  rs485trap 30307
+     }
+
+Tem11UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 11 upper limit alarm cancel."
+
+	::= {  rs485trap 30308
+     }
+
+Tem12UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 12 upper limit alarm."
+
+	::= {  rs485trap 30309
+     }
+
+Tem12UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 12 upper limit alarm cancel."
+
+	::= {  rs485trap 30310
+     }
+
+Tem13UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 13 upper limit alarm."
+
+	::= {  rs485trap 30311
+     }
+
+Tem13UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 13 upper limit alarm cancel."
+
+	::= {  rs485trap 30312
+     }
+
+Tem14UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 14 upper limit alarm."
+
+	::= {  rs485trap 30313
+     }
+
+Tem14UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 14 upper limit alarm cancel."
+
+	::= {  rs485trap 30314
+     }
+
+Tem15UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 15 upper limit alarm."
+
+	::= {  rs485trap 30315
+     }
+
+Tem15UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 15 upper limit alarm cancel."
+
+	::= {  rs485trap 30316
+     }
+
+Tem16UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 16 upper limit alarm."
+
+	::= {  rs485trap 30317
+     }
+
+Tem16UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 16 upper limit alarm cancel."
+
+	::= {  rs485trap 30318
+     }
+
+Tem17UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 17 upper limit alarm."
+
+	::= {  rs485trap 30319
+     }
+
+Tem17UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 17 upper limit alarm cancel."
+
+	::= {  rs485trap 30320
+     }
+
+Tem18UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 18 upper limit alarm."
+
+	::= {  rs485trap 30321
+     }
+
+Tem18UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 18 upper limit alarm cancel."
+
+	::= {  rs485trap 30322
+     }
+
+Tem19UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 19 upper limit alarm."
+
+	::= {  rs485trap 30323
+     }
+
+Tem19UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 19 upper limit alarm cancel."
+
+	::= {  rs485trap 30324
+     }
+
+Tem20UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 20 upper limit alarm."
+
+	::= {  rs485trap 30325
+     }
+
+Tem20UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 20 upper limit alarm cancel."
+
+	::= {  rs485trap 30326
+     }
+
+Tem21UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 21 upper limit alarm."
+
+	::= {  rs485trap 30327
+     }
+
+Tem21UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 21 upper limit alarm cancel."
+
+	::= {  rs485trap 30328
+     }
+
+Tem22UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 22 upper limit alarm."
+
+	::= {  rs485trap 30329
+     }
+
+Tem22UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 22 upper limit alarm cancel."
+
+	::= {  rs485trap 30330
+     }
+
+Tem23UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 23 upper limit alarm."
+
+	::= {  rs485trap 30331
+     }
+
+Tem23UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 23 upper limit alarm cancel."
+
+	::= {  rs485trap 30332
+     }
+
+Tem24UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 24 upper limit alarm."
+
+	::= {  rs485trap 30333
+     }
+
+Tem24UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 24 upper limit alarm cancel."
+
+	::= {  rs485trap 30334
+     }
+
+--温度下限告警--
+
+Tem1LowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 1 lower limit alarm."
+
+   	::= {  rs485trap 111
+     }
+
+Tem1LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 1 lower limit alarm cancel."
+
+   	::= {  rs485trap 112
+     }
+
+Tem2LowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 2 lower limit alarm."
+
+   	::= {  rs485trap 113
+     }
+
+Tem2LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 2 lower limit alarm cancel."
+
+   	::= {  rs485trap 114
+     }
+
+Tem3LowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 3 lower limit alarm."
+
+   	::= {  rs485trap 115
+     }
+
+Tem3LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 3 lower limit alarm cancel."
+
+   	::= {  rs485trap 116
+     }
+
+Tem4LowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 4 lower limit alarm."
+
+   	::= {  rs485trap 117
+     }
+
+Tem4LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 4 lower limit alarm cancel."
+
+   	::= {  rs485trap 118
+     }
+
+Tem5LowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 5 lower limit alarm."
+
+   	::= {  rs485trap 119
+     }
+
+Tem5LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 5 lower limit alarm cancel."
+
+   	::= {  rs485trap 120
+     }
+
+Tem6LowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 6 lower limit alarm."
+
+   	::= {  rs485trap 121
+     }
+
+Tem6LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 6 lower limit alarm cancel."
+
+   	::= {  rs485trap 122
+     }
+
+Tem7LowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 7 lower limit alarm."
+
+   	::= {  rs485trap 123
+     }
+
+Tem7LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 7 lower limit alarm cancel."
+
+   	::= {  rs485trap 124
+     }
+
+Tem8LowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 8 lower limit alarm."
+
+   	::= {  rs485trap 125
+     }
+
+Tem8LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 8 lower limit alarm cancel."
+
+   	::= {  rs485trap 126
+     }
+
+Tem9LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 9 lower limit alarm."
+
+	::= {  rs485trap 30335
+     }
+
+Tem9LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 9 lower limit alarm cancel."
+
+	::= {  rs485trap 30336
+     }
+
+Tem10LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 10 lower limit alarm."
+
+	::= {  rs485trap 30337
+     }
+
+Tem10LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 10 lower limit alarm cancel."
+
+	::= {  rs485trap 30338
+     }
+
+Tem11LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 11 lower limit alarm."
+
+	::= {  rs485trap 30339
+     }
+
+Tem11LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 11 lower limit alarm cancel."
+
+	::= {  rs485trap 30340
+     }
+
+Tem12LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 12 lower limit alarm."
+
+	::= {  rs485trap 30341
+     }
+
+Tem12LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 12 lower limit alarm cancel."
+
+	::= {  rs485trap 30342
+     }
+
+Tem13LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 13 lower limit alarm."
+
+	::= {  rs485trap 30343
+     }
+
+Tem13LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 13 lower limit alarm cancel."
+
+	::= {  rs485trap 30344
+     }
+
+Tem14LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 14 lower limit alarm."
+
+	::= {  rs485trap 30345
+     }
+
+Tem14LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 14 lower limit alarm cancel."
+
+	::= {  rs485trap 30346
+     }
+
+Tem15LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 15 lower limit alarm."
+
+	::= {  rs485trap 30347
+     }
+
+Tem15LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 15 lower limit alarm cancel."
+
+	::= {  rs485trap 30348
+     }
+
+Tem16LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 16 lower limit alarm."
+
+	::= {  rs485trap 30349
+     }
+
+Tem16LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 16 lower limit alarm cancel."
+
+	::= {  rs485trap 30350
+     }
+
+Tem17LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 17 lower limit alarm."
+
+	::= {  rs485trap 30351
+     }
+
+Tem17LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 17 lower limit alarm cancel."
+
+	::= {  rs485trap 30352
+     }
+
+Tem18LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 18 lower limit alarm."
+
+	::= {  rs485trap 30353
+     }
+
+Tem18LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 18 lower limit alarm cancel."
+
+	::= {  rs485trap 30354
+     }
+
+Tem19LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 19 lower limit alarm."
+
+	::= {  rs485trap 30355
+     }
+
+Tem19LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 19 lower limit alarm cancel."
+
+	::= {  rs485trap 30356
+     }
+
+Tem20LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 20 lower limit alarm."
+
+	::= {  rs485trap 30357
+     }
+
+Tem20LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 20 lower limit alarm cancel."
+
+	::= {  rs485trap 30358
+     }
+
+Tem21LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 21 lower limit alarm."
+
+	::= {  rs485trap 30359
+     }
+
+Tem21LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 21 lower limit alarm cancel."
+
+	::= {  rs485trap 30360
+     }
+
+Tem22LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 22 lower limit alarm."
+
+	::= {  rs485trap 30361
+     }
+
+Tem22LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 22 lower limit alarm cancel."
+
+	::= {  rs485trap 30362
+     }
+
+Tem23LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 23 lower limit alarm."
+
+	::= {  rs485trap 30363
+     }
+
+Tem23LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 23 lower limit alarm cancel."
+
+	::= {  rs485trap 30364
+     }
+
+Tem24LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 24 lower limit alarm."
+
+	::= {  rs485trap 30365
+     }
+
+Tem24LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment temperature 24 lower limit alarm cancel."
+
+	::= {  rs485trap 30366
+     }
+
+
+--湿度上限告警----
+
+Hum1UpperLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 1 upper limit alarm."
+
+   	::= {  rs485trap 127
+     }
+
+Hum1UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 1 upper limit alarm cancel."
+
+   	::= {  rs485trap 128
+     }
+
+Hum2UpperLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 2 upper limit alarm."
+
+   	::= {  rs485trap 129
+     }
+
+Hum2UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 2 upper limit alarm cancel."
+
+   	::= {  rs485trap 130
+     }
+
+Hum3UpperLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 3 upper limit alarm."
+
+   	::= {  rs485trap 131
+     }
+
+Hum3UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 3 upper limit alarm cancel."
+
+   	::= {  rs485trap 132
+     }
+
+Hum4UpperLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 4 upper limit alarm."
+
+   	::= {  rs485trap 133
+     }
+
+Hum4UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 4 upper limit alarm cancel."
+
+   	::= {  rs485trap 134
+     }
+
+Hum5UpperLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 5 upper limit alarm."
+
+   	::= {  rs485trap 135
+     }
+
+Hum5UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 5 upper limit alarm cancel."
+
+   	::= {  rs485trap 136
+     }
+
+Hum6UpperLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 6 upper limit alarm."
+
+   	::= {  rs485trap 137
+     }
+
+Hum6UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 6 upper limit alarm cancel."
+
+   	::= {  rs485trap 138
+     }
+
+Hum7UpperLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 7 upper limit alarm."
+
+   	::= {  rs485trap 139
+     }
+
+Hum7UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 7 upper limit alarm cancel."
+
+   	::= {  rs485trap 140
+     }
+
+Hum8UpperLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 8 upper limit alarm."
+
+   	::= {  rs485trap 141
+     }
+
+Hum8UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 8 upper limit alarm cancel."
+
+   	::= {  rs485trap 142
+     }
+ 
+Hum9UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 9 upper limit alarm."
+
+	::= {  rs485trap 30367
+     }
+
+Hum9UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 9 upper limit alarm cancel."
+
+	::= {  rs485trap 30368
+     }
+
+Hum10UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 10 upper limit alarm."
+
+	::= {  rs485trap 30369
+     }
+
+Hum10UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 10 upper limit alarm cancel."
+
+	::= {  rs485trap 30370
+     }
+
+Hum11UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 11 upper limit alarm."
+
+	::= {  rs485trap 30371
+     }
+
+Hum11UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 11 upper limit alarm cancel."
+
+	::= {  rs485trap 30372
+     }
+
+Hum12UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 12 upper limit alarm."
+
+	::= {  rs485trap 30373
+     }
+
+Hum12UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 12 upper limit alarm cancel."
+
+	::= {  rs485trap 30374
+     }
+
+Hum13UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 13 upper limit alarm."
+
+	::= {  rs485trap 30375
+     }
+
+Hum13UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 13 upper limit alarm cancel."
+
+	::= {  rs485trap 30376
+     }
+
+Hum14UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 14 upper limit alarm."
+
+	::= {  rs485trap 30377
+     }
+
+Hum14UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 14 upper limit alarm cancel."
+
+	::= {  rs485trap 30378
+     }
+
+Hum15UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 15 upper limit alarm."
+
+	::= {  rs485trap 30379
+     }
+
+Hum15UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 15 upper limit alarm cancel."
+
+	::= {  rs485trap 30380
+     }
+
+Hum16UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 16 upper limit alarm."
+
+	::= {  rs485trap 30381
+     }
+
+Hum16UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 16 upper limit alarm cancel."
+
+	::= {  rs485trap 30382
+     }
+
+Hum17UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 17 upper limit alarm."
+
+	::= {  rs485trap 30383
+     }
+
+Hum17UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 17 upper limit alarm cancel."
+
+	::= {  rs485trap 30384
+     }
+
+Hum18UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 18 upper limit alarm."
+
+	::= {  rs485trap 30385
+     }
+
+Hum18UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 18 upper limit alarm cancel."
+
+	::= {  rs485trap 30386
+     }
+
+Hum19UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 19 upper limit alarm."
+
+	::= {  rs485trap 30387
+     }
+
+Hum19UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 19 upper limit alarm cancel."
+
+	::= {  rs485trap 30388
+     }
+
+Hum20UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 20 upper limit alarm."
+
+	::= {  rs485trap 30389
+     }
+
+Hum20UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 20 upper limit alarm cancel."
+
+	::= {  rs485trap 30390
+     }
+
+Hum21UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 21 upper limit alarm."
+
+	::= {  rs485trap 30391
+     }
+
+Hum21UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 21 upper limit alarm cancel."
+
+	::= {  rs485trap 30392
+     }
+
+Hum22UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 22 upper limit alarm."
+
+	::= {  rs485trap 30393
+     }
+
+Hum22UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 22 upper limit alarm cancel."
+
+	::= {  rs485trap 30394
+     }
+
+Hum23UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 23 upper limit alarm."
+
+	::= {  rs485trap 30395
+     }
+
+Hum23UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 23 upper limit alarm cancel."
+
+	::= {  rs485trap 30396
+     }
+
+Hum24UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 24 upper limit alarm."
+
+	::= {  rs485trap 30397
+     }
+
+Hum24UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 24 upper limit alarm cancel."
+
+	::= {  rs485trap 30398
+     }
+
+
+--湿度下限告警--
+
+Hum1LowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 1 lower limit alarm."
+
+   	::= {  rs485trap 143
+     }
+
+Hum1LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 1 lower limit alarm cancel."
+
+   	::= {  rs485trap 144
+     }
+
+Hum2LowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 2 lower limit alarm."
+
+   	::= {  rs485trap 145
+     }
+
+Hum2LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 2 lower limit alarm cancel."
+
+   	::= {  rs485trap 146
+     }
+
+Hum3LowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 3 lower limit alarm."
+
+   	::= {  rs485trap 147
+     }
+
+Hum3LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 3 lower limit alarm cancel."
+
+   	::= {  rs485trap 148
+     }
+
+Hum4LowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 4 lower limit alarm."
+
+   	::= {  rs485trap 149
+     }
+
+Hum4LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 4 lower limit alarm cancel."
+
+   	::= {  rs485trap 150
+     }
+
+Hum5LowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 5 lower limit alarm."
+
+   	::= {  rs485trap 151
+     }
+
+Hum5LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 5 lower limit alarm cancel."
+
+   	::= {  rs485trap 152
+     }
+
+Hum6LowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 6 lower limit alarm."
+
+   	::= {  rs485trap 153
+     }
+
+Hum6LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 6 lower limit alarm cancel."
+
+   	::= {  rs485trap 154
+     }
+
+Hum7LowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 7 lower limit alarm."
+
+   	::= {  rs485trap 155
+     }
+
+Hum7LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 7 lower limit alarm cancel."
+
+   	::= {  rs485trap 156
+     }
+
+Hum8LowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 8 lower limit alarm."
+
+   	::= {  rs485trap 157
+     }
+
+Hum8LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 8 lower limit alarm cancel."
+
+   	::= {  rs485trap 158
+     }
+
+Hum9LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 9 lower limit alarm."
+
+	::= {  rs485trap 30399
+     }
+
+Hum9LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 9 lower limit alarm cancel."
+
+	::= {  rs485trap 30400
+     }
+
+Hum10LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 10 lower limit alarm."
+
+	::= {  rs485trap 30401
+     }
+
+Hum10LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 10 lower limit alarm cancel."
+
+	::= {  rs485trap 30402
+     }
+
+Hum11LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 11 lower limit alarm."
+
+	::= {  rs485trap 30403
+     }
+
+Hum11LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 11 lower limit alarm cancel."
+
+	::= {  rs485trap 30404
+     }
+
+Hum12LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 12 lower limit alarm."
+
+	::= {  rs485trap 30405
+     }
+
+Hum12LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 12 lower limit alarm cancel."
+
+	::= {  rs485trap 30406
+     }
+
+Hum13LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 13 lower limit alarm."
+
+	::= {  rs485trap 30407
+     }
+
+Hum13LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 13 lower limit alarm cancel."
+
+	::= {  rs485trap 30408
+     }
+
+Hum14LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 14 lower limit alarm."
+
+	::= {  rs485trap 30409
+     }
+
+Hum14LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 14 lower limit alarm cancel."
+
+	::= {  rs485trap 30410
+     }
+
+Hum15LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 15 lower limit alarm."
+
+	::= {  rs485trap 30411
+     }
+
+Hum15LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 15 lower limit alarm cancel."
+
+	::= {  rs485trap 30412
+     }
+
+Hum16LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 16 lower limit alarm."
+
+	::= {  rs485trap 30413
+     }
+
+Hum16LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 16 lower limit alarm cancel."
+
+	::= {  rs485trap 30414
+     }
+
+Hum17LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 17 lower limit alarm."
+
+	::= {  rs485trap 30415
+     }
+
+Hum17LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 17 lower limit alarm cancel."
+
+	::= {  rs485trap 30416
+     }
+
+Hum18LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 18 lower limit alarm."
+
+	::= {  rs485trap 30417
+     }
+
+Hum18LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 18 lower limit alarm cancel."
+
+	::= {  rs485trap 30418
+     }
+
+Hum19LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 19 lower limit alarm."
+
+	::= {  rs485trap 30419
+     }
+
+Hum19LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 19 lower limit alarm cancel."
+
+	::= {  rs485trap 30420
+     }
+
+Hum20LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 20 lower limit alarm."
+
+	::= {  rs485trap 30421
+     }
+
+Hum20LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 20 lower limit alarm cancel."
+
+	::= {  rs485trap 30422
+     }
+
+Hum21LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 21 lower limit alarm."
+
+	::= {  rs485trap 30423
+     }
+
+Hum21LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 21 lower limit alarm cancel."
+
+	::= {  rs485trap 30424
+     }
+
+Hum22LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 22 lower limit alarm."
+
+	::= {  rs485trap 30425
+     }
+
+Hum22LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 22 lower limit alarm cancel."
+
+	::= {  rs485trap 30426
+     }
+
+Hum23LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 23 lower limit alarm."
+
+	::= {  rs485trap 30427
+     }
+
+Hum23LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 23 lower limit alarm cancel."
+
+	::= {  rs485trap 30428
+     }
+
+Hum24LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 24 lower limit alarm."
+
+	::= {  rs485trap 30429
+     }
+
+Hum24LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Environment humidity 24 lower limit alarm cancel."
+
+	::= {  rs485trap 30430
+     }
+
+
+--电池电量告警
+
+BatCapLowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Battery capacity lower limit alarm."
+
+   	::= {  rs485trap 159
+     }
+
+BatCapLowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Battery capacity lower limit alarm cancel."
+
+   	::= {  rs485trap 160
+     }
+
+BatDchTimeLowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Battery discharge time lower limit alarm."
+
+   	::= {  rs485trap 161
+     }
+
+BatDchTimeLowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Battery discharge time lower limit alarm cancel."
+
+   	::= {  rs485trap 162
+     }
+
+BatVoltUpperLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Battery voltage upper limit alarm."
+
+   	::= {  rs485trap 163
+     }
+
+BatVoltUpperLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Battery voltage upper limit alarm cancel."
+
+   	::= {  rs485trap 164
+     }
+
+BatVoltLowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Battery voltage lower limit alarm."
+
+   	::= {  rs485trap 165
+     }
+
+BatVoltLowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Battery voltage lower limit alarm cancel."
+
+   	::= {  rs485trap 166
+     }
+
+BatDisconnectedAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Battery Energy Module disconnected alarm."
+
+   	::= {  rs485trap 167
+     }
+
+BatDisconnectedAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Battery Energy Module disconnected alarm cancel."
+
+   	::= {  rs485trap 168
+     }
+--add by huangguowei 2015 10 16
+
+BatteryCurrentUpperLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Battery current upper limit alarm."
+
+   	::= {  rs485trap 169
+     }
+
+BatteryCurrentUpperLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Battery current upper limit alarm cancel."
+
+   	::= {  rs485trap 170
+     }
+
+BatteryCurrentLowerLimitAlarm NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Battery current lower limit alarm."
+
+   	::= {  rs485trap 171
+     }
+
+BatteryCurrentLowerLimitAlarmCancel NOTIFICATION-TYPE
+
+    STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Battery current lower limit alarm cancel."
+
+   	::= {  rs485trap 172
+     }
+
+
+
+
+
+--温湿度模块断线告警
+ 
+TemHum24Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 24 disconneted."
+
+	::= {  rs485trap 30431
+     }
+
+TemHum24Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 24 conneted."
+
+	::= {  rs485trap 30432
+     }
+
+TemHum23Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 23 disconneted."
+
+	::= {  rs485trap 30433
+     }
+
+TemHum23Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 23 conneted."
+
+	::= {  rs485trap 30434
+     }
+
+TemHum22Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 22 disconneted."
+
+	::= {  rs485trap 30435
+     }
+
+TemHum22Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 22 conneted."
+
+	::= {  rs485trap 30436
+     }
+
+TemHum21Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 21 disconneted."
+
+	::= {  rs485trap 30437
+     }
+
+TemHum21Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 21 conneted."
+
+	::= {  rs485trap 30438
+     }
+
+TemHum20Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 20 disconneted."
+
+	::= {  rs485trap 30439
+     }
+
+TemHum20Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 20 conneted."
+
+	::= {  rs485trap 30440
+     }
+
+TemHum19Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 19 disconneted."
+
+	::= {  rs485trap 30441
+     }
+
+TemHum19Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 19 conneted."
+
+	::= {  rs485trap 30442
+     }
+
+TemHum18Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 18 disconneted."
+
+	::= {  rs485trap 30443
+     }
+
+TemHum18Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 18 conneted."
+
+	::= {  rs485trap 30444
+     }
+
+TemHum17Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 17 disconneted."
+
+	::= {  rs485trap 30445
+     }
+
+TemHum17Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 17 conneted."
+
+	::= {  rs485trap 30446
+     }
+
+TemHum16Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 16 disconneted."
+
+	::= {  rs485trap 30447
+     }
+
+TemHum16Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 16 conneted."
+
+	::= {  rs485trap 30448
+     }
+
+TemHum15Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 15 disconneted."
+
+	::= {  rs485trap 30449
+     }
+
+TemHum15Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 15 conneted."
+
+	::= {  rs485trap 30450
+     }
+
+TemHum14Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 14 disconneted."
+
+	::= {  rs485trap 30451
+     }
+
+TemHum14Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 14 conneted."
+
+	::= {  rs485trap 30452
+     }
+
+TemHum13Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 13 disconneted."
+
+	::= {  rs485trap 30453
+     }
+
+TemHum13Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 13 conneted."
+
+	::= {  rs485trap 30454
+     }
+
+TemHum12Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 12 disconneted."
+
+	::= {  rs485trap 30455
+     }
+
+TemHum12Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 12 conneted."
+
+	::= {  rs485trap 30456
+     }
+
+TemHum11Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 11 disconneted."
+
+	::= {  rs485trap 30457
+     }
+
+TemHum11Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 11 conneted."
+
+	::= {  rs485trap 30458
+     }
+
+TemHum10Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 10 disconneted."
+
+	::= {  rs485trap 30459
+     }
+
+TemHum10Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 10 conneted."
+
+	::= {  rs485trap 30460
+     }
+
+TemHum9Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 9 disconneted."
+
+	::= {  rs485trap 30461
+     }
+
+TemHum9Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 9 conneted."
+
+	::= {  rs485trap 30462
+     }
+ 
+ 
+TemHum8Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 8 disconneted."  
+
+   	::= {  rs485trap 207
+     }
+
+TemHum8Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 8 conneted."
+
+   	::= {  rs485trap 208
+     }
+
+TemHum7Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 7 disconneted."
+
+   	::= {  rs485trap 209
+     }
+
+TemHum7Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 7 conneted."
+
+   	::= {  rs485trap 210
+     }
+
+TemHum6Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 6 disconneted."
+
+   	::= {  rs485trap 211
+     }
+
+TemHum6Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 6 conneted."
+
+   	::= {  rs485trap 212
+     }
+
+TemHum5Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 5 disconneted."
+
+   	::= {  rs485trap 213
+     }
+
+TemHum5Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 5 conneted."
+
+   	::= {  rs485trap 214
+     }
+
+TemHum4Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 4 disconneted."
+
+   	::= {  rs485trap 215
+     }
+
+TemHum4Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 4 conneted."
+
+   	::= {  rs485trap 216
+     }
+
+TemHum3Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 3 disconneted."
+
+   	::= {  rs485trap 217
+     }
+
+TemHum3Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 3 conneted."
+
+   	::= {  rs485trap 218
+     }
+
+TemHum2Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 2 disconneted."
+
+   	::= {  rs485trap 219
+     }
+
+TemHum2Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 2 conneted."
+
+   	::= {  rs485trap 220
+     }
+
+TemHum1Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 1 disconneted."
+
+   	::= {  rs485trap 221
+     }
+
+TemHum1Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Temperature Humidity Module 1 conneted."
+
+   	::= {  rs485trap 222
+     }
+
+
+
+--信号采集卡告警
+
+SSCSwitch1Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 1 alarm."
+
+   	::= {  rs485trap 7935
+     }
+
+SSCSwitch1AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 1 alarm cancel."
+
+   	::= {  rs485trap 7936
+     }
+
+SSCSwitch2Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 2 alarm."
+
+   	::= {  rs485trap 7937
+     }
+
+SSCSwitch2AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 2 alarm cancel."
+
+   	::= {  rs485trap 7938
+     }
+
+SSCSwitch3Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 3 alarm."
+
+   	::= {  rs485trap 7939
+     }
+
+SSCSwitch3AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 3 alarm cancel."
+
+   	::= {  rs485trap 7940
+     }
+
+SSCSwitch4Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 4 alarm."
+
+   	::= {  rs485trap 7941
+     }
+
+SSCSwitch4AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 4 alarm cancel."
+
+   	::= {  rs485trap 7942
+     }
+
+SSCSwitch5Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 5 alarm."
+
+   	::= {  rs485trap 7943
+     }
+
+SSCSwitch5AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 5 alarm cancel."
+
+   	::= {  rs485trap 7944
+     }
+
+SSCSwitch6Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 6 alarm."
+
+   	::= {  rs485trap 7945
+     }
+
+SSCSwitch6AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 6 alarm cancel."
+
+   	::= {  rs485trap 7946
+     }
+
+SSCSwitch7Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 7 alarm."
+
+   	::= {  rs485trap 7947
+     }
+
+SSCSwitch7AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 7 alarm cancel."
+
+   	::= {  rs485trap 7948
+     }
+
+SSCSwitch8Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 8 alarm."
+
+   	::= {  rs485trap 7949
+     }
+
+SSCSwitch8AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 8 alarm cancel."
+
+   	::= {  rs485trap 7950
+     }
+
+SSCSwitch9Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 9 alarm."
+
+   	::= {  rs485trap 7951
+     }
+
+SSCSwitch9AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 9 alarm cancel."
+
+   	::= {  rs485trap 7952
+     }
+
+SSCSwitch10Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 10 alarm."
+
+   	::= {  rs485trap 7953
+     }
+
+SSCSwitch10AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 10 alarm cancel."
+
+   	::= {  rs485trap 7954
+     }
+
+SSCSwitch11Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 11 alarm."
+
+   	::= {  rs485trap 7955
+     }
+
+SSCSwitch11AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 11 alarm cancel."
+
+   	::= {  rs485trap 7956
+     }
+
+SSCSwitch12Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 12 alarm."
+
+   	::= {  rs485trap 7957
+     }
+
+SSCSwitch12AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 12 alarm cancel."
+
+   	::= {  rs485trap 7958
+     }
+
+SSCSwitch13Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 13 alarm."
+
+   	::= {  rs485trap 7959
+     }
+
+SSCSwitch13AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 13 alarm cancel."
+
+   	::= {  rs485trap 7960
+     }
+
+SSCSwitch14Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 14 alarm."
+
+   	::= {  rs485trap 7961
+     }
+
+SSCSwitch14AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 14 alarm cancel."
+
+   	::= {  rs485trap 7962
+     }
+
+SSCSwitch15Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 15 alarm."
+
+   	::= {  rs485trap 7963
+     }
+
+SSCSwitch15AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 15 alarm cancel."
+
+   	::= {  rs485trap 7964
+     }
+
+SSCSwitch16Alarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 16 alarm."
+
+   	::= {  rs485trap 7965
+     }
+
+SSCSwitch16AlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card switch 16 alarm cancel."
+
+   	::= {  rs485trap 7966
+     }
+
+--信号采集卡断线告警
+
+SSCDisconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card Module disconneted."
+
+   	::= {  rs485trap 7997
+     }
+
+SSCConneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card Module conneted."
+
+   	::= {  rs485trap 7998
+     }
+
+--信号采集卡上下限告警
+
+--模拟量1的上下限告警
+
+SSC1UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 1 upper limit alarm."
+
+   	::= {  rs485trap 7999
+     }
+
+SSC1UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 1 upper limit alarm cancel."
+
+   	::= {  rs485trap 8000
+     }
+
+SSC1LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 1 lower limit alarm."
+
+   	::= {  rs485trap 8001
+     }
+
+SSC1LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 1 lower limit alarm cancel."
+
+   	::= {  rs485trap 8002
+     }
+
+--模拟量2的上下限告警
+
+SSC2UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 2 upper limit alarm."
+
+   	::= {  rs485trap 8003
+     }
+
+SSC2UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 2 upper limit alarm cancel."
+
+   	::= {  rs485trap 8004
+     }
+
+SSC2LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 2 lower limit alarm."
+
+   	::= {  rs485trap 8005
+     }
+
+SSC2LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 2 lower limit alarm cancel."
+
+   	::= {  rs485trap 8006
+     }
+
+--模拟量3的上下限告警
+
+SSC3UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 3 upper limit alarm."
+
+   	::= {  rs485trap 8007
+     }
+
+SSC3UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 3 upper limit alarm cancel."
+
+   	::= {  rs485trap 8008
+     }
+
+SSC3LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 3 lower limit alarm."
+
+   	::= {  rs485trap 8009
+     }
+
+SSC3LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 3 lower limit alarm cancel."
+
+   	::= {  rs485trap 8010
+     }
+
+--模拟量4的上下限告警
+
+SSC4UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 4 upper limit alarm."
+
+   	::= {  rs485trap 8011
+     }
+
+SSC4UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 4 upper limit alarm cancel."
+
+   	::= {  rs485trap 8012
+     }
+
+SSC4LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 4 lower limit alarm."
+
+   	::= {  rs485trap 8013
+     }
+
+SSC4LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 4 lower limit alarm cancel."
+
+   	::= {  rs485trap 8014
+     }
+
+--模拟量5的上下限告警
+
+SSC5UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 5 upper limit alarm."
+
+   	::= {  rs485trap 8015
+     }
+
+SSC5UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 5 upper limit alarm cancel."
+
+   	::= {  rs485trap 8016
+     }
+
+SSC5LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 5 lower limit alarm."
+
+   	::= {  rs485trap 8017
+     }
+
+SSC5LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 5 lower limit alarm cancel."
+
+   	::= {  rs485trap 8018
+     }
+
+--模拟量6的上下限告警
+
+SSC6UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 6 upper limit alarm."
+
+   	::= {  rs485trap 8019
+     }
+
+SSC6UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 6 upper limit alarm cancel."
+
+   	::= {  rs485trap 8020
+     }
+
+SSC6LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 6 lower limit alarm."
+
+   	::= {  rs485trap 8021
+     }
+
+SSC6LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 6 lower limit alarm cancel."
+
+   	::= {  rs485trap 8022
+     }
+
+--模拟量7的上下限告警
+
+SSC7UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 7 upper limit alarm."
+
+   	::= {  rs485trap 8023
+     }
+
+SSC7UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 7 upper limit alarm cancel."
+
+   	::= {  rs485trap 8024
+     }
+
+SSC7LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 7 lower limit alarm."
+
+   	::= {  rs485trap 8025
+     }
+
+SSC7LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 7 lower limit alarm cancel."
+
+   	::= {  rs485trap 8026
+     }
+
+--模拟量8的上下限告警
+
+SSC8UpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 8 upper limit alarm."
+
+   	::= {  rs485trap 8027
+     }
+
+SSC8UpperLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 8 upper limit alarm cancel."
+
+   	::= {  rs485trap 8028
+     }
+
+SSC8LowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 8 lower limit alarm."
+
+   	::= {  rs485trap 8029
+     }
+
+SSC8LowerLimitAlarmCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Signal Sample Card analog 8 lower limit alarm cancel."
+
+   	::= {  rs485trap 8030
+     }
+
+
+
+
+
+--红外模块控制开启状态（成功或失败）
+
+IR1CtrlOpenFail NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 1 control air conditioning open fail."
+
+   	::= {  rs485trap 8033
+     }
+
+IR1CtrlOpenFailCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 1 control air conditioning open fail cancel."
+
+   	::= {  rs485trap 8034
+     }
+
+IR2CtrlOpenFail NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 2 control air conditioning open fail."
+
+   	::= {  rs485trap 8035
+     }
+
+IR2CtrlOpenFailCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 2 control air conditioning open fail cancel."
+
+   	::= {  rs485trap 8036
+     }
+
+IR3CtrlOpenFail NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 3 control air conditioning open fail."
+
+   	::= {  rs485trap 8037
+     }
+
+IR3CtrlOpenFailCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 3 control air conditioning open fail cancel."
+
+   	::= {  rs485trap 8038
+     }
+
+IR4CtrlOpenFail NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 4 control air conditioning open fail."
+
+   	::= {  rs485trap 8039
+     }
+
+IR4CtrlOpenFailCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 4 control air conditioning open fail cancel."
+
+   	::= {  rs485trap 8040
+     }
+
+IR5CtrlOpenFail NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 5 control air conditioning open fail."
+
+   	::= {  rs485trap 8041
+     }
+
+IR5CtrlOpenFailCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 5 control air conditioning open fail cancel."
+
+   	::= {  rs485trap 8042
+     }
+
+IR6CtrlOpenFail NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 6 control air conditioning open fail."
+
+   	::= {  rs485trap 8043
+     }
+
+IR6CtrlOpenFailCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 6 control air conditioning open fail cancel."
+
+   	::= {  rs485trap 8044
+     }
+
+IR7CtrlOpenFail NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 7 control air conditioning open fail."
+
+   	::= {  rs485trap 8045
+     }
+
+IR7CtrlOpenFailCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 7 control air conditioning open fail cancel."
+
+   	::= {  rs485trap 8046
+     }
+
+IR8CtrlOpenFail NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 8 control air conditioning open fail."
+
+   	::= {  rs485trap 8047
+     }
+
+IR8CtrlOpenFailCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 8 control air conditioning open fail cancel."
+
+   	::= {  rs485trap 8048
+     }
+
+--红外模块控制关闭状态（成功或失败）
+
+IR1CtrlCloseFail NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 1 control air conditioning close fail."
+
+   	::= {  rs485trap 8049
+     }
+
+IR1CtrlCloseFailCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 1 control air conditioning close fail cancel."
+
+   	::= {  rs485trap 8050
+     }
+
+IR2CtrlCloseFail NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 2 control air conditioning close fail."
+
+   	::= {  rs485trap 8051
+     }
+
+IR2CtrlCloseFailCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 2 control air conditioning close fail cancel."
+
+   	::= {  rs485trap 8052
+     }
+
+IR3CtrlCloseFail NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 3 control air conditioning close fail."
+
+   	::= {  rs485trap 8053
+     }
+
+IR3CtrlCloseFailCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 3 control air conditioning close fail cancel."
+
+   	::= {  rs485trap 8054
+     }
+
+IR4CtrlCloseFail NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 4 control air conditioning close fail."
+
+   	::= {  rs485trap 8055
+     }
+
+IR4CtrlCloseFailCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 4 control air conditioning close fail cancel."
+
+   	::= {  rs485trap 8056
+     }
+
+IR5CtrlCloseFail NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 5 control air conditioning close fail."
+
+   	::= {  rs485trap 8057
+     }
+
+IR5CtrlCloseFailCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 5 control air conditioning close fail cancel."
+
+   	::= {  rs485trap 8058
+     }
+
+IR6CtrlCloseFail NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 6 control air conditioning close fail."
+
+   	::= {  rs485trap 8059
+     }
+
+IR6CtrlCloseFailCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 6 control air conditioning close fail cancel."
+
+   	::= {  rs485trap 8060
+     }
+
+IR7CtrlCloseFail NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 7 control air conditioning close fail."
+
+   	::= {  rs485trap 8061
+     }
+
+IR7CtrlCloseFailCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 7 control air conditioning close fail cancel."
+
+   	::= {  rs485trap 8062
+     }
+
+IR8CtrlCloseFail NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 8 control air conditioning close fail."
+
+   	::= {  rs485trap 8063
+     }
+
+IR8CtrlCloseFailCancel NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 8 control air conditioning close fail cancel."
+
+   	::= {  rs485trap 8064
+     }
+
+--红外模块断线告警
+
+IR1Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 1 Disconneted."
+
+   	::= {  rs485trap 8065
+     }
+
+IR1Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 1 Conneted."
+
+   	::= {  rs485trap 8066
+     }
+
+IR2Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 2 Disconneted."
+
+   	::= {  rs485trap 8067
+     }
+
+IR2Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 2 Conneted."
+
+   	::= {  rs485trap 8068
+     }
+
+IR3Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 3 Disconneted."
+
+   	::= {  rs485trap 8069
+     }
+
+IR3Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 3 Conneted."
+
+   	::= {  rs485trap 8070
+     }
+
+IR4Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 4 Disconneted."
+
+   	::= {  rs485trap 8071
+     }
+
+IR4Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 4 Conneted."
+
+   	::= {  rs485trap 8072
+     }
+
+IR5Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 5 Disconneted."
+
+   	::= {  rs485trap 8073
+     }
+
+IR5Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 5 Conneted."
+
+   	::= {  rs485trap 8074
+     }
+
+IR6Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 6 Disconneted."
+
+   	::= {  rs485trap 8075
+     }
+
+IR6Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 6 Conneted."
+
+   	::= {  rs485trap 8076
+     }
+
+IR7Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 7 Disconneted."
+
+   	::= {  rs485trap 8077
+     }
+
+IR7Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 7 Conneted."
+
+   	::= {  rs485trap 8078
+     }
+
+IR8Disconneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 8 Disconneted."
+
+   	::= {  rs485trap 8079
+     }
+
+IR8Conneted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: IR Module 8 Conneted."
+
+   	::= {  rs485trap 8080
+     }
+
+--远程电源控制模块
+
+DischargeStarted NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Discharge Started."
+
+   	::= {  rs485trap 4095
+     }
+
+DischargeStopped NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Discharge Stopped."
+
+   	::= {  rs485trap 4096
+     }
+
+InputPowerOff NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Input power off."
+
+   	::= {  rs485trap 4097
+     }
+   	
+InputPowerNormal NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Input power normal."
+
+   	::= {  rs485trap 4098
+     }
+
+
+InputVoltageUpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The input voltage is higher than the upper limit."
+
+   	::= {  rs485trap 4099
+     }
+
+InputVoltageUpperLimitNormal NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The input voltage is normal."
+
+   	::= {  rs485trap 4100
+     }
+
+InputVoltageLowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The input voltage is lower than the lower limit."
+
+   	::= {  rs485trap 4101
+     }
+
+InputVoltageLowerLimitNormal NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The input voltage is normal."
+
+   	::= {  rs485trap 4102
+     }
+
+InputCurrentUpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The input current is higher than the upper limit."
+
+   	::= {  rs485trap 4103
+     }
+
+InputCurrentUpperLimitNormal NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The input current is normal."
+
+   	::= {  rs485trap 4104
+     }
+
+InputCurrentLowerLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The input current is lower than the lower limit."
+
+   	::= {  rs485trap 4105
+     }
+
+InputCurrentLowerLimitNormal NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The input current is normal."
+
+   	::= {  rs485trap 4106
+     }
+
+WireTemperatureUpperLimitAlarm NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Wire temperature is higher than the upper limit."
+
+   	::= {  rs485trap 4107
+     }
+
+WireTemperatureUpperLimitNormal NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Wire temperature is normal."
+
+   	::= {  rs485trap 4108
+     }
+
+ControlFault NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Control fault."
+
+   	::= {  rs485trap 4109
+     }
+
+ControlNormal NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: Control normal."
+
+   	::= {  rs485trap 4110
+     }
+
+DischargeModuleOffline NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The discharge module offline."
+
+   	::= {  rs485trap 4157
+     }
+
+DischargeModuleOnline NOTIFICATION-TYPE
+
+	STATUS      current
+
+	DESCRIPTION
+
+		"INFORMATION: The discharge module online."
+
+   	::= {  rs485trap 4158
+     }
+
+
+
+END
