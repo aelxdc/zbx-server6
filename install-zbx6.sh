@@ -9,6 +9,8 @@ dpkg -i zabbix-release_6.0-1+ubuntu20.04_all.deb
 
 bash mariadb*/setup_repository
 
+apt-key adv --keyserver keyserver.ubuntu.com  --recv-keys F1656F24C74CD1D8
+
 apt update && apt upgrade -y
 
 locale-gen pt_BR.UTF-8
