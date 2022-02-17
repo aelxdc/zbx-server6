@@ -4,12 +4,15 @@ read -p "Digite a senha do banco de dados: " SENHA
 read -p "Digite o IP do Zabbix Server: " SERVIDOR
 read -p "Digite o Hostname do Zabbix : " HOSTNAME
 
-wget https://repo.zabbix.com/zabbix/5.5/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.5-1+ubuntu20.04_all.deb
-dpkg -i zabbix-release_5.5-1+ubuntu20.04_all.deb
+wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-1+ubuntu20.04_all.deb
+dpkg -i zabbix-release_6.0-1+ubuntu20.04_all.deb
 
 bash mariadb*/setup_repository
 
 apt update && apt upgrade -y
+
+apt install locales-all -y && sudo locale-gen -y
+
 
 echo "
 
