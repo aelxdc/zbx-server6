@@ -11,8 +11,9 @@ bash mariadb*/setup_repository
 
 apt update && apt upgrade -y
 
-apt install locales-all -y && sudo locale-gen -y
-
+locale-gen pt_BR.UTF-8
+dpkg-reconfigure locales
+update-locale LANG=pt_BR.UTF-8
 
 echo "
 
