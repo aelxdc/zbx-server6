@@ -52,6 +52,10 @@ mibAllowUnderline 1
 
 cp mibs_ccor/* /usr/share/snmp/mibs/
 
+
+cd /tmp
+
+
 echo "Creating database zabbix"
 #mysql -e "create database zabbix character set utf8 collate utf8_bin;"
 sudo -u postgres createuser --pwprompt zabbix
