@@ -31,12 +31,15 @@ sed -i "s@;date.timezone =@date.timezone = America/Sao_Paulo@g" /etc/php/7.4/apa
 
 sed -i "s@local   all             postgres                                peer@local   all             postgres                                trust@g" /etc/postgresql/12/main/pg_hba.conf
 
-pg_ctlcluster 12 main start
+#pg_ctlcluster 12 main start
 
 systemctl reload apache2
 systemctl enable apache2
+service postgresql start
 systemctl enable postgresql
 
+
+#psql -U postgres
 
 mv /etc/snmp/snmp.conf /etc/snmp/Old_snmp.conf
 echo "
@@ -51,14 +54,20 @@ cp mibs_ccor/* /usr/share/snmp/mibs/
 
 echo "Creating database zabbix"
 #mysql -e "create database zabbix character set utf8 collate utf8_bin;"
+sudo -u postgres createuser --pwprompt zabbix
+echo $SENHA
+echo $SENHA
 
 echo "Creating user zabbix"
 #mysql -e "create user zabbix@localhost identified by '$SENHA';"
+sudo -u postgres createdb -O zabbix -E Unicode -T template0 zabbix
+echo $SENHA
 
-echo "Grant permissions on tables"
+#echo "Grant permissions on tables"
 #mysql -e "grant all privileges on zabbix.* to zabbix@localhost;"
 
 echo "Importing zabbix schema to DB"
+zcat /usr/share/doc/zabbix-sql-scripts/postgresql/server.sql.gz | psql -U zabbix -d zabbix &>/dev/null
 #zcat /usr/share/doc/zabbix-sql-scripts/mysql/server.sql.gz | mysql -uzabbix -p$SENHA zabbix
 
 
